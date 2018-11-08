@@ -1,3 +1,4 @@
 # Ignora backups
 *.bak*
+*.lck
 /InterfaceGrafica/build/
