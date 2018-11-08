@@ -28,7 +28,7 @@ class ButtonRetomarSelecao extends DefaultCellEditor {
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-    new SelecaoComponentes().setVisible(true);
+    //new SelecaoComponentes().setVisible(true);
       }
     });
   }
