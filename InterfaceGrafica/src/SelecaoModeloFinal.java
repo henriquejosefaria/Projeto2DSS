@@ -1,11 +1,14 @@
 
+import static javax.swing.ScrollPaneConstants.*;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 /*
@@ -25,7 +28,8 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
      */
     public SelecaoModeloFinal() {
         initComponents();
-        jPanel2.setLayout(new java.awt.GridLayout(0,5,50,20));
+        jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+        this.jPanel2.setPreferredSize(new Dimension(500, 500));
         jScrollPane1.setViewportView(jPanel2);
         int nImagens = 10;
         // correr várias opções de imagens
@@ -38,8 +42,8 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
             img = new JLabel(new ImageIcon(getClass().getResource("/resources/imagem0.jpg"),"MyImage"));
             nome = (new JLabel("Modelo" + i));
             nome.setHorizontalAlignment(SwingConstants.CENTER);
-            img.setSize(150,100);//setBounds(10, 10, 150, 100);
-            nome.setSize(50,20);//setBounds(60, 120, 50, 20);
+            img.setSize(200,150);
+            nome.setSize(50,20);
             modelo.add(img, BorderLayout.CENTER);
             modelo.add(nome,BorderLayout.SOUTH);
             jPanel2.add(modelo);
@@ -54,84 +58,50 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ObjectProperty.create(), this, org.jdesktop.beansbinding.BeanProperty.create("defaultCloseOperation"));
-        bindingGroup.addBinding(binding);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
-            }
-            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
-                formAncestorResized(evt);
-            }
-        });
+        jScrollPane1.setViewportView(jPanel2);
 
         jLabel1.setText("Modelos");
 
-        jScrollPane1.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
-            }
-            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
-                jScrollPane1AncestorResized(evt);
-            }
-        });
-
-        jPanel2.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
-            }
-            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
-                jPanel2AncestorResized(evt);
-            }
-        });
-        jPanel2.setLayout(new java.awt.GridLayout());
-        jScrollPane1.setViewportView(jPanel2);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(201, 201, 201)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(221, 221, 221))
+            .addComponent(jScrollPane1)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jPanel2AncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_jPanel2AncestorResized
-        this.setPreferredSize(this.getParent().getPreferredSize());
-        this.pack();
-    }//GEN-LAST:event_jPanel2AncestorResized
-
-    private void formAncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_formAncestorResized
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formAncestorResized
-
-    private void jScrollPane1AncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_jScrollPane1AncestorResized
-        this.setPreferredSize(this.getParent().getPreferredSize());
-        this.pack();
-    }//GEN-LAST:event_jScrollPane1AncestorResized
 
     /**
      * @param args the command line arguments
@@ -170,12 +140,8 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
-    private float ratio1;
-    private float ratio2;
-    private float ratio3;
-    private float ratio4;
 }
