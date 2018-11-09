@@ -1,9 +1,12 @@
 
-import java.awt.List;
-import java.util.ArrayList;
+import java.awt.BorderLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,44 +25,51 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
      */
     public SelecaoModeloFinal() {
         initComponents();
-        int nImagens = 1;
-        //JPanel panel = new JPanel();
-        //this.jPanel1.setLayout(null);
-        //panel.setLayout(null);
-        //label.setBounds(10, 10, 50, 20);
-        //panel.add(label);
-        //panel.add(text);
-        //getContentPane().add(panel);
-        
-        ArrayList<JLabel> imagens = new ArrayList<JLabel>();
-        ArrayList<JLabel> modelos = new ArrayList<JLabel>();
+        ratio1 = jPanel2.getWidth()/jScrollPane1.getWidth();
+        ratio2 = jPanel2.getHeight()/jScrollPane1.getHeight();
+        jScrollPane1.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                resizePreviewJPanel(jPanel2, jScrollPane1);
+            }
+        });
+        ratio3 = jScrollPane1.getWidth()/this.getWidth();
+        ratio4 = jScrollPane1.getHeight()/this.getHeight();
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                resizePreviewJScroll(jScrollPane1, this);
+            }
+        });
+        jPanel2.setLayout(new java.awt.GridLayout(2,jPanel2.getWidth()/200,50,20));
+        jScrollPane1.setViewportView(jPanel2);
+        int nImagens = 10;
         // correr várias opções de imagens
         for(int i = 0; i< nImagens; i++){   
-            JLabel label = new JLabel(new ImageIcon("/resources/imagem1.jpg"));
-             System.out.println(getClass().getResource("/resources/imagem" + i + ".jpg"));
-            imagens.add(label);
-            // pos x, pos y, largura, altura
+            JLabel img;
+            JLabel nome;
+            JPanel modelo = new JPanel();
+            modelo.setLayout(new BorderLayout());
+            modelo.setSize(200,200);
+            img = new JLabel(new ImageIcon(getClass().getResource("/resources/imagem0.jpg"),"MyImage"));
+            nome = (new JLabel("Modelo" + i));
+            nome.setHorizontalAlignment(SwingConstants.CENTER);
+            img.setSize(150,100);//setBounds(10, 10, 150, 100);
+            nome.setSize(50,20);//setBounds(60, 120, 50, 20);
+            modelo.add(img, BorderLayout.CENTER);
+            modelo.add(nome,BorderLayout.SOUTH);
+            jPanel2.add(modelo);
         }
-        imagens.get(0).setBounds(jPanel2.getX() + 10, 10, 75, 50); //this.jPanel2.getY(), 200, 175);
-        //jPanel1.add(imagens.get(0));
-        JLabel j = new JLabel("Olá");
-        jPanel2.add(j);
-        j.setBounds(jPanel2.getX() + 10, jPanel2.getY() + 10, 50, 20);
-        jPanel2.add(imagens.get(0));
-        //imagens.get(0).setVisible(true);
-        getContentPane().add(jPanel2);
-        /*
-        for(int i = 1; i< nImagens; i++){
-            if(imagens.get(i-1).getAlignmentX() + 240 <= jPanel2.getWidth()){// 220 -> 200 width + 20 distancia de cada lado
-                imagens.get(i).setBounds((int) (imagens.get(i-1).getAlignmentX() + 20),(int) (imagens.get(i-1).getAlignmentY()) , 200, 175);
-            }
-            imagens.get(i).setBounds(20, (int) (imagens.get(i-1).getAlignmentY() + 225), 200, 175);
-            jPanel2.add(imagens.get(i));
-        }
-        */
- 
     }
-
+    
+    private void resizePreviewJPanel(JPanel innerPanel, JPanel container) {
+        innerPanel.setSize((int)ratio1*container.getWidth(), (int)ratio2*container.getHeight());
+        container.revalidate();
+    }
+    private void resizePreviewJScroll(JPanel innerPanel, JPanel container) {
+        innerPanel.setSize((int)ratio3*container.getWidth(), (int)ratio4*container.getHeight());
+        container.revalidate();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,17 +87,7 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
 
         jLabel1.setText("Modelos");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 384, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 236, Short.MAX_VALUE)
-        );
-
+        jPanel2.setLayout(new java.awt.GridLayout());
         jScrollPane1.setViewportView(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,5 +156,8 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-    private javax.swing.JPanel jPanel1 = new JPanel();
+    private float ratio1;
+    private float ratio2;
+    private float ratio3;
+    private float ratio4;
 }
