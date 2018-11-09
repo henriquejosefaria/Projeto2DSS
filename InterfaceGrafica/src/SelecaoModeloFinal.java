@@ -41,7 +41,7 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
                 resizePreviewJScroll(jScrollPane1, this);
             }
         });
-        jPanel2.setLayout(new java.awt.GridLayout(2,jPanel2.getWidth()/200,50,20));
+        jPanel2.setLayout(new java.awt.GridLayout(0,5,50,20));
         jScrollPane1.setViewportView(jPanel2);
         int nImagens = 10;
         // correr várias opções de imagens
@@ -62,14 +62,6 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
         }
     }
     
-    private void resizePreviewJPanel(JPanel innerPanel, JPanel container) {
-        innerPanel.setSize((int)ratio1*container.getWidth(), (int)ratio2*container.getHeight());
-        container.revalidate();
-    }
-    private void resizePreviewJScroll(JPanel innerPanel, JPanel container) {
-        innerPanel.setSize((int)ratio3*container.getWidth(), (int)ratio4*container.getHeight());
-        container.revalidate();
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,15 +70,40 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ObjectProperty.create(), this, org.jdesktop.beansbinding.BeanProperty.create("defaultCloseOperation"));
+        bindingGroup.addBinding(binding);
+
+        addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
+            }
+            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
+                formAncestorResized(evt);
+            }
+        });
 
         jLabel1.setText("Modelos");
 
+        jScrollPane1.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
+            }
+            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
+                jScrollPane1AncestorResized(evt);
+            }
+        });
+
+        jPanel2.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
+            }
+            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
+                jPanel2AncestorResized(evt);
+            }
+        });
         jPanel2.setLayout(new java.awt.GridLayout());
         jScrollPane1.setViewportView(jPanel2);
 
@@ -113,8 +130,24 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jPanel2AncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_jPanel2AncestorResized
+        this.setPreferredSize(this.getParent().getPreferredSize());
+        this.pack();
+    }//GEN-LAST:event_jPanel2AncestorResized
+
+    private void formAncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_formAncestorResized
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formAncestorResized
+
+    private void jScrollPane1AncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_jScrollPane1AncestorResized
+        this.setPreferredSize(this.getParent().getPreferredSize());
+        this.pack();
+    }//GEN-LAST:event_jScrollPane1AncestorResized
 
     /**
      * @param args the command line arguments
@@ -155,6 +188,7 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
     private float ratio1;
     private float ratio2;
