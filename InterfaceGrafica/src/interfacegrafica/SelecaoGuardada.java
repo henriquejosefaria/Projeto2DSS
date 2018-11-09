@@ -35,7 +35,7 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         jTable1.setModel(dm);
         jTable1.getColumn("Ação").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Ação").setCellEditor(
-        new ButtonRetomarSelecao(new JCheckBox(),jTable1)); // jTable2.getEditingRow() isto é que estava a estourar
+        new ButtonRetomarSelecao(new JCheckBox(),this)); // jTable2.getEditingRow() isto é que estava a estourar
        dm.isCellEditable(1,1);
         dm.addRow(new Object[]{"98232","André Peixoto","22-02-2013","Shelby","Retomar Selecao"});
         dm.addRow(new Object[]{"98374","Henrique Faria","12-03-2012","Sharty","Retomar Selecao"});

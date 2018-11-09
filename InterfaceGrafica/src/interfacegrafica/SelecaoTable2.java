@@ -45,7 +45,7 @@ ui.setNorthPane(null);
       jTable1.setModel(model);
       jTable1.getColumn("Remover").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Remover").setCellEditor(
-        new ButtonRetomarSelecao(new JCheckBox(),jTable1));
+        new ButtonRemoverSelecao(new JCheckBox()));
      // jTable1.getColumnModel().getColumn(0).setMinHeight(400); 
       jTable1.setRowHeight(80);
     }

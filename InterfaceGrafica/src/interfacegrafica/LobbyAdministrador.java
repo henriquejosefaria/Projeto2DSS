@@ -44,6 +44,7 @@ public class LobbyAdministrador extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel3");
 
@@ -68,19 +69,19 @@ public class LobbyAdministrador extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setText("02");
 
-        jLabel8.setText("jLabel8");
+        jLabel8.setText("01/02/1970");
 
-        jLabel9.setText("jLabel9");
+        jLabel9.setText("918234567");
 
         jLabel10.setText("Email:");
 
-        jLabel11.setText("jLabel11");
+        jLabel11.setText("Afonso@uminho.pt");
 
         jLabel12.setText("Data:");
 
-        jLabel13.setText("jLabel13");
+        jLabel13.setText("11/11/2018");
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Registar Funcionário");
@@ -91,6 +92,13 @@ public class LobbyAdministrador extends javax.swing.JFrame {
         });
 
         jButton3.setText("Logout");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setText("Afonso Miguel Rocha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,7 +121,8 @@ public class LobbyAdministrador extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(jLabel11)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 256, Short.MAX_VALUE)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel12)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel13))
@@ -142,7 +151,8 @@ public class LobbyAdministrador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel13))
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -176,8 +186,13 @@ public class LobbyAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new Registo().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,6 +239,7 @@ public class LobbyAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

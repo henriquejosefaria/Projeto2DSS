@@ -15,21 +15,19 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-class ButtonRetomarSelecao extends DefaultCellEditor {
+class ButtonRemoverSelecao extends DefaultCellEditor {
   protected JButton button;
 
   private String label;
 
   private boolean isPushed;
 
-  public ButtonRetomarSelecao(JCheckBox checkBox,SelecaoGuardada selecao) {
+  public ButtonRemoverSelecao(JCheckBox checkBox) {
     super(checkBox);
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-      new Selecao().setVisible(true);
-      selecao.dispose();
       }
     });
   }
