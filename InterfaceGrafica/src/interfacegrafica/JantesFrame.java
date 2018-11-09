@@ -23,13 +23,13 @@ public class JantesFrame extends javax.swing.JFrame {
      */
     public JantesFrame() {
         initComponents();
-       ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Ryzon\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\ola.png");
-    ImageIcon addIcon = new ImageIcon("C:\\Users\\Ryzon\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\ola.png");
-    ImageIcon copyIcon = new ImageIcon("C:\\Users\\Ryzon\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\ola.png");
+       ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\jante.jpg");
+    ImageIcon addIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\ola.png");
+    ImageIcon copyIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\ola.png");
 
-    String[] columnNames = { "Picture", "Description" };
-    Object[][] data = { { aboutIcon, "About" }, { addIcon, "Add" },
-        { copyIcon, "Copy" }, };
+    String[] columnNames = { "Jante", "Descrição","Preço","Comprar" };
+    Object[][] data = { { aboutIcon, "jante v19.43", "333 €","Comprar" }, { aboutIcon, "jante v19.43", "333 €","Comprar" },
+        { aboutIcon, "jante v19.43", "333 €","Comprar" }};
 
     DefaultTableModel model = new DefaultTableModel(data, columnNames){
         @Override
@@ -37,6 +37,9 @@ public class JantesFrame extends javax.swing.JFrame {
         return (column == 0) ? Icon.class : Object.class;
       }};
       jTable1.setModel(model);
+      jTable1.getColumn("Comprar").setCellRenderer(new ButtonRenderer());
+        jTable1.getColumn("Comprar").setCellEditor(
+        new ButtonRetomarSelecao(new JCheckBox(),jTable1));
      // jTable1.getColumnModel().getColumn(0).setMinHeight(400); 
       jTable1.setRowHeight(100);
     }
