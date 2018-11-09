@@ -20,6 +20,16 @@ public class Selecao extends javax.swing.JFrame {
      */
     public Selecao() {
         initComponents();
+        SelecaoTable2 table = new SelecaoTable2();
+        table.setLocation(750, 100);
+        table.setVisible(true);
+        this.add(table);
+        
+            PacotesFrame pacotesf = new PacotesFrame();
+            pacotesf.setLocation(50, 100);
+            pacotesf.setVisible(true);
+            this.add(pacotesf);
+            selectedframe = pacotesf;
     }
 
     /**
@@ -34,80 +44,91 @@ public class Selecao extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Seleção");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Realize a sua Seleção");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Tipo de seleção:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pacotes Predefinidos", "Seleção de Componentes", "Seleção Recomendada" }));
-jComboBox1.addItemListener(new ItemListener() {
-        public void itemStateChanged(ItemEvent arg0) {
-            actionPerformed(arg0);
-        }
-    });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Componentes Selecionados");
+
+        jButton2.setText("Confirmar Stock");
+
+        jButton3.setText("Finalizar Encomenda");
+        jButton3.setEnabled(false);
+
+        jButton1.setText("Gravar Seleção");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(284, 284, 284)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(203, 203, 203)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 446, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(203, 203, 203))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(329, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(477, 477, 477))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(60, 60, 60)
+                        .addComponent(jButton2)
+                        .addGap(56, 56, 56)
+                        .addComponent(jButton3)
+                        .addGap(60, 60, 60))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(523, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 467, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton1))
+                .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void actionPerformed(ItemEvent e) {
-                if(jComboBox1.getSelectedIndex()== 0 && !(selectedframe instanceof PacotesFrame)){
-           if(selectedframe!= null) selectedframe.dispose();
-            System.out.println("00000");
-            PacotesFrame pacotesf = new PacotesFrame();
-            pacotesf.setLocation(95, 100);
-            pacotesf.setVisible(true);
-            this.add(pacotesf);
-            selectedframe = pacotesf;
-        }
-        else if(jComboBox1.getSelectedIndex()== 1 && !(selectedframe instanceof ComponentesFrame)){
-            
-            if(selectedframe!= null) selectedframe.dispose();
-            System.out.println("111111");
-            ComponentesFrame compnentesf = new ComponentesFrame();
-            compnentesf.setLocation(95, 100);
-            compnentesf.setVisible(true);
-            this.add(compnentesf);
-            selectedframe = compnentesf;
-    }
-    }
+  
 
-    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
-        
-        if(jComboBox1.getSelectedIndex()== 0 && !(selectedframe instanceof PacotesFrame)){
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+                        if(jComboBox1.getSelectedIndex()== 0 && !(selectedframe instanceof PacotesFrame)){
            if(selectedframe!= null) selectedframe.dispose();
             System.out.println("00000");
             PacotesFrame pacotesf = new PacotesFrame();
-            pacotesf.setLocation(95, 100);
+            pacotesf.setLocation(50, 100);
             pacotesf.setVisible(true);
             this.add(pacotesf);
             selectedframe = pacotesf;
@@ -117,12 +138,20 @@ jComboBox1.addItemListener(new ItemListener() {
             if(selectedframe!= null) selectedframe.dispose();
             System.out.println("111111");
             ComponentesFrame compnentesf = new ComponentesFrame();
-            compnentesf.setLocation(95, 100);
+            compnentesf.setLocation(50, 100);
             compnentesf.setVisible(true);
             this.add(compnentesf);
             selectedframe = compnentesf;
+    }
+        else if((selectedframe != null) && jComboBox1.getSelectedIndex()== 2){
+            if(selectedframe!= null) selectedframe.dispose();
+            ConfgOtimaFrame confg = new ConfgOtimaFrame();
+            confg.setLocation(70, 100);
+            confg.setVisible(true);
+            this.add(confg);
+            selectedframe = confg;
         }
-    }//GEN-LAST:event_jComboBox1MouseClicked
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,9 +189,13 @@ jComboBox1.addItemListener(new ItemListener() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
     private javax.swing.JInternalFrame selectedframe;
 }
