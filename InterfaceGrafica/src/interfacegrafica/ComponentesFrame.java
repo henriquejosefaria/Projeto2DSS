@@ -5,6 +5,7 @@
  */
 package interfacegrafica;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -53,8 +54,18 @@ ui.setNorthPane(null);
         jLabel6 = new javax.swing.JLabel();
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/pneu.jpg"))); // NOI18N
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/motor.jpg"))); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/jante.jpg"))); // NOI18N
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,13 +85,18 @@ ui.setNorthPane(null);
         jLabel4.setText("Tinta");
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/exterior.jpg"))); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
             }
         });
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/interior.jpg"))); // NOI18N
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         jLabel5.setText("Detalhes Interiores");
 
@@ -161,12 +177,45 @@ ui.setNorthPane(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-System.out.println("yooooo");        // TODO add your handling code here:
+    ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\jante.jpg");
+        String[] colunas = { "Jante", "Descrição","Preço","Selecionar" };
+    Object[][] data = { { aboutIcon, "jante v19.43", "333 €","Selecionar" }, { aboutIcon, "jante v19.43", "333 €","Selecionar" },
+        { aboutIcon, "jante v19.43", "333 €","Selecionar" } };
+    new ComponenteFrame(colunas,data).setVisible(true);
+    
     }//GEN-LAST:event_jButton3MouseClicked
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\pneu.jpg");
+        String[] colunas = { "Pneu", "Descrição","Preço","Selecionar" };
+    Object[][] data = { { aboutIcon, "pneu v19.43", "234 €","Selecionar" }, { aboutIcon, "pneu v19.43", "432 €","Selecionar" },
+        { aboutIcon, "pneu v19.43", "343 €","Selecionar" } };
+    new ComponenteFrame(colunas,data).setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+            ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\motor.jpg");
+        String[] colunas = { "Motor", "Descrição","Preço","Selecionar" };
+    Object[][] data = { { aboutIcon, "Motor v19.43", "3435 €","Selecionar" }, { aboutIcon, "Motor v19.43", "24356 €","Selecionar" },
+        { aboutIcon, "Motor v19.43", "45434 €","Selecionar" } };
+    new ComponenteFrame(colunas,data).setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+            ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\exterior.jpg");
+        String[] colunas = { "Detalhe Exterior", "Descrição","Preço","Selecionar" };
+    Object[][] data = { { aboutIcon, "Para Brisas v19.43", "23 €","Selecionar" }, { aboutIcon, "Spoiler v19.43", "434 €","Selecionar" },
+        { aboutIcon, "Farol v19.43", "343 €","Selecionar" } };
+    new ComponenteFrame(colunas,data).setVisible(true);
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+            ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\exterior.jpg");
+        String[] colunas = { "Detalhe Interior", "Descrição","Preço","Selecionar" };
+    Object[][] data = { { aboutIcon, "Suporte para Copos v19.43", "23 €","Selecionar" }, { aboutIcon, "Ar condicionado v19.43", "323 €","Selecionar" },
+        { aboutIcon, "Radio v19.43", "45434 €","Selecionar" } };
+    new ComponenteFrame(colunas,data).setVisible(true);
+    }//GEN-LAST:event_jButton6MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
