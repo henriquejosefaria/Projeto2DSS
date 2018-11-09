@@ -25,22 +25,6 @@ public class SelecaoModeloFinal extends javax.swing.JFrame {
      */
     public SelecaoModeloFinal() {
         initComponents();
-        ratio1 = jPanel2.getWidth()/jScrollPane1.getWidth();
-        ratio2 = jPanel2.getHeight()/jScrollPane1.getHeight();
-        jScrollPane1.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                resizePreviewJPanel(jPanel2, jScrollPane1);
-            }
-        });
-        ratio3 = jScrollPane1.getWidth()/this.getWidth();
-        ratio4 = jScrollPane1.getHeight()/this.getHeight();
-        this.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                resizePreviewJScroll(jScrollPane1, this);
-            }
-        });
         jPanel2.setLayout(new java.awt.GridLayout(0,5,50,20));
         jScrollPane1.setViewportView(jPanel2);
         int nImagens = 10;
