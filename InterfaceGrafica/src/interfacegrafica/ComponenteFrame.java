@@ -37,11 +37,7 @@ public class ComponenteFrame extends javax.swing.JFrame {
       jTable1.setModel(model);
       jTable1.getColumn("Selecionar").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Selecionar").setCellEditor(
-<<<<<<< HEAD
-        new ButtonRetomarSelecao(new JCheckBox(),jTable1));
-=======
         new ButtonSelecionar(new JCheckBox()));
->>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
      // jTable1.getColumnModel().getColumn(0).setMinHeight(400); 
       jTable1.setRowHeight(100);
     }
@@ -69,17 +65,10 @@ public class ComponenteFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-<<<<<<< HEAD
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Escolha as Jantes");
-=======
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Escolha o Componente");
->>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,11 +92,7 @@ public class ComponenteFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76))
             .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
-                .addGap(196, 196, 196)
-=======
                 .addGap(166, 166, 166)
->>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

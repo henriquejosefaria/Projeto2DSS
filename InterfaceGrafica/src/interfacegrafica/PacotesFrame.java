@@ -108,11 +108,7 @@ ui.setNorthPane(null);
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-<<<<<<< HEAD
-                .addGap(34, 34, 34)
-=======
                 .addGap(25, 25, 25)
->>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,11 +118,7 @@ ui.setNorthPane(null);
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)))
-<<<<<<< HEAD
-                .addGap(20, 20, 20))
-=======
                 .addGap(0, 0, 0))
->>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
         );
 
         pack();

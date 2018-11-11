@@ -22,22 +22,14 @@ class ButtonRetomarSelecao extends DefaultCellEditor {
 
   private boolean isPushed;
 
-<<<<<<< HEAD
-  public ButtonRetomarSelecao(JCheckBox checkBox,JTable table) {
-=======
   public ButtonRetomarSelecao(JCheckBox checkBox,SelecaoGuardada selecao) {
->>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
     super(checkBox);
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-    //new SelecaoComponentes().setVisible(true);
-=======
       new Selecao().setVisible(true);
       selecao.dispose();
->>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
       }
     });
   }
