@@ -108,11 +108,23 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+<<<<<<< HEAD
        if( jTextField1.getText()=="admin"){
         new LobbyAdministrador().setVisible(true);
        }
        else 
         new LobbyFuncionario().setVisible(true);          
+=======
+       if( jTextField1.getText().equals("admin")){
+        new LobbyAdministrador().setVisible(true);
+        System.out.println("admiiinnn");
+        this.dispose();
+       }
+       else{
+            new LobbyFuncionario().setVisible(true);       
+            this.dispose();
+       }
+>>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

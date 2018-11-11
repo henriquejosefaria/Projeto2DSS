@@ -36,6 +36,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
@@ -45,6 +46,24 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                           </Group>
+=======
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel3" min="-2" pref="125" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+>>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
@@ -133,7 +152,11 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
+<<<<<<< HEAD
         <Property name="text" type="java.lang.String" value="jLabel3"/>
+=======
+        <Property name="text" type="java.lang.String" value="Jorge Pedro da Silva"/>
+>>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -165,17 +188,29 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
+<<<<<<< HEAD
         <Property name="text" type="java.lang.String" value="jLabel7"/>
+=======
+        <Property name="text" type="java.lang.String" value="29"/>
+>>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
+<<<<<<< HEAD
         <Property name="text" type="java.lang.String" value="jLabel8"/>
+=======
+        <Property name="text" type="java.lang.String" value="23/12/1982"/>
+>>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
+<<<<<<< HEAD
         <Property name="text" type="java.lang.String" value="jLabel9"/>
+=======
+        <Property name="text" type="java.lang.String" value="912343432"/>
+>>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
@@ -185,7 +220,11 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
+<<<<<<< HEAD
         <Property name="text" type="java.lang.String" value="jLabel11"/>
+=======
+        <Property name="text" type="java.lang.String" value="jorgePedro@uminho.pt"/>
+>>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
@@ -195,7 +234,11 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
+<<<<<<< HEAD
         <Property name="text" type="java.lang.String" value="jLabel13"/>
+=======
+        <Property name="text" type="java.lang.String" value="11/11/2018"/>
+>>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
@@ -214,6 +257,12 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Logout"/>
       </Properties>
+<<<<<<< HEAD
+=======
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+      </Events>
+>>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
     </Component>
   </SubComponents>
 </Form>

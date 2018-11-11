@@ -15,29 +15,19 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-class ButtonRetomarSelecao extends DefaultCellEditor {
+class ButtonRemoverSelecao extends DefaultCellEditor {
   protected JButton button;
 
   private String label;
 
   private boolean isPushed;
 
-<<<<<<< HEAD
-  public ButtonRetomarSelecao(JCheckBox checkBox,JTable table) {
-=======
-  public ButtonRetomarSelecao(JCheckBox checkBox,SelecaoGuardada selecao) {
->>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
+  public ButtonRemoverSelecao(JCheckBox checkBox) {
     super(checkBox);
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-    //new SelecaoComponentes().setVisible(true);
-=======
-      new Selecao().setVisible(true);
-      selecao.dispose();
->>>>>>> ad2ef65607b9b2d9b3f46a3c8f2f143364d3bcc2
       }
     });
   }
