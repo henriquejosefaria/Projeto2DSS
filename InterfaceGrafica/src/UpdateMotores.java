@@ -1,3 +1,7 @@
+
+import interfacegrafica.ComponenteFrame;
+import javax.swing.ImageIcon;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -165,7 +169,7 @@ public class UpdateMotores extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\motor.jpg");
+        ImageIcon aboutIcon = new ImageIcon("Img/Componentes/motor.jpg");
         String[] colunas = { "Motor", "Descrição","Preço","Selecionar" };
         Object[][] data = { { aboutIcon, "Motor v19.43", "3435 €","Selecionar" }, { aboutIcon, "Motor v19.43", "24356 €","Selecionar" },
             { aboutIcon, "Motor v19.43", "45434 €","Selecionar" } };

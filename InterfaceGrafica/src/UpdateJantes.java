@@ -1,3 +1,7 @@
+
+import interfacegrafica.ComponenteFrame;
+import javax.swing.ImageIcon;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -183,7 +187,7 @@ public class UpdateJantes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\jante.jpg");
+        ImageIcon aboutIcon = new ImageIcon("/Img/Componentes/jante.jpg");
         String[] colunas = { "Jante", "Descrição","Preço","Selecionar" };
         Object[][] data = { { aboutIcon, "jante v19.43", "333 €","Selecionar" }, { aboutIcon, "jante v19.43", "333 €","Selecionar" },
             { aboutIcon, "jante v19.43", "333 €","Selecionar" } };
