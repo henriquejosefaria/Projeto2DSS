@@ -169,7 +169,7 @@ public class UpdateMotores extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        ImageIcon aboutIcon = new ImageIcon("Img/Componentes/motor.jpg");
+        ImageIcon aboutIcon = new ImageIcon("/Img/Componentes/motor.jpg");
         String[] colunas = { "Motor", "Descrição","Preço","Selecionar" };
         Object[][] data = { { aboutIcon, "Motor v19.43", "3435 €","Selecionar" }, { aboutIcon, "Motor v19.43", "24356 €","Selecionar" },
             { aboutIcon, "Motor v19.43", "45434 €","Selecionar" } };
