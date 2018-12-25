@@ -13,7 +13,7 @@ import java.util.HashMap;
  */
 public class HashComponentes {
     
-    private HashMap<String, Componente> componentes; //ordenada pelos nomes em vez de Ids porque são todos nomes unicos
+    public HashMap<String, Componente> componentes; //ordenada pelos nomes em vez de Ids porque são todos nomes unicos
     
     public HashComponentes(){
         componentes = new HashMap<String, Componente>();

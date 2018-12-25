@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,11 +27,25 @@ public class Admin extends Utilizador {
         //adicionar aqui uma mensagem para dizer ao utilizador qual é o seu id para fazer login
     }
     
-    void criarPacote(String nome/*, ... */){
+    // metodo para verificar se é possivel criar um pacote com os componentes dados
+    public boolean verificaPacote(ArrayList<String> componentes){
         //...
+        return false;
     }
     
-    void eliminarPacote(String nome/*, ... */){
-        //...
+    public boolean criarPacote(String nome, ArrayList<String> componentes, Pacotes pacotes){
+        if(!pacotes.pacotes.containsKey(nome)){
+            if(verificaPacote(componentes)){
+                Pacote novoPacote = new Pacote(nome, componentes);
+                novoPacote.setNome(nome);
+                novoPacote.setComponentes(componentes);
+                pacotes.pacotes.put(nome, novoPacote);
+            }
+        }
+        return false; //existe um pacote com o nome escolhido
+    }
+    
+    public void eliminarPacote(String nome, Pacotes pacotes){
+        pacotes.pacotes.remove(nome);
     }
 }

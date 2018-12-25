@@ -5,7 +5,7 @@
  */
 
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class Pacotes {
     
-    private ArrayList<Pacote> pacotes;
+    public HashMap<String, Pacote> pacotes;
     
     public Pacotes(){
-        pacotes = new ArrayList<Pacote>();
+        pacotes = new HashMap<String, Pacote>();
     }
 }

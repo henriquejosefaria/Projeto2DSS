@@ -13,9 +13,9 @@ import java.util.HashMap;
  */
 public class HashConfigs {
     
-    private HashMap<Integer, Configuracao> configuracoes;
+    public HashMap<String, Configuracao> configuracoes;
     
     public HashConfigs(){
-        configuracoes = new HashMap<Integer, Configuracao>();
+        configuracoes = new HashMap<String, Configuracao>();
     }
 }

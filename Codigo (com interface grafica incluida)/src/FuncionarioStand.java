@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,9 +19,22 @@ public class FuncionarioStand extends Utilizador {
         this.password = password;
     }
     
-    public String guardarConfiguracao(){
+    //metodo para verificar se é possivel criar uma configuracao com os componentes dados
+    public boolean verificaComponentes(ArrayList<String> componentes) {
         //...
-        return "nomeQueEscreveuParaAConfiguracao";
+        return false;
+    }
+    
+    public boolean guardarConfiguracao(String nome, ArrayList<String> componentes, HashConfigs configs){
+        if(!configs.configuracoes.containsKey(nome)){
+            if(verificaComponentes(componentes)){
+                Configuracao novaConfiguracao = new Configuracao(nome, componentes);
+                novaConfiguracao.setNome(nome);
+                novaConfiguracao.setComponentes(componentes);
+                configs.configuracoes.put(nome, novaConfiguracao);
+            }
+        }
+        return false; //existe uma configurcao com o nome escolhido
     }
     
     public void retomarConfiguracao(Integer id){
