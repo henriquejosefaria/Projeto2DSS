@@ -1,3 +1,5 @@
+package codigo;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,22 +8,52 @@
 
 /**
  *
- * @author André
+ * @author henriquefaria
  */
 public class Utilizador {
-    public String nome;
-    public String password;
-    
+    private String nome;
+    private String password;
+
     public Utilizador(){
-        nome = "";
-        password = "";
+        this.nome = "basico";
+        this.password = "basico"; 
+    }
+    public Utilizador(String nome, String password) {
+        this.nome = nome;
+        this.password = password;
+    }
+    public Utilizador(Utilizador u){
+        this.nome = u.getNome();
+        this.password = u.getPassword();
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append("\nUtilizador{ Nome: ").append(nome);
+        s.append("; Password: ").append(password).append("}");
+        return s.toString();
     }
     
-    void login(String nome, String password){
-        //...
+    @Override
+    public Utilizador clone(){
+        return new Utilizador(this);
     }
     
-    void logout(String nome, String password){
-        //...
-    }
 }

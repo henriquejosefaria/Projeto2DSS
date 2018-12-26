@@ -15,25 +15,24 @@ import java.util.List;
  *
  * @author henriquefaria
  */
-public class Pacote {
+
+public class Modelo {
     private String nome;
-    private double desconto;
     private List<Componente> componentes = new ArrayList<>();
     
-    public Pacote(){
+    public Modelo(){
         this.nome = null;
-        this.desconto = 0;
         this.componentes = new ArrayList<>();
     }
 
-    public Pacote(String nome, List<Componente> c) {
+    public Modelo(String nome, List<Componente> c) {
         this.nome = nome;
         c.forEach((comp) -> {
             this.componentes.add(comp.clone());
         });
     }
     
-    public Pacote(Pacote m){
+    public Modelo(Modelo m){
         this.nome = m.getNome();
         m.getComponentes().forEach((c) -> {
             this.componentes.add(c.clone());
@@ -76,8 +75,8 @@ public class Pacote {
     }
     
     @Override
-    public Pacote clone(){
-        return new Pacote(this);
+    public Modelo clone(){
+        return new Modelo(this);
     }
     
 }
