@@ -13,10 +13,15 @@ public class Encomenda {
     
     private Integer id;
     private String data; //usar data noutro formato?
-    private Integer estado; //confirmada / finalizada (a fazer/enviada) / concluida
+    private Integer estado; //0: em progresso / 0: confirmada / 1: finalizada (enviada para a fabrica)
     
     public Encomenda(){
         id = 999999;
         data = "";
+        estado = 0;
+    }
+    
+    public void setEstado(Integer estado){
+        this.estado = estado;
     }
 }
