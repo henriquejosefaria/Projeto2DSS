@@ -17,21 +17,42 @@ public class Configuracao {
     private Integer id;
     private String modelo;
     private String data;
-    private ArrayList<Integer> componentes;
+    private ArrayList<String> componentes;
     
-    public Configuracao(String nome, ArrayList<Integer> componentes, String modelo, String data){
+    public Configuracao(Integer id,String nome, ArrayList<String> componentes, String modelo, String data){
+        this.id = id;
         this.nomeCliente = nome;
         this.componentes = componentes;
         this.modelo = modelo;
         this.data = data;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public ArrayList<String> getComponentes() {
+        return componentes;
     }
     
     public void setNome(String nome){
         this.nomeCliente = nome;
     }
     
-    public void setComponentes(ArrayList<Integer> componentes){
-        this.componentes = componentes;
+    public void addComponente(String nome){
+        componentes.add(nome);
     }
     
     public void setId(Integer id){

@@ -14,19 +14,23 @@ import java.util.ArrayList;
 public class Pacote {
     
     private String nome;
-    private ArrayList<String> componentes; //strings com os nomes dos componentes do pacote
+    private Integer configId; //strings com os nomes dos componentes do pacote
     
-    public Pacote(String nome, ArrayList<String> componentes){
-        nome = "";
-        componentes = new ArrayList<String>();
+    public Pacote(String nome, Integer configId){
+        this.nome = nome;
+        this.configId = configId;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Integer getConfigId() {
+        return configId;
     }
     
     public void setNome(String nome){
         this.nome = nome;
-    }
-    
-    public void setComponentes(ArrayList<String> componentes){
-        this.componentes = componentes;
     }
     
 }

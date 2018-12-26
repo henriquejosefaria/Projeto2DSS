@@ -13,24 +13,23 @@ import java.util.ArrayList;
  */
 public class FuncionarioStand extends Utilizador {
     
-    public FuncionarioStand(String nome, String password){
-        this.id = 0; //id é dado quando o admin regista o funcionario
+    public FuncionarioStand(Integer id,String nome, String password){
+        this.id = id; //id é dado quando o admin regista o funcionario
         this.nome = nome;
         this.password = password;
     }
     
     //metodo para verificar se é possivel criar uma configuracao com os componentes dados
-    public boolean verificaComponentes(ArrayList<Integer> componentes) {
+    public boolean verificaComponentes(ArrayList<String> componentes) {
         //...
         return false;
     }
     
-    public boolean guardarConfiguracao(String nome, ArrayList<Integer> componentes, HashConfigs configs, String modelo, String data){
+    public boolean guardarConfiguracao(String nome, ArrayList<String> componentes, HashConfigs configs, String modelo, String data){
         if(!configs.configuracoes.containsKey(nome)){
             if(verificaComponentes(componentes)){
-                Configuracao novaConfiguracao = new Configuracao(nome, componentes, modelo, data);
                 Integer id = configs.getLastId() + 1;
-                novaConfiguracao.setId(id);
+                Configuracao novaConfiguracao = new Configuracao(id,nome, componentes, modelo, data);
                 configs.configuracoes.put(id, novaConfiguracao);
                 configs.setLastId(id);
             }

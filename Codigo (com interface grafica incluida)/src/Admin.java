@@ -13,10 +13,10 @@ import java.util.ArrayList;
  */
 public class Admin extends Utilizador {
     
-    public Admin(){
-        id = 999999;
-        nome = "admin";
-        password = "admin";
+    public Admin(Integer id,String nome,String password){
+        id = id;
+        nome = nome;
+        password = password;
     }
     
     public void registarUtilizador(Utilizador f, HashUsers users){
@@ -28,17 +28,15 @@ public class Admin extends Utilizador {
     }
     
     // metodo para verificar se é possivel criar um pacote com os componentes dados
-    public boolean verificaPacote(ArrayList<String> componentes){
+    public boolean verificaPacote(Integer configId){
         //...
         return false;
     }
     
-    public boolean criarPacote(String nome, ArrayList<String> componentes, Pacotes pacotes){
+    public boolean criarPacote(String nome, Integer configId, Pacotes pacotes){
         if(!pacotes.pacotes.containsKey(nome)){
-            if(verificaPacote(componentes)){
-                Pacote novoPacote = new Pacote(nome, componentes);
-                novoPacote.setNome(nome);
-                novoPacote.setComponentes(componentes);
+            if(verificaPacote(configId)){
+                Pacote novoPacote = new Pacote(nome, configId);
                 pacotes.pacotes.put(nome, novoPacote);
             }
         }

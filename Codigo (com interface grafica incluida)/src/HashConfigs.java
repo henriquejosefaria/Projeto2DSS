@@ -6,6 +6,7 @@
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -13,11 +14,12 @@ import java.util.HashMap;
  */
 public class HashConfigs {
     
-    public HashMap<Integer, Configuracao> configuracoes;
+    public Map<Integer, Configuracao> configuracoes;
     private Integer lastID;
     
-    public HashConfigs(){
-        configuracoes = new HashMap<Integer, Configuracao>();
+    public HashConfigs(Map<Integer, Configuracao> configuracoes,Integer lastID){
+        this.configuracoes = configuracoes;
+        this.lastID = lastID;
     }
     
     public Integer getLastId(){

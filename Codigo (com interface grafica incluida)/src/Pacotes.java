@@ -6,6 +6,7 @@
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -13,9 +14,9 @@ import java.util.HashMap;
  */
 public class Pacotes {
     
-    public HashMap<String, Pacote> pacotes;
+    public Map<String, Pacote> pacotes;
     
-    public Pacotes(){
-        pacotes = new HashMap<String, Pacote>();
+    public Pacotes(Map<String, Pacote> pacotes){
+        this.pacotes = pacotes;
     }
 }

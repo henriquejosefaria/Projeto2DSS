@@ -6,6 +6,7 @@
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -13,9 +14,9 @@ import java.util.HashMap;
  */
 public class HashComponentes {
     
-    public HashMap<String, Componente> componentes; //ordenada pelos nomes em vez de Ids porque são todos nomes unicos
+    public Map<String, Componente> componentes; //ordenada pelos nomes em vez de Ids porque são todos nomes unicos
     
-    public HashComponentes(){
-        componentes = new HashMap<String, Componente>();
+    public HashComponentes(Map<String, Componente> componentes){
+        this.componentes = componentes;
     }
 }
