@@ -37,12 +37,18 @@ public class FuncionarioStand extends Utilizador {
         return false; //existe uma configurcao com o nome escolhido
     }
     
-    public void retomarConfiguracao(Integer id){
+    public void retomarConfiguracao(String nome){
         //...
     }
     
-    public void apagarSelecao(Integer id){ //este metodo apaga uma configuraçao selecionada que tinha sido guardada
-        //...
+    public boolean apagarSelecao(String nome, HashConfigs configs){ //este metodo apaga uma configuraçao selecionada que tinha sido guardada
+        if(configs.configuracoes.containsKey(nome)){
+            configs.configuracoes.remove(nome);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     
     public void selecaoModeloDoCarro(String modelo){
@@ -65,7 +71,8 @@ public class FuncionarioStand extends Utilizador {
         //cria encomenda com a configuracao feita e mete o estado da encomenda correspondente
     }
     
-    public void finalizaEncomenda(){
-        //mete o estado correspondente e envia
+    public void finalizaEncomenda(Encomenda encomenda){
+        encomenda.setEstado(2);
+        // falta enviar para a base de dados ordenadamente
     }
 }
