@@ -29,7 +29,7 @@ public class BaseDados {
     private Integer lastUserId;
     private Integer lastConfigId;
    
-    public BaseDados(){
+    public BaseDados() throws SQLException{
         
         users = new HashMap<>();
         comp = new HashMap<>();
@@ -41,6 +41,7 @@ public class BaseDados {
         String url = "jdbc:mysql://localhost:3307/stand?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String username = "Jafar Strogonof";
         String password = "Jafar";
+        Connection con = null;
 
         System.out.println("Connecting to MySQL Database...");
         String query1 = "SELECT * FROM utilizador";
@@ -53,8 +54,8 @@ public class BaseDados {
         String query8 = "SELECT * FROM lastids";
         
 
-        try (Connection con = DriverManager.getConnection(url, username, password)){
-            
+        try {
+            con = DriverManager.getConnection(url, username, password);
              System.out.println("MySQL Database connected!");
              
             PreparedStatement pstUser = con.prepareStatement(query1);
@@ -136,19 +137,21 @@ public class BaseDados {
             }
             System.out.println("LastIds loaded from MySQL DB");
             
+            HashUsers utilizadores = new HashUsers(users,lastUserId);
+            HashComponentes componentes = new HashComponentes(comp);
+            HashEncomendas encomendas = new HashEncomendas(encom);
+            Pacotes pacotes = new Pacotes(packages);
+            HashConfigs configuracoes = new HashConfigs(configs,lastConfigId);
  
         }catch (SQLException e) {
             throw new IllegalStateException("Cannot connect to the MySQL database!", e);
+
+        } finally {
+            con.close(); 
         }
-        HashUsers utilizadores = new HashUsers(users,lastUserId);
-        HashComponentes componentes = new HashComponentes(comp);
-        HashEncomendas encomendas = new HashEncomendas(encom);
-        Pacotes pacotes = new Pacotes(packages);
-        HashConfigs configuracoes = new HashConfigs(configs,lastConfigId);
-    
     }
     
-        public static void main(String args[]) {
+        public static void main(String args[]) throws SQLException {
         new BaseDados();
         }
 }
