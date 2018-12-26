@@ -1,0 +1,71 @@
+
+import java.util.ArrayList;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author André
+ */
+public class FuncionarioStand extends Utilizador {
+    
+    public FuncionarioStand(String nome, String password){
+        this.id = 0; //id é dado quando o admin regista o funcionario
+        this.nome = nome;
+        this.password = password;
+    }
+    
+    //metodo para verificar se é possivel criar uma configuracao com os componentes dados
+    public boolean verificaComponentes(ArrayList<String> componentes) {
+        //...
+        return false;
+    }
+    
+    public boolean guardarConfiguracao(String nome, ArrayList<String> componentes, HashConfigs configs){
+        if(!configs.configuracoes.containsKey(nome)){
+            if(verificaComponentes(componentes)){
+                Configuracao novaConfiguracao = new Configuracao(nome, componentes);
+                novaConfiguracao.setNome(nome);
+                novaConfiguracao.setComponentes(componentes);
+                configs.configuracoes.put(nome, novaConfiguracao);
+            }
+        }
+        return false; //existe uma configurcao com o nome escolhido
+    }
+    
+    public void retomarConfiguracao(Integer id){
+        //...
+    }
+    
+    public void apagarSelecao(Integer id){ //este metodo apaga uma configuraçao selecionada que tinha sido guardada
+        //...
+    }
+    
+    public void selecaoModeloDoCarro(String modelo){
+        //...
+    }
+    
+    public void selecaoPacote(String nome){
+        //...
+    }
+    
+    public void selecionaConfiguracaoOtima(){
+        //...
+    }
+    
+    public void selecionaComponentes(String nome){ //um a um
+        //...
+    }
+    
+    public void confirmaEncomenda(){
+        //cria encomenda com a configuracao feita e mete o estado da encomenda correspondente
+    }
+    
+    public void finalizaEncomenda(){
+        //mete o estado correspondente e envia
+    }
+}
