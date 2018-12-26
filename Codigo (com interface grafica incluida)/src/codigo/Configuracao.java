@@ -35,9 +35,9 @@ public class Configuracao {
         this.preco = preco;
         this.data = data;
         this.pacote = pacote;
-        for(Componente comp : c){
+        c.forEach((comp) -> {
             this.componentes.add(comp.clone());
-        }
+        });
     }
     
     public Configuracao(Configuracao c){
