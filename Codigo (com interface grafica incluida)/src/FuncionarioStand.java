@@ -20,18 +20,19 @@ public class FuncionarioStand extends Utilizador {
     }
     
     //metodo para verificar se é possivel criar uma configuracao com os componentes dados
-    public boolean verificaComponentes(ArrayList<String> componentes) {
+    public boolean verificaComponentes(ArrayList<Integer> componentes) {
         //...
         return false;
     }
     
-    public boolean guardarConfiguracao(String nome, ArrayList<String> componentes, HashConfigs configs){
+    public boolean guardarConfiguracao(String nome, ArrayList<Integer> componentes, HashConfigs configs, String modelo, String data){
         if(!configs.configuracoes.containsKey(nome)){
             if(verificaComponentes(componentes)){
-                Configuracao novaConfiguracao = new Configuracao(nome, componentes);
-                novaConfiguracao.setNome(nome);
-                novaConfiguracao.setComponentes(componentes);
-                configs.configuracoes.put(nome, novaConfiguracao);
+                Configuracao novaConfiguracao = new Configuracao(nome, componentes, modelo, data);
+                Integer id = configs.getLastId() + 1;
+                novaConfiguracao.setId(id);
+                configs.configuracoes.put(id, novaConfiguracao);
+                configs.setLastId(id);
             }
         }
         return false; //existe uma configurcao com o nome escolhido

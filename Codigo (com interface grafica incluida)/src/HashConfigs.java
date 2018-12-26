@@ -13,9 +13,18 @@ import java.util.HashMap;
  */
 public class HashConfigs {
     
-    public HashMap<String, Configuracao> configuracoes;
+    public HashMap<Integer, Configuracao> configuracoes;
+    private Integer lastID;
     
     public HashConfigs(){
-        configuracoes = new HashMap<String, Configuracao>();
+        configuracoes = new HashMap<Integer, Configuracao>();
+    }
+    
+    public Integer getLastId(){
+        return this.lastID;
+    }
+    
+    public void setLastId(Integer id){
+        lastID = id;
     }
 }

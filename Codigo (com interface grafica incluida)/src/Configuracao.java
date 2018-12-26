@@ -13,19 +13,29 @@ import java.util.ArrayList;
  */
 public class Configuracao {
     
-    private String nome;
-    private ArrayList<String> componentes; //strings com os nomes dos componentes escolhidos
+    private String nomeCliente;
+    private Integer id;
+    private String modelo;
+    private String data;
+    private ArrayList<Integer> componentes;
     
-    public Configuracao(String nome, ArrayList<String> componentes){
-        this.nome = nome;
+    public Configuracao(String nome, ArrayList<Integer> componentes, String modelo, String data){
+        this.nomeCliente = nome;
         this.componentes = componentes;
+        this.modelo = modelo;
+        this.data = data;
     }
     
     public void setNome(String nome){
-        this.nome = nome;
+        this.nomeCliente = nome;
     }
     
-    public void setComponentes(ArrayList<String> componentes){
+    public void setComponentes(ArrayList<Integer> componentes){
         this.componentes = componentes;
     }
+    
+    public void setId(Integer id){
+        this.id = id;
+    }
+    
 }
