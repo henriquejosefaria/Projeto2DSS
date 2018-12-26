@@ -151,7 +151,69 @@ public class BaseDados {
         }
     }
     
-        public static void main(String args[]) throws SQLException {
-        new BaseDados();
+    public void addUser(Integer id, String nome,String pass,String tipo){
+        
+        String url = "jdbc:mysql://localhost:3307/stand?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String username = "Jafar Strogonof";
+        String password = "Jafar";
+        Connection con = null;
+        
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            System.out.println("MySQL Database connected!");
+             
+            String query = "INSERT INTO utilizador (idFuncionario,Nome,Password,Tipo)";
+
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, id);
+            preparedStmt.setString(2, nome);
+            preparedStmt.setString(3, pass);
+            preparedStmt.setString(4, tipo);
+
+            preparedStmt.execute();
+      
+            con.close();
+        
+        }catch (Exception e){
+            System.err.println("Exception! User not inserted!");
+            System.err.println(e.getMessage());
         }
+    }
+    
+    public void addComponente(String nome, Integer stock,Double preco,String descricao){
+        
+        String url = "jdbc:mysql://localhost:3307/stand?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String username = "Jafar Strogonof";
+        String password = "Jafar";
+        Connection con = null;
+        
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            System.out.println("MySQL Database connected!");
+             
+            String query = "INSERT INTO componente (Nome,Stock,Preco,Descricao)";
+
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, nome);
+            preparedStmt.setInt(2, stock);
+            preparedStmt.setDouble(3, preco);
+            preparedStmt.setString(4, descricao);
+
+            preparedStmt.execute();
+      
+            con.close();
+        
+        }catch (Exception e){
+            System.err.println("Exception! Componente not inserted!");
+            System.err.println(e.getMessage());
+        }
+    }
+    
+    
+    
+
+    
+    public static void main(String args[]) throws SQLException {
+        new BaseDados();
+    }
 }
