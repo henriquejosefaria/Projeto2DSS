@@ -4,28 +4,55 @@
  * and open the template in the editor.
  */
 
+
 /**
  *
- * @author André
+ * @author henriquefaria
  */
 public class Utilizador {
-    public Integer id = 0;
-    public String nome;
-    public String password;
-    
-    public void setId(Integer id){
-        this.id = id;
+    private String nome;
+    private String password;
+
+    public Utilizador(){
+        this.nome = "basico";
+        this.password = "basico"; 
+    }
+    public Utilizador(String nome, String password) {
+        this.nome = nome;
+        this.password = password;
+    }
+    public Utilizador(Utilizador u){
+        this.nome = u.getNome();
+        this.password = u.getPassword();
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append("\nUtilizador{ Nome: ").append(nome);
+        s.append("; Password: ").append(password).append("}");
+        return s.toString();
     }
     
-    public boolean login(Integer id, String password, HashUsers users){
-        if (users.utilizadores.containsKey(id)){
-            if(users.utilizadores.get(id).password.equals(password))
-                return true;
-        }
-        return false;
+    @Override
+    public Utilizador clone(){
+        return new Utilizador(this);
     }
     
-    public void logout(Integer id, String password){
-        //...
-    }
 }

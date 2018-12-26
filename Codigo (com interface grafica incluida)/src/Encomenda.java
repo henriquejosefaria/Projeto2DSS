@@ -5,23 +5,61 @@
  */
 
 
+import codigo.Configuracao;
+
 /**
  *
- * @author André
+ * @author henriquefaria
  */
 public class Encomenda {
-    
-    private Integer id;
-    private String data; //usar data noutro formato?
-    private Integer estado; //0: em progresso / 0: confirmada / 1: finalizada (enviada para a fabrica)
+    private Configuracao configuracao;
+    private String nomeCliente;
     
     public Encomenda(){
-        id = 999999;
-        data = "";
-        estado = 0;
+        this.configuracao = new Configuracao();
+        this.nomeCliente = null;
+    }
+
+    public Encomenda(Configuracao configuracao, String nomeCliente) {
+        this.configuracao = configuracao;
+        this.nomeCliente = nomeCliente;
     }
     
-    public void setEstado(Integer estado){
-        this.estado = estado;
+    public Encomenda(Encomenda e){
+        this.configuracao = e.getConfiguracao();
+        this.nomeCliente = e.getNomeCliente();
     }
+
+    public Configuracao getConfiguracao() {
+        return configuracao;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+    
+    public void setConfiguracao(Configuracao configuracao) {
+        this.configuracao = configuracao;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append("Encomenda{ ");
+        s.append(configuracao.toString());
+        s.append("Nome Cliente : ").append(nomeCliente);
+        s.append("}");
+        return s.toString();
+    }
+    
+    @Override
+    public Encomenda clone(){
+        return new Encomenda(this);
+    }
+    
+    
 }

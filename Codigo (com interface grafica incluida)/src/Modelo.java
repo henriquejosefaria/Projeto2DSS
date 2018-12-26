@@ -1,4 +1,4 @@
-package codigo;
+
 
 
 import codigo.Componente;

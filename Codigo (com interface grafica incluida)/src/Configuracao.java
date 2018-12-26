@@ -5,37 +5,114 @@
  */
 
 
+import codigo.Componente;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author André
+ * @author henriquefaria
  */
 public class Configuracao {
-    
     private String nomeCliente;
-    private Integer id;
-    private String modelo;
-    private String data;
-    private ArrayList<Integer> componentes;
+    private double preco;
+    private LocalDate data;
+    private Pacote pacote;
+    private List<Componente> componentes = new ArrayList<>();
+
+    public Configuracao(){
+        this.nomeCliente = null;
+        this.preco = 0;
+        this.data = LocalDate.now();
+        this.pacote = new Pacote();
+        this.componentes = new ArrayList<>();
+    }
+
+    public Configuracao(String nomeCliente, double preco, LocalDate data, Pacote pacote,List<Componente> c) {
+        this.nomeCliente = nomeCliente;
+        this.preco = preco;
+        this.data = data;
+        this.pacote = pacote;
+        c.forEach((comp) -> {
+            this.componentes.add(comp.clone());
+        });
+    }
     
-    public Configuracao(String nome, ArrayList<Integer> componentes, String modelo, String data){
-        this.nomeCliente = nome;
-        this.componentes = componentes;
-        this.modelo = modelo;
+    public Configuracao(Configuracao c){
+        this.nomeCliente = c.getNomeCliente();
+        this.preco = c.getPreco();
+        this.data = c.getData();
+        this.pacote = c.getPacote();
+        this.componentes = c.getComponentes();
+    }
+    
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public Pacote getPacote() {
+        return pacote;
+    }
+
+    public List<Componente> getComponentes() {
+        List<Componente> c = new ArrayList<>();
+        this.componentes.forEach((comp) -> {
+            c.add(comp.clone());
+        });
+        return c;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public void setData(LocalDate data) {
         this.data = data;
     }
-    
-    public void setNome(String nome){
-        this.nomeCliente = nome;
+
+    public void setPacote(Pacote pacote) {
+        this.pacote = pacote;
+    }
+
+    public void setComponentes(List<Componente> componentes) {
+        componentes.forEach((c) -> {
+            this.componentes.add(c.clone());
+        });
     }
     
-    public void setComponentes(ArrayList<Integer> componentes){
-        this.componentes = componentes;
+    @Override
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+        s.append("\nConfiguração{ " );
+        s.append("Nome Cliente : ").append(nomeCliente);
+        s.append(", Preço : ").append(preco);
+        s.append(", Data : ").append(data.toString());
+        s.append(", Pacote : ").append(pacote);
+        s.append("Componentes{ ");
+        componentes.forEach((c) -> {
+            s.append(" ").append(c.getNome()).append(" ");
+        });
+        s.append("}}");
+        return s.toString();
     }
     
-    public void setId(Integer id){
-        this.id = id;
+    @Override
+    public Configuracao clone(){
+        return new Configuracao(this);
     }
     
 }
