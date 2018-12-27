@@ -90,7 +90,7 @@ public class BaseDados {
             PreparedStatement pstConfig = con.prepareStatement(query3);
             ResultSet rsConfig = pstConfig.executeQuery();     
             while (rsConfig.next()) {
-                Configuracao config = new Configuracao(rsConfig.getInt(1),rsConfig.getString(2),null,rsConfig.getString(3),rsConfig.getString(4));
+                //Configuracao config = new Configuracao(rsConfig.getInt(1),rsConfig.getString(2),null,rsConfig.getString(3),rsConfig.getString(4));
                 configs.put(config.getId(),config);
             }
             

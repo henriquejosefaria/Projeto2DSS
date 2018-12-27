@@ -29,7 +29,7 @@ public class FuncionarioStand extends Utilizador {
         if(!configs.configuracoes.containsKey(nome)){
             if(verificaComponentes(componentes)){
                 Integer id = configs.getLastId() + 1;
-                Configuracao novaConfiguracao = new Configuracao(id,nome, componentes, modelo, data);
+                //Configuracao novaConfiguracao = new Configuracao(id,nome, componentes, modelo, data);
                 configs.configuracoes.put(id, novaConfiguracao);
                 configs.setLastId(id);
             }
