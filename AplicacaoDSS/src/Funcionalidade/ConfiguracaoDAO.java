@@ -1,4 +1,4 @@
-package funcionalidade;
+package Funcionalidade;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -76,6 +76,27 @@ public class ConfiguracaoDAO {
         Configuracao conf;
         Connection con = AConnection.createConnection();
         PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE nContribuinte = " + nContribuinte);
+        ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            conf = new Configuracao(rs.getInt(1),rs.getInt(2),null,rs.getString(3),rs.getString(4));
+        
+            PreparedStatement pst2 = con.prepareStatement("SELECT * FROM configuracao_has_componente WHERE Configuracao_idConfiguracao = "+rs.getInt(1));
+            ResultSet rs2 = pst2.executeQuery();
+            while(rs2.next()){
+                String NComp = (rs2.getString(2));
+                conf.addComponente(NComp);
+            }
+            config.add(conf);
+        }
+        AConnection.closeConection(con);
+        return config;
+    }
+    
+    public List<Configuracao> getConfiguracoes() throws SQLException{
+        List<Configuracao> config = new ArrayList<>();
+        Configuracao conf;
+        Connection con = AConnection.createConnection();
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
             conf = new Configuracao(rs.getInt(1),rs.getInt(2),null,rs.getString(3),rs.getString(4));

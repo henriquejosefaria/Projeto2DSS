@@ -1,5 +1,6 @@
-package funcionalidade;
+package Funcionalidade;
 import java.sql.SQLException;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,6 +14,7 @@ import java.sql.SQLException;
  */
 public class Facade {
     private UtilizadorDAO userDAO;
+    private ConfiguracaoDAO configDAO;
     
     
     public Facade(){
@@ -22,6 +24,12 @@ public class Facade {
         Utilizador user = userDAO.getUtilizador(id);
         return user.getPassword().equals(pass);
     }
+    
+    public List<Configuracao> getConfiguracoes() throws SQLException{
+        List<Configuracao> configs = configDAO.getConfiguracoes(); 
+        return configs;
+    }
+    
             
     
 }
