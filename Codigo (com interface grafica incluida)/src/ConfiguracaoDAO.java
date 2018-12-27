@@ -4,6 +4,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -64,6 +66,27 @@ public class ConfiguracaoDAO {
                 String NComp = (rs2.getString(2));
                 config.addComponente(NComp);
             }
+        }
+        AConnection.closeConection(con);
+        return config;
+    }
+    
+    public List<Configuracao> getConfiguracoes(String nome) throws SQLException{
+        List<Configuracao> config = new ArrayList<>();
+        Configuracao conf;
+        Connection con = AConnection.createConnection();
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE NomeCliente = " + nome);
+        ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            conf = new Configuracao(rs.getInt(1),rs.getString(2),null,rs.getString(3),rs.getString(4));
+        
+            PreparedStatement pst2 = con.prepareStatement("SELECT * FROM configuracao_has_componente WHERE Configuracao_idConfiguracao = "+rs.getInt(1));
+            ResultSet rs2 = pst2.executeQuery();
+            while(rs2.next()){
+                String NComp = (rs2.getString(2));
+                conf.addComponente(NComp);
+            }
+            config.add(conf);
         }
         AConnection.closeConection(con);
         return config;
