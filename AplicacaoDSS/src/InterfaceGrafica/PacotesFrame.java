@@ -5,6 +5,9 @@
  */
 package interfacegrafica;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -17,7 +20,8 @@ public class PacotesFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form PacotesFrame
      */
-    public PacotesFrame() {
+    public PacotesFrame(Selecao selecao) {
+        this.selecao = selecao;
         initComponents();
         BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
@@ -49,8 +53,18 @@ ui.setNorthPane(null);
         jLabel4 = new javax.swing.JLabel();
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Pacotes/sport.jpg"))); // NOI18N
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Pacotes/sport+.jpg"))); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Pacotes/comfort.jpg"))); // NOI18N
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -66,6 +80,11 @@ ui.setNorthPane(null);
         jLabel3.setText("Comfort");
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Pacotes/turbo.jpg"))); // NOI18N
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         jLabel4.setText("Turbo");
 
@@ -125,8 +144,36 @@ ui.setNorthPane(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-System.out.println("yooooo");        // TODO add your handling code here:
+        try {
+            selecao.desenhaConfigFrame(2);
+        } catch (SQLException ex) {
+            Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        try {
+            selecao.desenhaConfigFrame(4);
+        } catch (SQLException ex) {
+            Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        try {
+            selecao.desenhaConfigFrame(3);
+        } catch (SQLException ex) {
+            Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        try {
+            selecao.desenhaConfigFrame(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -139,4 +186,5 @@ System.out.println("yooooo");        // TODO add your handling code here:
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
+    private Selecao selecao;
 }

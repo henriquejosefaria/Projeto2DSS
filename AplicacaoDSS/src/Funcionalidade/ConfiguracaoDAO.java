@@ -1,4 +1,4 @@
-package funcionalidade;
+package Funcionalidade;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -55,16 +55,19 @@ public class ConfiguracaoDAO {
     public Configuracao getConfiguracao(Integer id) throws SQLException{
         Connection con = AConnection.createConnection();
         Configuracao config = null;
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE idConfiguracao = "+id);
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE idConfiguracao = "+id+";");
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
-            config = new Configuracao(rs.getInt(1),rs.getInt(2),null,rs.getString(3),rs.getString(4));
+            config = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),null,rs.getString(4),rs.getString(5));
         
-            PreparedStatement pst2 = con.prepareStatement("SELECT * FROM configuracao_has_componente WHERE Configuracao_idConfiguracao = "+id);
+            PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From "
+            + "configuracao_has_componentes as cc inner join Componente as comp on cc.Componentes_Nome = comp.Nome "
+            + "WHERE cc.Configuracao_idConfiguracao = "+id+";");
             ResultSet rs2 = pst2.executeQuery();
             while(rs2.next()){
-                String NComp = (rs2.getString(2));
-                config.addComponente(NComp);
+                Componente comp = new Componente(rs2.getString(1),rs2.getInt(2),rs2.getString(3),
+                rs2.getDouble(4),rs2.getString(5));
+                config.addComponente(comp);
             }
         }
         AConnection.closeConection(con);
@@ -103,5 +106,24 @@ public class ConfiguracaoDAO {
             }
             return res;
     }   
+    
+    public List<Componente> getComponentes(Integer id) throws SQLException{
+        List<Componente> list = new ArrayList<>();
+        Connection con = AConnection.createConnection();
+        if(con!=null){
+        PreparedStatement pst = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From " 
+                    + "configuracao_has_componentes as cc "
+                    + "inner join Componente as comp on cc.Componentes_Nome = comp.Nome " 
+                    + "where cc.Configuracao_idConfiguracao = '"+id+"';");
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                Componente comp = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5));
+                list.add(comp);
+            }
+            AConnection.closeConection(con);
+        }
+        return list;
+    }
+    
     
 }

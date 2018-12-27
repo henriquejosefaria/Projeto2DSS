@@ -1,4 +1,4 @@
-package funcionalidade;
+package Funcionalidade;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -91,7 +91,7 @@ public class BaseDados {
             ResultSet rsConfig = pstConfig.executeQuery();     
             while (rsConfig.next()) {
                 //Configuracao config = new Configuracao(rsConfig.getInt(1),rsConfig.getString(2),null,rsConfig.getString(3),rsConfig.getString(4));
-                configs.put(config.getId(),config);
+                //configs.put(config.getId(),config);
             }
             
             PreparedStatement pstConfigComp = con.prepareStatement(query4);
