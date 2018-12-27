@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package interfacegrafica;
+import funcionalidade.Facade;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,20 +19,25 @@ public class Selecao extends javax.swing.JFrame {
     /**
      * Creates new form Selecao
      */
-    public Selecao() {
+    public Selecao(Facade facade) {
         initComponents();
-        SelecaoTable2 table = new SelecaoTable2();
-        table.setLocation(750, 100);
-        table.setVisible(true);
-        this.add(table);
+        this.facade = new Facade();
+        desenhaConfigFrame(1);
         
-            PacotesFrame pacotesf = new PacotesFrame();
+            PacotesFrame pacotesf = new PacotesFrame(this);
             pacotesf.setLocation(50, 100);
             pacotesf.setVisible(true);
             this.add(pacotesf);
             selectedframe = pacotesf;
     }
-
+    
+    public void desenhaConfigFrame(Integer idConfig){
+        if(tableComp != null){ tableComp.dispose();}
+        tableComp = new SelecaoTable2(idConfig);
+        tableComp.setLocation(750, 100);
+        tableComp.setVisible(true);
+        this.add(tableComp);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -137,7 +143,7 @@ public class Selecao extends javax.swing.JFrame {
                         if(jComboBox1.getSelectedIndex()== 0 && !(selectedframe instanceof PacotesFrame)){
            if(selectedframe!= null) selectedframe.dispose();
             System.out.println("00000");
-            PacotesFrame pacotesf = new PacotesFrame();
+            PacotesFrame pacotesf = new PacotesFrame(this);
             pacotesf.setLocation(50, 100);
             pacotesf.setVisible(true);
             this.add(pacotesf);
@@ -147,7 +153,7 @@ public class Selecao extends javax.swing.JFrame {
             
             if(selectedframe!= null) selectedframe.dispose();
             System.out.println("111111");
-            ComponentesFrame compnentesf = new ComponentesFrame();
+            ComponentesFrame compnentesf = new ComponentesFrame(facade);
             compnentesf.setLocation(50, 100);
             compnentesf.setVisible(true);
             this.add(compnentesf);
@@ -202,7 +208,7 @@ public class Selecao extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Selecao().setVisible(true);
+                new Selecao(null).setVisible(true);
             }
         });
     }
@@ -217,4 +223,6 @@ public class Selecao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
     private javax.swing.JInternalFrame selectedframe;
+    private Facade facade;
+    private SelecaoTable2 tableComp;
 }
