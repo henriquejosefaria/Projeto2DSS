@@ -10,8 +10,8 @@
  */
 public class FuncionarioFabrica extends Utilizador {
     
-    public FuncionarioFabrica(String nome, String password){
-        this.id = 0; //id é dado quando o admin regista o funcionario
+    public FuncionarioFabrica(Integer id,String nome, String password){
+        this.id = id; //id é dado quando o admin regista o funcionario
         this.nome = nome;
         this.password = password;
     }

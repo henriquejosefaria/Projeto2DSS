@@ -5,114 +5,61 @@
  */
 
 
-import codigo.Componente;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
- * @author henriquefaria
+ * @author André
  */
 public class Configuracao {
+    
     private String nomeCliente;
-    private double preco;
-    private LocalDate data;
-    private Pacote pacote;
-    private List<Componente> componentes = new ArrayList<>();
-
-    public Configuracao(){
-        this.nomeCliente = null;
-        this.preco = 0;
-        this.data = LocalDate.now();
-        this.pacote = new Pacote();
-        this.componentes = new ArrayList<>();
-    }
-
-    public Configuracao(String nomeCliente, double preco, LocalDate data, Pacote pacote,List<Componente> c) {
-        this.nomeCliente = nomeCliente;
-        this.preco = preco;
+    private Integer id;
+    private String modelo;
+    private String data;
+    private ArrayList<String> componentes;
+    
+    public Configuracao(Integer id,String nome, ArrayList<String> componentes, String modelo, String data){
+        this.id = id;
+        this.nomeCliente = nome;
+        this.componentes = componentes;
+        this.modelo = modelo;
         this.data = data;
-        this.pacote = pacote;
-        c.forEach((comp) -> {
-            this.componentes.add(comp.clone());
-        });
     }
-    
-    public Configuracao(Configuracao c){
-        this.nomeCliente = c.getNomeCliente();
-        this.preco = c.getPreco();
-        this.data = c.getData();
-        this.pacote = c.getPacote();
-        this.componentes = c.getComponentes();
-    }
-    
+
     public String getNomeCliente() {
         return nomeCliente;
     }
 
-    public double getPreco() {
-        return preco;
+    public Integer getId() {
+        return id;
     }
 
-    public LocalDate getData() {
+    public String getModelo() {
+        return modelo;
+    }
+
+    public String getData() {
         return data;
     }
 
-    public Pacote getPacote() {
-        return pacote;
-    }
-
-    public List<Componente> getComponentes() {
-        List<Componente> c = new ArrayList<>();
-        this.componentes.forEach((comp) -> {
-            c.add(comp.clone());
-        });
-        return c;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public void setPacote(Pacote pacote) {
-        this.pacote = pacote;
-    }
-
-    public void setComponentes(List<Componente> componentes) {
-        componentes.forEach((c) -> {
-            this.componentes.add(c.clone());
-        });
+    public ArrayList<String> getComponentes() {
+        return componentes;
     }
     
-    @Override
-    public String toString(){
-        StringBuilder s = new StringBuilder();
-        s.append("\nConfiguração{ " );
-        s.append("Nome Cliente : ").append(nomeCliente);
-        s.append(", Preço : ").append(preco);
-        s.append(", Data : ").append(data.toString());
-        s.append(", Pacote : ").append(pacote);
-        s.append("Componentes{ ");
-        componentes.forEach((c) -> {
-            s.append(" ").append(c.getNome()).append(" ");
-        });
-        s.append("}}");
-        return s.toString();
+    public void setNome(String nome){
+        this.nomeCliente = nome;
     }
     
-    @Override
-    public Configuracao clone(){
-        return new Configuracao(this);
+    public void addComponente(String nome){
+        componentes.add(nome);
+    }
+    
+    public void setId(Integer id){
+        this.id = id;
     }
     
 }

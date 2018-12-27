@@ -1,5 +1,7 @@
 
+import java.sql.Connection;
 import java.util.HashMap;
+import java.util.Map;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,13 +15,13 @@ import java.util.HashMap;
  */
 public class HashUsers {
     
-    public HashMap<Integer, Utilizador> utilizadores; //organizado pelos ids de utilizador
+    public Map<Integer, Utilizador> utilizadores; //organizado pelos ids de utilizador
     private Integer lastID; //contador
     
-    public HashUsers(){
-        utilizadores = new HashMap<Integer, Utilizador>();
-        utilizadores.put(999999,new Admin());
-        lastID = 0;
+    public HashUsers(Map<Integer, Utilizador> utilizadores,Integer lastID){
+        this.utilizadores = utilizadores;
+       // utilizadores.put(999999,new Admin());
+        lastID = lastID;
     }
     
     public Integer getLastId(){

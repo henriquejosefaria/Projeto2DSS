@@ -1,14 +1,12 @@
 
-
-
-import codigo.Utilizador;
-import codigo.Pacote;
-import codigo.Modelo;
-import codigo.Encomenda;
-import codigo.Configuracao;
-import codigo.Componente;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,187 +19,201 @@ import java.util.List;
  * @author henriquefaria
  */
 public class BaseDados {
-    private List<Pacote> pacotes = new ArrayList<Pacote>();
-    private List<Componente> componentes = new ArrayList<Componente>();
-    private List<Modelo> modelos = new ArrayList<Modelo>();
-    private List<Configuracao> configuracoes = new ArrayList<Configuracao>();
-    private List<Encomenda> encomendas = new ArrayList<Encomenda>();
-    private List<Encomenda> emEspera = new ArrayList<Encomenda>();
-    private List<Utilizador> users = new ArrayList<Utilizador>();
-    
-    public BaseDados(){
-        this.pacotes = new ArrayList<Pacote>();
-        this.componentes = new ArrayList<Componente>();
-        this.modelos = new ArrayList<Modelo>();
-        this.configuracoes = new ArrayList<Configuracao>();
-        this.encomendas = new ArrayList<Encomenda>();
-        this.emEspera = new ArrayList<Encomenda>();
-        this.users = new ArrayList<Utilizador>(); 
-    }
-    
-    public BaseDados(ArrayList<Pacote> p, ArrayList<Componente> c, ArrayList<Modelo> m, ArrayList<Configuracao> conf, ArrayList<Encomenda> e1, ArrayList<Encomenda> e2, ArrayList<Utilizador> u){
-        p.forEach((p1) -> {
-            this.pacotes.add(p1.clone());
-        });
-        c.forEach((c1) -> {
-            this.componentes.add(c1.clone());
-        });
-        m.forEach((m1) -> {
-            this.modelos.add(m1.clone());
-        });
-        conf.forEach((conf1) -> {
-            this.configuracoes.add(conf1.clone());
-        });
-        e1.forEach((e) -> {
-            this.encomendas.add(e.clone());
-        });
-        e2.forEach((e) -> {
-            this.emEspera.add(e.clone());
-        });
-        u.forEach((u1) -> {
-            this.users.add(u1.clone());
-        });
-    }
-    
-    public BaseDados(BaseDados bd){
-        this.pacotes = bd.getPacotes();
-        this.componentes = bd.getComponentes();
-        this.modelos = bd.getModelos();
-        this.configuracoes = bd.getConfiguracoes();
-        this.encomendas = bd.getEncomendas();
-        this.emEspera = bd.getEmEspera();
-        this.users = bd.getUsers();
-    }
-  
-    public List<Pacote> getPacotes() {
-        List<Pacote> p = new ArrayList<>();
-        this.pacotes.forEach((p1) -> {
-            p.add(p1.clone());
-        });
-        return p;
-    }
+    private int i;
+    private Map<Integer,Utilizador> users;
+    private Map<String,Componente> comp;
+    private Map<Integer,Encomenda> encom;
+    private Map<String,Pacote> packages;
+    private ArrayList<Modelo> models;
+    private Map<Integer,Configuracao> configs;
+    private Integer lastUserId;
+    private Integer lastConfigId;
+   
+    public BaseDados() throws SQLException{
+        
+        users = new HashMap<>();
+        comp = new HashMap<>();
+        encom = new HashMap<>();
+        packages = new HashMap<>();
+        models = new ArrayList<>();
+        configs = new HashMap<>();
+        
+        String url = "jdbc:mysql://localhost:3307/stand?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String username = "Jafar Strogonof";
+        String password = "Jafar";
+        Connection con = null;
 
-    public List<Componente> getComponentes() {
-        List<Componente> c = new ArrayList<>();
-        this.componentes.forEach((c1) -> {
-            c.add(c1.clone());
-        });
-        return c;
-    }
+        System.out.println("Connecting to MySQL Database...");
+        String query1 = "SELECT * FROM utilizador";
+        String query2 = "SELECT * FROM componente";
+        String query3 = "SELECT * FROM configuracao";
+        String query4 = "SELECT * FROM configuracao_has_componentes";
+        String query5 = "SELECT * FROM modelo";
+        String query6 = "SELECT * FROM pacote";
+        String query7 = "SELECT * FROM encomenda";
+        String query8 = "SELECT * FROM lastids";
+        
 
-    public List<Modelo> getModelos() {
-        List<Modelo> m = new ArrayList<>();
-        this.modelos.forEach((m1) -> {
-            m.add(m1.clone());
-        });
-        return m;
-    }
+        try {
+            con = DriverManager.getConnection(url, username, password);
+             System.out.println("MySQL Database connected!");
+             
+            PreparedStatement pstUser = con.prepareStatement(query1);
+            ResultSet rsUser = pstUser.executeQuery();
+            while (rsUser.next()) {
+                if(rsUser.getString(4).equals("A")){
+                Admin admin = new Admin(rsUser.getInt(1),rsUser.getString(2),rsUser.getString(3));
+                users.put(rsUser.getInt(1),admin);
+                }
+                if(rsUser.getString(4).equals("S")){
+                FuncionarioStand funcS = new FuncionarioStand(rsUser.getInt(1),rsUser.getString(2),rsUser.getString(3));
+                users.put(rsUser.getInt(1),funcS);
+                }
+                if(rsUser.getString(4).equals("F")){
+                FuncionarioFabrica funcF = new FuncionarioFabrica(rsUser.getInt(1),rsUser.getString(2),rsUser.getString(3));
+                users.put(rsUser.getInt(1),funcF);
+                }
+            }
+            
+            System.out.println("Utilizadores loaded from MySQL DB: " + users.size());
+            
+            PreparedStatement pstComponentes = con.prepareStatement(query2);
+            ResultSet rsComponente = pstComponentes.executeQuery();        
+            while (rsComponente.next()) {
+                Componente comps = new Componente(rsComponente.getString(1),rsComponente.getInt(2),rsComponente.getString(3),
+                rsComponente.getDouble(4),rsComponente.getString(5));
+                comp.put(comps.getNome(),comps);
+            }
+       
+            System.out.println("Componentes loaded from MySQL DB: " + comp.size());
+            
+            PreparedStatement pstConfig = con.prepareStatement(query3);
+            ResultSet rsConfig = pstConfig.executeQuery();     
+            while (rsConfig.next()) {
+                Configuracao config = new Configuracao(rsConfig.getInt(1),rsConfig.getString(2),null,rsConfig.getString(3),rsConfig.getString(4));
+                configs.put(config.getId(),config);
+            }
+            
+            PreparedStatement pstConfigComp = con.prepareStatement(query4);
+            ResultSet rsConfigComp = pstConfigComp.executeQuery();     
+            while (rsConfigComp.next()) {
+                String NComp = (rsConfigComp.getString(2));
+                Integer idConfig = (rsConfigComp.getInt(1));
+                configs.get(idConfig).addComponente(NComp);
+            }
+           
+            System.out.println("Configuracoes loaded from MySQL DB: " + configs.size());
+            
+            PreparedStatement pstModelo = con.prepareStatement(query5);
+            ResultSet rsModelo = pstModelo.executeQuery();     
+            while (rsModelo.next()) {
+                Modelo modelo = new Modelo(rsModelo.getString(1));
+                models.add(modelo);
+            }
+            
+            System.out.println("Modelos loaded from MySQL DB: " + models.size());
+            
+            PreparedStatement pstPacote = con.prepareStatement(query6);
+            ResultSet rsPacote = pstPacote.executeQuery();     
+            while (rsPacote.next()) {
+                Pacote pacote = new Pacote(rsPacote.getString(1),rsPacote.getInt(2));
+                packages.put(pacote.getNome(), pacote);
+            }
+            System.out.println("Pacotes loaded from MySQL DB: " + packages.size());
 
-    public List<Configuracao> getConfiguracoes() {
-        List<Configuracao> conf = new ArrayList<>();
-        this.configuracoes.forEach((conf1) -> {
-            conf.add(conf1.clone());
-        });
-        return conf;
-    }
+            PreparedStatement pstEncomenda = con.prepareStatement(query7);
+            ResultSet rsEncomenda = pstEncomenda.executeQuery();     
+            while (rsEncomenda.next()) {
+                Encomenda encomenda = new Encomenda(rsEncomenda.getInt(1),rsEncomenda.getString(2),rsEncomenda.getInt(3),rsEncomenda.getInt(4));
+                encom.put(encomenda.getId(),encomenda);
+            }
+            System.out.println("Encomendas loaded from MySQL DB: " + encom.size());
+            
+            PreparedStatement pstLasID = con.prepareStatement(query8);
+            ResultSet rsLastID = pstLasID.executeQuery();     
+            while (rsLastID.next()) {
+                lastUserId = rsLastID.getInt(1);
+                lastConfigId = rsLastID.getInt(2);
+            }
+            System.out.println("LastIds loaded from MySQL DB");
+            
+            HashUsers utilizadores = new HashUsers(users,lastUserId);
+            HashComponentes componentes = new HashComponentes(comp);
+            HashEncomendas encomendas = new HashEncomendas(encom);
+            Pacotes pacotes = new Pacotes(packages);
+            HashConfigs configuracoes = new HashConfigs(configs,lastConfigId);
+ 
+        }catch (SQLException e) {
+            throw new IllegalStateException("Cannot connect to the MySQL database!", e);
 
-    public List<Encomenda> getEncomendas() {
-        List<Encomenda> e1 = new ArrayList<>();
-        this.encomendas.forEach((e) -> {
-            e1.add(e.clone());
-        });
-        return e1;
-    }
-
-    public List<Encomenda> getEmEspera() {
-        List<Encomenda> e1 = new ArrayList<>();
-        this.emEspera.forEach((e) -> {
-            e1.add(e.clone());
-        });
-        return e1;
-    }
-
-    public List<Utilizador> getUsers() {
-        List<Utilizador> u = new ArrayList<>();
-        this.users.forEach((u1) -> {
-            u.add(u1.clone());
-        });
-        return u;
-    }
-
-    public void setPacotes(List<Pacote> p) {
-         p.forEach((p1) -> {
-            this.pacotes.add(p1.clone());
-        });
-    }
-
-    public void setComponentes(List<Componente> c) {
-        c.forEach((c1) -> {
-            this.componentes.add(c1.clone());
-        });
-    }
-
-    public void setModelos(List<Modelo> m) {
-        m.forEach((m1) -> {
-            this.modelos.add(m1.clone());
-        });
-    }
-
-    public void setConfiguracoes(List<Configuracao> conf) {
-        conf.forEach((conf1) -> {
-            this.configuracoes.add(conf1.clone());
-        });
-    }
-
-    public void setEncomendas(List<Encomenda> e1) {
-        e1.forEach((e) -> {
-            this.encomendas.add(e.clone());
-        });
-    }
-
-    public void setEmEspera(List<Encomenda> e1) {
-        e1.forEach((e) -> {
-            this.emEspera.add(e.clone());
-        });
-    }
-
-    public void setUsers(List<Utilizador> u) {
-        u.forEach((u1) -> {
-            this.users.add(u1.clone());
-        });
-    }
-
-    @Override
-    public String toString(){
-        StringBuilder s = new StringBuilder();
-        s.append("BaseDados{ ");
-        this.pacotes.forEach((p) -> {
-            s.append(p.toString());
-        });
-        this.componentes.forEach((c) -> {
-            s.append(c.toString());
-        });
-        this.modelos.forEach((m) -> {
-            s.append(m.toString());
-        });
-        this.configuracoes.forEach((conf) -> {
-            s.append(conf.toString());
-        });
-        this.encomendas.forEach((e) -> {
-            s.append(e.toString());
-        });
-        this.emEspera.forEach((e) -> {
-            s.append(e.toString());
-        });
-        this.users.forEach((u) -> {
-            s.append(u.toString());
-        });
-        s.append("}");
-        return s.toString();
+        } finally {
+            con.close(); 
+        }
     }
     
-    @Override
-    public BaseDados clone(){
-        return new BaseDados(this);
+    public void addUser(Integer id, String nome,String pass,String tipo){
+        
+        String url = "jdbc:mysql://localhost:3307/stand?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String username = "Jafar Strogonof";
+        String password = "Jafar";
+        Connection con = null;
+        
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            System.out.println("MySQL Database connected!");
+             
+            String query = "INSERT INTO utilizador (idFuncionario,Nome,Password,Tipo)";
+
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, id);
+            preparedStmt.setString(2, nome);
+            preparedStmt.setString(3, pass);
+            preparedStmt.setString(4, tipo);
+
+            preparedStmt.execute();
+      
+            con.close();
+        
+        }catch (Exception e){
+            System.err.println("Exception! User not inserted!");
+            System.err.println(e.getMessage());
+        }
+    }
+    
+    public void addComponente(String nome, Integer stock,Double preco,String descricao){
+        
+        String url = "jdbc:mysql://localhost:3307/stand?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String username = "Jafar Strogonof";
+        String password = "Jafar";
+        Connection con = null;
+        
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            System.out.println("MySQL Database connected!");
+             
+            String query = "INSERT INTO componente (Nome,Stock,Preco,Descricao)";
+
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, nome);
+            preparedStmt.setInt(2, stock);
+            preparedStmt.setDouble(3, preco);
+            preparedStmt.setString(4, descricao);
+
+            preparedStmt.execute();
+      
+            con.close();
+        
+        }catch (Exception e){
+            System.err.println("Exception! Componente not inserted!");
+            System.err.println(e.getMessage());
+        }
+    }
+    
+    
+    
+
+    
+    public static void main(String args[]) throws SQLException {
+        new BaseDados();
     }
 }

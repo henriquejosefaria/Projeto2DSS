@@ -5,61 +5,41 @@
  */
 
 
-import codigo.Configuracao;
-
 /**
  *
- * @author henriquefaria
+ * @author André
  */
 public class Encomenda {
-    private Configuracao configuracao;
-    private String nomeCliente;
     
-    public Encomenda(){
-        this.configuracao = new Configuracao();
-        this.nomeCliente = null;
+    private Integer id;
+    private String data; //usar data noutro formato?
+    private Integer estado; //0: em progresso / 0: confirmada / 1: finalizada (enviada para a fabrica)
+
+    public Encomenda(Integer id, String data, Integer estado, Integer configId) {
+        this.id = id;
+        this.data = data;
+        this.estado = estado;
+        this.configId = configId;
     }
 
-    public Encomenda(Configuracao configuracao, String nomeCliente) {
-        this.configuracao = configuracao;
-        this.nomeCliente = nomeCliente;
-    }
-    
-    public Encomenda(Encomenda e){
-        this.configuracao = e.getConfiguracao();
-        this.nomeCliente = e.getNomeCliente();
+    public Integer getId() {
+        return id;
     }
 
-    public Configuracao getConfiguracao() {
-        return configuracao;
+    public String getData() {
+        return data;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-    
-    public void setConfiguracao(Configuracao configuracao) {
-        this.configuracao = configuracao;
+    public Integer getEstado() {
+        return estado;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    public Integer getConfigId() {
+        return configId;
     }
+    private Integer configId;
     
-    @Override
-    public String toString() {
-        StringBuilder s = new StringBuilder();
-        s.append("Encomenda{ ");
-        s.append(configuracao.toString());
-        s.append("Nome Cliente : ").append(nomeCliente);
-        s.append("}");
-        return s.toString();
+    public void setEstado(Integer estado){
+        this.estado = estado;
     }
-    
-    @Override
-    public Encomenda clone(){
-        return new Encomenda(this);
-    }
-    
-    
 }

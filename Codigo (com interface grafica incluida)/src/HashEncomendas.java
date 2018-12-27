@@ -6,6 +6,7 @@
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -13,9 +14,9 @@ import java.util.HashMap;
  */
 public class HashEncomendas {
     
-    private HashMap<Integer, Encomenda> encomendas;
+    private Map<Integer, Encomenda> encomendas;
     
-    public HashEncomendas(){
-        encomendas = new HashMap<Integer, Encomenda>();
+    public HashEncomendas(Map<Integer, Encomenda> encomendas){
+        this.encomendas = encomendas;
     }
 }
