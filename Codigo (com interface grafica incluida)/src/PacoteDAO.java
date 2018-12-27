@@ -15,6 +15,11 @@ import java.sql.SQLException;
  * @author Ryzon
  */
 public class PacoteDAO {
+    
+    public PacoteDAO(){
+        
+    }
+    
     public void addPacote(String nome, Integer configId) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   

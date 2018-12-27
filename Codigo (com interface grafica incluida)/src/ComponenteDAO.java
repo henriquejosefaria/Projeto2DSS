@@ -15,6 +15,11 @@ import java.sql.SQLException;
  * @author Ryzon
  */
 public class ComponenteDAO {
+    
+    public ComponenteDAO(){
+        
+    }
+    
     public void addComponente(String nome,Integer stock,Double preco, String descricao) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   

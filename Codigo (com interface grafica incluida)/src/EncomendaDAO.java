@@ -16,6 +16,11 @@ import java.sql.SQLException;
  * @author Ryzon
  */
 public class EncomendaDAO {
+    
+    public EncomendaDAO(){
+        
+    }
+    
     public void addEncomenda(Integer id, String data,String estado,Integer configId) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   

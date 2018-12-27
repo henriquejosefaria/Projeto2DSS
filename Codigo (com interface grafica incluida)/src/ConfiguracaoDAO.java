@@ -16,6 +16,11 @@ import java.sql.SQLException;
  * @author Ryzon
  */
 public class ConfiguracaoDAO {
+    
+    public ConfiguracaoDAO(){
+        
+    }
+    
     public void addConfiguracao(Integer id, String nomeCliente,String modelo,String data) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   

@@ -15,6 +15,11 @@ import java.sql.SQLException;
  * @author Ryzon
  */
 public class UtilizadorDAO {
+    
+    public UtilizadorDAO(){
+        
+    }
+    
     public void addUtilizador(Integer id, String nome,String pass,String tipo) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
