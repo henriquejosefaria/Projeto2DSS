@@ -8,3 +8,13 @@
 *.lck
 /InterfaceGrafica/build/
 >>>>>>> 21146850ff9cc1076360a7e7607c40618a791469
+/Codigo/nbproject/private/
+/Facade/nbproject/private/
+/Facade/build/
+/Codigo/src/InterfaceGrafica/build/
+/Codigo/src/InterfaceGrafica/nbproject/private/
+/Codigo/build/
+/Codigo/dist/
+/AplicacaoDSS/build/
+/AplicacaoDSS/dist/
+/AplicacaoDSS/nbproject/private/
