@@ -5,8 +5,8 @@
  */
 package interfacegrafica;
 
-import funcionalidade.Componente;
-import funcionalidade.Facade;
+import Funcionalidade.Componente;
+import Funcionalidade.Facade;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;
@@ -206,19 +206,19 @@ ui.setNorthPane(null);
     ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\jante.jpg");
         String[] colunas = { "Jante", "Descrição","Preço","Selecionar" };
                 Object[][] data = null;
+                List<Componente> list = null;
         try {
-            List<Componente> list = facade.getTypeComponentes("Jante");
-            data = new Object[list.size()][4];
-            for (int r=0; r<list.size(); r++) {
-                data[r][0] = "ole";
-                data[r][1] = list.get(r).getDescricao();
-                data[r][2] = list.get(r).getPreco();
-                data[r][3] = "Selecionar";
-            }
-
+            list = facade.getTypeComponentes("Jante");
         } catch (SQLException ex) {
-            Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComponentesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+                data = new Object[list.size()][4];
+                for (int r=0; r<list.size(); r++) {
+                    data[r][0] = "ole";
+                    data[r][1] = list.get(r).getDescricao();
+                    data[r][2] = list.get(r).getPreco();
+                    data[r][3] = "Selecionar";
+                }
     new ComponenteFrame(colunas,data).setVisible(true);
     
     }//GEN-LAST:event_jButton3MouseClicked
@@ -247,18 +247,18 @@ ui.setNorthPane(null);
             ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\motor.jpg");
         String[] colunas = { "Motor", "Descrição","Preço","Selecionar" };
         Object[][] data = null;
+        List<Componente> list = null;
         try {
-            List<Componente> list = facade.getTypeComponentes("Motor");
-            data = new Object[list.size()][4];
-            for (int r=0; r<list.size(); r++) {
-                data[r][0] = "ole";
-                data[r][1] = list.get(r).getDescricao();
-                data[r][2] = list.get(r).getPreco();
-                data[r][3] = "Selecionar";
-            }
-
+            list = facade.getTypeComponentes("Motor");
         } catch (SQLException ex) {
-            Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComponentesFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        data = new Object[list.size()][4];
+        for (int r=0; r<list.size(); r++) {
+            data[r][0] = "ole";
+            data[r][1] = list.get(r).getDescricao();
+            data[r][2] = list.get(r).getPreco();
+            data[r][3] = "Selecionar";
         }
     new ComponenteFrame(colunas,data).setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked

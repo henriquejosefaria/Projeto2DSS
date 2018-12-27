@@ -3,12 +3,15 @@
  * and open the template in the editor.
  */
 package interfacegrafica;
-import funcionalidade.Facade;
+import Funcionalidade.Facade;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,7 +22,7 @@ public class Selecao extends javax.swing.JFrame {
     /**
      * Creates new form Selecao
      */
-    public Selecao(Facade facade) {
+    public Selecao(Facade facade) throws SQLException {
         initComponents();
         this.facade = new Facade();
         desenhaConfigFrame(1);
@@ -31,7 +34,7 @@ public class Selecao extends javax.swing.JFrame {
             selectedframe = pacotesf;
     }
     
-    public void desenhaConfigFrame(Integer idConfig){
+    public void desenhaConfigFrame(Integer idConfig) throws SQLException{
         if(tableComp != null){ tableComp.dispose();}
         tableComp = new SelecaoTable2(idConfig);
         tableComp.setLocation(750, 100);
@@ -208,7 +211,11 @@ public class Selecao extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Selecao(null).setVisible(true);
+                try {
+                    new Selecao(null).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

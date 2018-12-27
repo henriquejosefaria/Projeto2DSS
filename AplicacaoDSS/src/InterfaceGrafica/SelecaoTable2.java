@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package interfacegrafica;
-import funcionalidade.Componente;
-import funcionalidade.Facade;
+import Funcionalidade.Componente;
+import Funcionalidade.Facade;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,7 +27,7 @@ public class SelecaoTable2 extends javax.swing.JInternalFrame {
     /**
      * Creates new form SelecaoTable2
      */
-    public SelecaoTable2(Integer id) {
+    public SelecaoTable2(Integer id) throws SQLException {
     initComponents();
     this.facade = new Facade();
          BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
@@ -39,21 +39,15 @@ ui.setNorthPane(null);
      ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\interior.jpg");
         String[] colunas = { "Imagem", "Descrição","Preço","Remover" };
         Object[][] data = null;
-        try {
-            List<Componente> list = facade.getConfigComponents(id);
-            data = new Object[list.size()][4];
-            for (int r=0; r<list.size(); r++) {
-                data[r][0] = "ole";
-                data[r][1] = list.get(r).getDescricao();
-                data[r][2] = list.get(r).getPreco();
-                data[r][3] = "Remover";
-            }
-            facade.setSelectedConfig(facade.getConfig(id));
-            
-
-        } catch (SQLException ex) {
-            Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
+        List<Componente> list = facade.getConfigComponents(id);
+        data = new Object[list.size()][4];
+        for (int r=0; r<list.size(); r++) {
+            data[r][0] = "ole";
+            data[r][1] = list.get(r).getDescricao();
+            data[r][2] = list.get(r).getPreco();
+            data[r][3] = "Remover";
         }
+        facade.setSelectedConfig(facade.getConfig(id));
         
 
     

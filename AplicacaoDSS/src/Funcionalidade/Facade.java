@@ -1,4 +1,4 @@
-package funcionalidade;
+package Funcionalidade;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,7 +19,6 @@ public class Facade {
     private Configuracao selectedConfig;
    
     private ComponenteDAO compDAO;
-
 
     
     
@@ -49,6 +48,7 @@ public class Facade {
         Utilizador user = userDAO.getUtilizador(id);
         return user.getPassword().equals(pass);
     }
+    
     public List<Componente> getConfigComponents(Integer configID) throws SQLException{
         return configDAO.getComponentes(configID);
     }
@@ -56,6 +56,13 @@ public class Facade {
     public List<Componente> getTypeComponentes(String type) throws SQLException{
         return compDAO.getTipoComponentes(type);
     }
+
+    
+    public List<Configuracao> getConfiguracoes() throws SQLException{
+        List<Configuracao> configs = configDAO.getConfiguracoes(); 
+        return configs;
+    }
+    
             
     
 }

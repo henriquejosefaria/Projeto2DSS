@@ -1,4 +1,4 @@
-package funcionalidade;
+package Funcionalidade;
 import java.util.ArrayList;
 
 /*
