@@ -16,22 +16,22 @@ import java.util.ArrayList;
  */
 public class Configuracao {
     
-    private String nomeCliente;
+    private Integer nContribuinte;
     private Integer id;
     private String modelo;
     private String data;
     private ArrayList<String> componentes;
     
-    public Configuracao(Integer id,String nome, ArrayList<String> componentes, String modelo, String data){
+    public Configuracao(Integer id,Integer n, ArrayList<String> componentes, String modelo, String data){
         this.id = id;
-        this.nomeCliente = nome;
+        this.nContribuinte = n;
         this.componentes = componentes;
         this.modelo = modelo;
         this.data = data;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
+    public Integer getNContribuinte() {
+        return nContribuinte;
     }
 
     public Integer getId() {
@@ -50,8 +50,8 @@ public class Configuracao {
         return componentes;
     }
     
-    public void setNome(String nome){
-        this.nomeCliente = nome;
+    public void setNContribuinte(Integer n){
+        this.nContribuinte = n;
     }
     
     public void addComponente(String nome){
