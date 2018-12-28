@@ -35,6 +35,10 @@ public class Selecao extends javax.swing.JFrame {
             this.add(pacotesf);
             selectedframe = pacotesf;
     }
+
+    Selecao(LobbyFuncionario aThis, Configuracao c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public void desenhaConfigFrame(Integer idConfig) throws SQLException{
         if(tableComp != null){ tableComp.dispose();}

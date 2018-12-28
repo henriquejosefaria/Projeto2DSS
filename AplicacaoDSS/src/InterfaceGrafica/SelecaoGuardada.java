@@ -25,6 +25,8 @@ import InterfaceGrafica.*;
 
 
 public class SelecaoGuardada extends javax.swing.JFrame {
+
+    private int permissao;
     /**
      * Creates new form NewJFrame
      */
