@@ -63,6 +63,8 @@ public class Facade {
         return configs;
     }
     
-            
+    public Configuracao newConfiguracao() throws SQLException{
+        return new Configuracao();
+    }       
     
 }

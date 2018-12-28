@@ -2,7 +2,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfacegrafica;
+package Interfacegrafica;
+import Funcionalidade.Configuracao;
 import Funcionalidade.Facade;
 
 import java.awt.event.ActionEvent;
@@ -22,7 +23,7 @@ public class Selecao extends javax.swing.JFrame {
     /**
      * Creates new form Selecao
      */
-    public Selecao(Facade facade) throws SQLException {
+    public Selecao(Facade facade,Configuracao c) throws SQLException {
         initComponents();
         this.facade = new Facade();
         desenhaConfigFrame(1);
@@ -212,7 +213,7 @@ public class Selecao extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Selecao(null).setVisible(true);
+                    new Selecao(null,null).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -33,10 +33,8 @@ class ButtonRetomarSelecao extends DefaultCellEditor {
       public void actionPerformed(ActionEvent e) {
          int configuracaoId = table.getSelectedRow();
          Configuracao c = configs.get(configuracaoId);
-         // dar configuração
-         
-      new Selecao().setVisible(true);
-      selecao.dispose();
+         new Selecao(c).setVisible(true);
+         selecao.dispose();
       }
     });
   }

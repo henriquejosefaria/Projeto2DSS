@@ -58,7 +58,7 @@ public class ConfiguracaoDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE idConfiguracao = "+id+";");
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
-            config = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),null,rs.getString(4),rs.getString(5));
+            config = new Configuracao(rs.getInt(1),rs.getInt(2),new ArrayList<Componente>(),rs.getString(3),rs.getString(4));
         
             PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From "
             + "configuracao_has_componentes as cc inner join Componente as comp on cc.Componentes_Nome = comp.Nome "
@@ -81,13 +81,34 @@ public class ConfiguracaoDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE nContribuinte = " + nContribuinte);
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
-            conf = new Configuracao(rs.getInt(1),rs.getInt(2),null,rs.getString(3),rs.getString(4));
+            conf = new Configuracao(rs.getInt(1),rs.getInt(2),new ArrayList<Componente>(),rs.getString(3),rs.getString(4));
         
             PreparedStatement pst2 = con.prepareStatement("SELECT * FROM configuracao_has_componente WHERE Configuracao_idConfiguracao = "+rs.getInt(1));
             ResultSet rs2 = pst2.executeQuery();
             while(rs2.next()){
-                String NComp = (rs2.getString(2));
-                conf.addComponente(NComp);
+                Componente comp = new Componente(rs2.getString(1),rs2.getInt(2),rs2.getString(3),rs2.getDouble(4),rs2.getString(5));
+                conf.addComponente(comp);
+            }
+            config.add(conf);
+        }
+        AConnection.closeConection(con);
+        return config;
+    }
+    
+    public List<Configuracao> getConfiguracoes() throws SQLException{
+        List<Configuracao> config = new ArrayList<>();
+        Configuracao conf;
+        Connection con = AConnection.createConnection();
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao");
+        ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            conf = new Configuracao(rs.getInt(1),rs.getInt(2),new ArrayList<Componente>(),rs.getString(3),rs.getString(4));
+        
+            PreparedStatement pst2 = con.prepareStatement("SELECT * FROM configuracao_has_componente WHERE Configuracao_idConfiguracao = "+rs.getInt(1));
+            ResultSet rs2 = pst2.executeQuery();
+            while(rs2.next()){
+                Componente comp = new Componente(rs2.getString(1),rs2.getInt(2),rs2.getString(3),rs2.getDouble(4),rs2.getString(5));
+                conf.addComponente(comp);
             }
             config.add(conf);
         }
