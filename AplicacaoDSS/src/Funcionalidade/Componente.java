@@ -14,7 +14,7 @@ public class Componente {
     
     private String nome;
     private Integer stock;
-    private String tipo; //interior / exterior / obrigatorio
+    private String tipo; 
     private double preco;
     private String descricao;
 

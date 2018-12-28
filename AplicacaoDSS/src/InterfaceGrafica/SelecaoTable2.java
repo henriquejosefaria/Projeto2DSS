@@ -15,6 +15,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
+import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +28,7 @@ public class SelecaoTable2 extends javax.swing.JInternalFrame {
     /**
      * Creates new form SelecaoTable2
      */
-    public SelecaoTable2(Facade facade) throws SQLException {
+    public SelecaoTable2(Facade facade,Selecao selecao) throws SQLException {
     initComponents();
     this.facade = facade;
          BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
@@ -40,10 +41,7 @@ ui.setNorthPane(null);
         String[] colunas = { "Imagem", "Descrição","Preço","Remover" };
         Object[][] data = null;
         if(facade.getSelectedConfigId()!=-1){
-                              for(Componente c : facade.getSelectedConfig().getComponentes()){
-              System.out.println(c.getDescricao());
-          }
-        List<Componente> list = facade.getSelectedConfig().getComponentes();
+        list = facade.getSelectedConfig().getComponentes();
         data = new Object[list.size()][4];
         for (int r=0; r<list.size(); r++) {
             data[r][0] = "ole";
@@ -67,7 +65,7 @@ ui.setNorthPane(null);
       jTable1.setModel(model);
       jTable1.getColumn("Remover").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Remover").setCellEditor(
-        new ButtonRemoverSelecao(new JCheckBox()));
+        new ButtonRemoverSelecao(new JCheckBox(),facade,jTable1,list,selecao));
      // jTable1.getColumnModel().getColumn(0).setMinHeight(400); 
       jTable1.setRowHeight(80);
     }
@@ -83,10 +81,6 @@ ui.setNorthPane(null);
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,26 +95,12 @@ ui.setNorthPane(null);
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setText("Motor:");
-
-        jLabel2.setText("Pintura:");
-
-        jLabel3.setText("Pneu:");
-
-        jLabel4.setText("Jantes:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addGap(66, 66, 66)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
@@ -128,18 +108,8 @@ ui.setNorthPane(null);
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jLabel1)
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel4)
-                        .addGap(65, 65, 65)
-                        .addComponent(jLabel3)
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel2))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,12 +117,9 @@ ui.setNorthPane(null);
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
     private Facade facade;
+    private List<Componente> list;
 }

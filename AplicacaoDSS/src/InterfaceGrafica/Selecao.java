@@ -44,7 +44,7 @@ public class Selecao extends javax.swing.JFrame {
     
     public void desenhaConfigFrame() throws SQLException{
         if(tableComp != null){ tableComp.dispose();}
-        tableComp = new SelecaoTable2(facade);
+        tableComp = new SelecaoTable2(facade,this);
         tableComp.setLocation(750, 100);
         tableComp.setVisible(true);
         this.add(tableComp);
