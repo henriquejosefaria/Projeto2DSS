@@ -97,4 +97,9 @@ SELECT * FROM componente WHERE Tipo = 'Motor';
 SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From
  configuracao_has_componentes as cc inner join Componente as comp on cc.Componentes_Nome = comp.Nome 
  WHERE cc.Configuracao_idConfiguracao = 1;
+ 
+ SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From configuracao as c 
+            inner join configuracao_has_componentes as cc on c.idConfiguracao = cc.Configuracao_idConfiguracao
+            inner join Componente as comp on cc.Componentes_Nome = comp.Nome
+		WHERE c.nContribuinte = 143432343;
         

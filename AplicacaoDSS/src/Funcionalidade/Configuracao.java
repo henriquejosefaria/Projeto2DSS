@@ -21,6 +21,14 @@ public class Configuracao {
     private Integer id;
     private String modelo;
     private String nome;
+
+    public Integer getnContribuinte() {
+        return nContribuinte;
+    }
+
+    public String getNome() {
+        return nome;
+    }
     private String data;
     private List<Componente> componentes = new ArrayList<>();
     

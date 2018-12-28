@@ -78,15 +78,19 @@ public class ConfiguracaoDAO {
         List<Configuracao> config = new ArrayList<>();
         Configuracao conf;
         Connection con = AConnection.createConnection();
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE nContribuinte = " + nContribuinte);
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE nContribuinte = " + nContribuinte+";");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
             conf = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getString(5));
-        
-            PreparedStatement pst2 = con.prepareStatement("SELECT * FROM configuracao_has_componente WHERE Configuracao_idConfiguracao = "+rs.getInt(1));
+            
+            PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From configuracao as c "
+            +"inner join configuracao_has_componentes as cc on c.idConfiguracao = cc.Configuracao_idConfiguracao "
+            +"inner join Componente as comp on cc.Componentes_Nome = comp.Nome "
+            +"WHERE c.nContribuinte = "+nContribuinte+";");
             ResultSet rs2 = pst2.executeQuery();
             while(rs2.next()){
-                Componente comp = new Componente(rs2.getString(1),rs2.getInt(2),rs2.getString(3),rs2.getDouble(4),rs2.getString(5));
+                Componente comp = new Componente(rs2.getString(1),rs2.getInt(2),rs2.getString(3),
+                rs2.getDouble(4),rs2.getString(5));
                 conf.addComponente(comp);
             }
             config.add(conf);

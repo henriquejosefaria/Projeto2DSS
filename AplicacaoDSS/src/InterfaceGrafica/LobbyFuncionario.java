@@ -210,7 +210,7 @@ public class LobbyFuncionario extends javax.swing.JFrame {
         Configuracao c = null;
         Facade facade = null;
         try {
-            new Selecao(facade,c).setVisible(true);
+            new Selecao(facade).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(LobbyFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }

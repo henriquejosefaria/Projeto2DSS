@@ -22,7 +22,7 @@ public class Facade {
 
     
     
-    public Facade(){
+    public Facade() throws SQLException{
         this.userDAO = new UtilizadorDAO();
         this.configDAO = new ConfiguracaoDAO();
         this.compDAO = new ComponenteDAO();
@@ -47,6 +47,11 @@ public class Facade {
         selectedConfigId = id;
     }
     
+    public void setSelectedConfig(Configuracao config) {
+        selectedConfig = config;
+        selectedConfigId = config.getId();
+    }
+    
     public boolean autentication(Integer id, String pass) throws SQLException{
         Utilizador user = userDAO.getUtilizador(id);
         return user.getPassword().equals(pass);
@@ -61,8 +66,8 @@ public class Facade {
     }
 
     
-    public List<Configuracao> getConfiguracoes() throws SQLException{
-        List<Configuracao> configs = configDAO.getConfiguracoes(); 
+    public List<Configuracao> getConfiguracoes(Integer n) throws SQLException{
+        List<Configuracao> configs = configDAO.getConfiguracoes(n); 
         return configs;
     }
     
