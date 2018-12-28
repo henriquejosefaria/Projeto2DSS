@@ -30,9 +30,8 @@ public class SelecaoGuardada extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public SelecaoGuardada(LobbyFuncionario l) throws SQLException {
+    public SelecaoGuardada() throws SQLException {
         initComponents();
-        this.l = l;
         DefaultTableModel dm = new DefaultTableModel(){
             @Override
         public boolean isCellEditable(int row, int column) {
@@ -45,7 +44,7 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         jTable1.setModel(dm);
         jTable1.getColumn("Ação").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Ação").setCellEditor(
-        new ButtonRetomarSelecao(new JCheckBox(),this,jTable1,dm,configs,facade,this.l)); // jTable2.getEditingRow() isto é que estava a estourar
+        new ButtonRetomarSelecao(new JCheckBox(),this,jTable1,dm,configs,facade)); // jTable2.getEditingRow() isto é que estava a estourar
        dm.isCellEditable(1,1);
        configs.forEach((c) -> {
         dm.addRow(new Object[]{c.getId().toString(),c.getNContribuinte().toString(),c.getData(),c.getModelo(),"Retomar Selecao"});
@@ -156,8 +155,6 @@ public class SelecaoGuardada extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            this.setVisible(false);
-            l.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     public static void main(String args[]) {
@@ -165,7 +162,7 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new SelecaoGuardada(null).setVisible(true);
+                    new SelecaoGuardada().setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(SelecaoGuardada.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -191,5 +188,5 @@ public class SelecaoGuardada extends javax.swing.JFrame {
 
     private DefaultTableModel dm;
     private Facade facade;
-    private LobbyFuncionario l;
+    
 }
