@@ -40,8 +40,9 @@ ui.setNorthPane(null);
      ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\interior.jpg");
         String[] colunas = { "Imagem", "Descrição","Preço","Remover" };
         Object[][] data = null;
-        if(facade.getSelectedConfigId()!=-1){
+
         list = facade.getSelectedConfig().getComponentes();
+        if(list.size()>0){
         data = new Object[list.size()][4];
         for (int r=0; r<list.size(); r++) {
             data[r][0] = "ole";
@@ -49,7 +50,7 @@ ui.setNorthPane(null);
             data[r][2] = list.get(r).getPreco();
             data[r][3] = "Remover";
         }
-     }
+        }
     
             
          /*   { { aboutIcon, , "4343 €","Remover" }, { aboutIcon, "Jantes V93 ' 19", "323 €","Remover" },

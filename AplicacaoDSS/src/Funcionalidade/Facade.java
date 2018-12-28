@@ -26,7 +26,8 @@ public class Facade {
         this.userDAO = new UtilizadorDAO();
         this.configDAO = new ConfiguracaoDAO();
         this.compDAO = new ComponenteDAO();
-        this. selectedConfigId = -1;
+        this. selectedConfigId = 999;
+        selectedConfig = new Configuracao();
     }
     
     public Integer getSelectedConfigId() {

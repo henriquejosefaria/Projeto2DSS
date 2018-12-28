@@ -34,7 +34,7 @@ public class Configuracao {
     
     public Configuracao(){
         this.nContribuinte = -1;
-        this.id = -1;
+        this.id = 9999999;
         this.modelo = null;
         this.data = null;
         this.componentes = new ArrayList<>();
