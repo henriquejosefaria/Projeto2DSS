@@ -144,35 +144,19 @@ ui.setNorthPane(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        try {
-            selecao.desenhaConfigFrame(2);
-        } catch (SQLException ex) {
-            Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        selecao.desenhaConfigFrame(2);
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        try {
-            selecao.desenhaConfigFrame(4);
-        } catch (SQLException ex) {
-            Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        selecao.desenhaConfigFrame(4);
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        try {
-            selecao.desenhaConfigFrame(3);
-        } catch (SQLException ex) {
-            Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        selecao.desenhaConfigFrame(3);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        try {
-            selecao.desenhaConfigFrame(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        selecao.desenhaConfigFrame(1);
     }//GEN-LAST:event_jButton2MouseClicked
 
 
