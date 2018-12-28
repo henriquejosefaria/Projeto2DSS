@@ -32,22 +32,25 @@ public class SelecaoGuardada extends javax.swing.JFrame {
      */
     public SelecaoGuardada() throws SQLException {
         initComponents();
+        facade = new Facade();
         DefaultTableModel dm = new DefaultTableModel(){
             @Override
         public boolean isCellEditable(int row, int column) {
-            if( column == 4)return true; return false;
+            if( column == 5)return true; return false;
         }};
-        List<Configuracao> configs = facade.getConfiguracoes();
+        
+        List<Configuracao> configs = facade.getConfiguracoes(143432343);
+        System.out.println(configs.size());
 
         this.dm = dm;
-        dm.setColumnIdentifiers(new String [] {"Número de Save", "Número Contribuinte", "Data", "Modelo","Ação"});
+        dm.setColumnIdentifiers(new String [] {"Número de Save","Nome", "Número Contribuinte", "Data", "Modelo","Ação"});
         jTable1.setModel(dm);
         jTable1.getColumn("Ação").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Ação").setCellEditor(
-        new ButtonRetomarSelecao(new JCheckBox(),this,jTable1,dm,configs,facade)); // jTable2.getEditingRow() isto é que estava a estourar
+        new ButtonRetomarSelecao(new JCheckBox(),this,jTable1,configs,facade)); // jTable2.getEditingRow() isto é que estava a estourar
        dm.isCellEditable(1,1);
        configs.forEach((c) -> {
-        dm.addRow(new Object[]{c.getId().toString(),c.getNContribuinte().toString(),c.getData(),c.getModelo(),"Retomar Selecao"});
+        dm.addRow(new Object[]{c.getId().toString(),c.getNome().toString(),c.getNContribuinte().toString(),c.getData(),c.getModelo(),"Retomar Selecao"});
     });
        /*
         dm.addRow(new Object[]{"98232","André Peixoto","22-02-2013","Shelby","Retomar Selecao"});

@@ -29,7 +29,7 @@ class ButtonRetomarSelecao extends DefaultCellEditor {
 
   private boolean isPushed;
 
-  public ButtonRetomarSelecao(JCheckBox checkBox,SelecaoGuardada selecao, JTable table , DefaultTableModel dm,List<Configuracao> configs, Facade facade) {
+  public ButtonRetomarSelecao(JCheckBox checkBox,SelecaoGuardada selecaog, JTable table,List<Configuracao> configs, Facade facade) {
     super(checkBox);
     button = new JButton();
     button.setOpaque(true);
@@ -37,12 +37,13 @@ class ButtonRetomarSelecao extends DefaultCellEditor {
       public void actionPerformed(ActionEvent e) {
          int configuracaoId = table.getSelectedRow();
          Configuracao c = configs.get(configuracaoId);
+         facade.setSelectedConfig(c);
           try {
-              new Selecao(facade,c).setVisible(true);
+              new Selecao(facade).setVisible(true);
           } catch (SQLException ex) {
               Logger.getLogger(ButtonRetomarSelecao.class.getName()).log(Level.SEVERE, null, ex);
           }
-         selecao.dispose();
+         selecaog.dispose();
       }
     });
   }
