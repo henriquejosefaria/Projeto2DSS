@@ -23,7 +23,7 @@ public class Selecao extends javax.swing.JFrame {
     /**
      * Creates new form Selecao
      */
-    public Selecao(Facade facade,LobbyFuncionario l,Configuracao c) throws SQLException {
+    public Selecao(Facade facade,Configuracao c) throws SQLException {
         initComponents();
         this.facade = new Facade();
         this.l = l; // para utilizar no botão de cancelar seleção (back)
@@ -217,8 +217,9 @@ public class Selecao extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                Facade facade = null;
                 try {
-                    new Selecao(null,null,null).setVisible(true);
+                    new Selecao(facade,null).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
                 }
