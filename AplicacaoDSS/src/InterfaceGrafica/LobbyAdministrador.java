@@ -1,4 +1,4 @@
-package interfacegrafica;
+package InterfaceGrafica;
 import Funcionalidade.Facade;
 /*
  * To change this license header, choose License Headers in Project Properties.

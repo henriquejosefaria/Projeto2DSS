@@ -1,4 +1,4 @@
-package interfacegrafica;
+package InterfaceGrafica;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

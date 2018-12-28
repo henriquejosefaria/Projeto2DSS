@@ -1,4 +1,4 @@
-package interfacegrafica;
+package InterfaceGrafica;
 
 
 import java.awt.Component;

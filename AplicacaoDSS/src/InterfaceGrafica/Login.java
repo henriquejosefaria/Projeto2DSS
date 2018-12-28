@@ -1,4 +1,4 @@
-package interfacegrafica;
+package InterfaceGrafica;
 import Funcionalidade.Facade;
 import java.sql.SQLException;
 import java.util.logging.Level;
