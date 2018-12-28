@@ -37,9 +37,6 @@ class ButtonSelecionar extends DefaultCellEditor {
           int i = table.getSelectedRow();
           Componente comp = list.get(i);
           facade.getSelectedConfig().addComponente(comp);
-
-          if (facade == null) {System.out.println("Facadddddeeee");}
-          if(selecao == null) {System.out.println("SLENAOOOOOOO");}
           try {
               selecao.desenhaConfigFrame();
           } catch (SQLException ex) {
