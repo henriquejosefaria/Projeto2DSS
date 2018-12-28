@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfacegrafica;
+package InterfaceGrafica;
 
 import Funcionalidade.Configuracao;
 import java.awt.Component;
@@ -17,6 +17,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import Funcionalidade.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 class ButtonRetomarSelecao extends DefaultCellEditor {
   protected JButton button;
@@ -25,7 +29,7 @@ class ButtonRetomarSelecao extends DefaultCellEditor {
 
   private boolean isPushed;
 
-  public ButtonRetomarSelecao(JCheckBox checkBox,SelecaoGuardada selecao, JTable table , DefaultTableModel dm,List<Configuracao> configs) {
+  public ButtonRetomarSelecao(JCheckBox checkBox,SelecaoGuardada selecao, JTable table , DefaultTableModel dm,List<Configuracao> configs, Facade facade, LobbyFuncionario l) {
     super(checkBox);
     button = new JButton();
     button.setOpaque(true);
@@ -33,7 +37,11 @@ class ButtonRetomarSelecao extends DefaultCellEditor {
       public void actionPerformed(ActionEvent e) {
          int configuracaoId = table.getSelectedRow();
          Configuracao c = configs.get(configuracaoId);
-         new Selecao(c).setVisible(true);
+          try {
+              new Selecao(facade,l,c).setVisible(true);
+          } catch (SQLException ex) {
+              Logger.getLogger(ButtonRetomarSelecao.class.getName()).log(Level.SEVERE, null, ex);
+          }
          selecao.dispose();
       }
     });

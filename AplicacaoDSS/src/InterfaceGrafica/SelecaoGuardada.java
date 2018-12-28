@@ -45,7 +45,7 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         jTable1.setModel(dm);
         jTable1.getColumn("Ação").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Ação").setCellEditor(
-        new ButtonRetomarSelecao(new JCheckBox(),this,jTable1,dm,configs)); // jTable2.getEditingRow() isto é que estava a estourar
+        new ButtonRetomarSelecao(new JCheckBox(),this,jTable1,dm,configs,facade,this.l)); // jTable2.getEditingRow() isto é que estava a estourar
        dm.isCellEditable(1,1);
        configs.forEach((c) -> {
         dm.addRow(new Object[]{c.getId().toString(),c.getNContribuinte().toString(),c.getData(),c.getModelo(),"Retomar Selecao"});
