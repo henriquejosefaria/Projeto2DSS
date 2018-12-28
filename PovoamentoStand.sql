@@ -19,10 +19,13 @@ INSERT INTO componente
 	   
         ('Suporte para copos',34,'Interior',98.32,'Bêba sem parar!'),
         ('Bancos',2343,'Interior',342.32,'Sente-se no seu Trono!'),
+        ('Ar condicionado',2145, 'Interior',132.21,'Aragem fresca'),
         
 		('Retrovisor',965,'Exterior',96.32,'veja 20km para traz de si.'),
         ('Spoiler',1746,'Exterior',174.32,'Corta tempestades'),
-        ('Teto de abrir', 0,'Exterior', 23.45,'Ver o espaço daqui');
+        ('Teto de abrir', 0,'Exterior', 23.45,'Ver o espaço daqui'),
+        ('LEDs', 152, 'Exterior', 50.23, 'Luzes iluminantes'),
+        ('Amortecedor', 12344,'Exterior',213.21,'Para ir com speed nas lombas');
 
 INSERT INTO Modelo
 	(nome)
