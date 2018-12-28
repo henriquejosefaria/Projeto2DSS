@@ -21,7 +21,8 @@ INSERT INTO componente
         ('Bancos',2343,'Interior',342.32,'Sente-se no seu Trono!'),
         
 		('Retrovisor',965,'Exterior',96.32,'veja 20km para traz de si.'),
-        ('Spoiler',1746,'Exterior',174.32,'Corta tempestades');
+        ('Spoiler',1746,'Exterior',174.32,'Corta tempestades'),
+        ('Teto de abrir', 0,'Exterior', 23.45,'Ver o espaço daqui');
 
 INSERT INTO Modelo
 	(nome)
