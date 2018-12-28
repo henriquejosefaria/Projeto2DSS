@@ -74,7 +74,7 @@ public class UtilizadorDAO {
             boolean res = false;
             Connection con = AConnection.createConnection();
             if(con!=null){
-                PreparedStatement pst = con.prepareStatement("SELECT* FROM utilizador WHERE idEncomenda = "+id);
+                PreparedStatement pst = con.prepareStatement("SELECT* FROM utilizador WHERE idUtilizador = "+id);
                 ResultSet rs = pst.executeQuery();
                 res = rs.next();
                 AConnection.closeConection(con);
