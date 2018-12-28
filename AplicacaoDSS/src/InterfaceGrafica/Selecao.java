@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package InterfaceGrafica;
+import Funcionalidade.Componente;
 import Funcionalidade.Configuracao;
 import Funcionalidade.Facade;
 
@@ -13,6 +14,7 @@ import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -180,6 +182,14 @@ public class Selecao extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Configuracao c = this.facade.getSelectedConfig();
+        for (Componente comp : c.getComponentes()){
+            if (comp.getStock()<=0){
+                JOptionPane.showMessageDialog(null, "Não temos stock em algum dos componentes!", "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+        } 
+        JOptionPane.showMessageDialog(null, "Pode agora finalizar a sua configuração!", "InfoBox: " + "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
         jButton3.setEnabled(true);
         jButton2.setEnabled(false);
     }//GEN-LAST:event_jButton2ActionPerformed
