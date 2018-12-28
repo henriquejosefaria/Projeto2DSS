@@ -20,6 +20,7 @@ public class Configuracao {
     private Integer nContribuinte;
     private Integer id;
     private String modelo;
+    private String nome;
     private String data;
     private List<Componente> componentes = new ArrayList<>();
     
@@ -31,8 +32,9 @@ public class Configuracao {
         this.componentes = new ArrayList<>();
     }
     
-    public Configuracao(Integer id,Integer n, ArrayList<Componente> componentes, String modelo, String data){
+    public Configuracao(Integer id,String nome,Integer n, ArrayList<Componente> componentes, String modelo, String data){
         this.id = id;
+        this.nome = nome;
         this.nContribuinte = n;
         this.componentes = new ArrayList<>();
         componentes.forEach((c)->{

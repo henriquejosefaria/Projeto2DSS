@@ -58,7 +58,7 @@ public class ConfiguracaoDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE idConfiguracao = "+id+";");
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
-            config = new Configuracao(rs.getInt(1),rs.getInt(2),new ArrayList<Componente>(),rs.getString(3),rs.getString(4));
+            config = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getString(5));
         
             PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From "
             + "configuracao_has_componentes as cc inner join Componente as comp on cc.Componentes_Nome = comp.Nome "
@@ -81,7 +81,7 @@ public class ConfiguracaoDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE nContribuinte = " + nContribuinte);
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
-            conf = new Configuracao(rs.getInt(1),rs.getInt(2),new ArrayList<Componente>(),rs.getString(3),rs.getString(4));
+            conf = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getString(5));
         
             PreparedStatement pst2 = con.prepareStatement("SELECT * FROM configuracao_has_componente WHERE Configuracao_idConfiguracao = "+rs.getInt(1));
             ResultSet rs2 = pst2.executeQuery();
@@ -102,7 +102,7 @@ public class ConfiguracaoDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
-            conf = new Configuracao(rs.getInt(1),rs.getInt(2),new ArrayList<Componente>(),rs.getString(3),rs.getString(4));
+            conf = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getString(5));
         
             PreparedStatement pst2 = con.prepareStatement("SELECT * FROM configuracao_has_componente WHERE Configuracao_idConfiguracao = "+rs.getInt(1));
             ResultSet rs2 = pst2.executeQuery();
