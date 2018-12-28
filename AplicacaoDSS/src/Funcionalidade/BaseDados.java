@@ -99,7 +99,7 @@ public class BaseDados {
             while (rsConfigComp.next()) {
                 String NComp = (rsConfigComp.getString(2));
                 Integer idConfig = (rsConfigComp.getInt(1));
-                configs.get(idConfig).addComponente(NComp);
+                configs.get(idConfig).addComponente(comp.get(NComp));
             }
            
             System.out.println("Configuracoes loaded from MySQL DB: " + configs.size());
