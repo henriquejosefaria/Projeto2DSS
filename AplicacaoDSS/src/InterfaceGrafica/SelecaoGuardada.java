@@ -21,15 +21,16 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import InterfaceGrafica.*;
 
 
 public class SelecaoGuardada extends javax.swing.JFrame {
-    private Facade facade;
     /**
      * Creates new form NewJFrame
      */
-    public SelecaoGuardada() throws SQLException {
+    public SelecaoGuardada(LobbyFuncionario l) throws SQLException {
         initComponents();
+        this.l = l;
         DefaultTableModel dm = new DefaultTableModel(){
             @Override
         public boolean isCellEditable(int row, int column) {
@@ -100,6 +101,9 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("back");
+        if(permissao == 0){
+            jButton1.setText("Logout");
+        }
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -108,6 +112,8 @@ public class SelecaoGuardada extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Seleções Guardadas");
+
+        if(permissao == 0) jMenuBar1.setVisible(false);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -129,8 +135,8 @@ public class SelecaoGuardada extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(201, 201, 201))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(272, 272, 272))))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(269, 269, 269))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +154,8 @@ public class SelecaoGuardada extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+            this.setVisible(false);
+            l.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     public static void main(String args[]) {
@@ -156,7 +163,7 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new SelecaoGuardada().setVisible(true);
+                    new SelecaoGuardada(null).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(SelecaoGuardada.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -181,4 +188,6 @@ public class SelecaoGuardada extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private DefaultTableModel dm;
+    private Facade facade;
+    private LobbyFuncionario l;
 }
