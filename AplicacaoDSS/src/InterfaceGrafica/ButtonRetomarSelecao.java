@@ -5,15 +5,18 @@
  */
 package interfacegrafica;
 
+import Funcionalidade.Configuracao;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 class ButtonRetomarSelecao extends DefaultCellEditor {
   protected JButton button;
@@ -22,12 +25,16 @@ class ButtonRetomarSelecao extends DefaultCellEditor {
 
   private boolean isPushed;
 
-  public ButtonRetomarSelecao(JCheckBox checkBox,SelecaoGuardada selecao) {
+  public ButtonRetomarSelecao(JCheckBox checkBox,SelecaoGuardada selecao, JTable table , DefaultTableModel dm,List<Configuracao> configs) {
     super(checkBox);
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+         int configuracaoId = table.getSelectedRow();
+         Configuracao c = configs.get(configuracaoId);
+         // dar configuração
+         
       new Selecao().setVisible(true);
       selecao.dispose();
       }

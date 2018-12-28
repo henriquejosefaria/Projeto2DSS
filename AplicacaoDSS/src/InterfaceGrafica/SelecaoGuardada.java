@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfacegrafica;
+package InterfaceGrafica;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +17,10 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import Funcionalidade.Facade;
 import Funcionalidade.Configuracao;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class SelecaoGuardada extends javax.swing.JFrame {
@@ -25,7 +28,7 @@ public class SelecaoGuardada extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public SelecaoGuardada() {
+    public SelecaoGuardada() throws SQLException {
         initComponents();
         DefaultTableModel dm = new DefaultTableModel(){
             @Override
@@ -39,7 +42,7 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         jTable1.setModel(dm);
         jTable1.getColumn("Ação").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Ação").setCellEditor(
-        new ButtonRetomarSelecao(new JCheckBox(),this)); // jTable2.getEditingRow() isto é que estava a estourar
+        new ButtonRetomarSelecao(new JCheckBox(),this,jTable1,dm,configs)); // jTable2.getEditingRow() isto é que estava a estourar
        dm.isCellEditable(1,1);
        configs.forEach((c) -> {
         dm.addRow(new Object[]{c.getId().toString(),c.getNContribuinte().toString(),c.getData(),c.getModelo(),"Retomar Selecao"});
@@ -152,7 +155,11 @@ public class SelecaoGuardada extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SelecaoGuardada().setVisible(true);
+                try {
+                    new SelecaoGuardada().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SelecaoGuardada.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
