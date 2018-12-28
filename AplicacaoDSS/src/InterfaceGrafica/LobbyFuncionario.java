@@ -199,7 +199,11 @@ public class LobbyFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new SelecaoGuardada(this).setVisible(true);
+        try {
+            new SelecaoGuardada(this).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(LobbyFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
