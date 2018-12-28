@@ -5,7 +5,13 @@
  */
 package interfacegrafica;
 
+import Funcionalidade.Componente;
+import Funcionalidade.Facade;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
 import javax.swing.JComponent;
@@ -20,8 +26,9 @@ public class ComponentesFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form PacotesFrame
      */
-    public ComponentesFrame() {
+    public ComponentesFrame(Facade facade) {
         initComponents();
+        this.facade = facade;
         BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
 
@@ -169,10 +176,11 @@ ui.setNorthPane(null);
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel1)))
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -197,8 +205,20 @@ ui.setNorthPane(null);
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
     ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\jante.jpg");
         String[] colunas = { "Jante", "Descrição","Preço","Selecionar" };
-    Object[][] data = { { aboutIcon, "jante v19.43", "333 €","Selecionar" }, { aboutIcon, "jante v19.43", "333 €","Selecionar" },
-        { aboutIcon, "jante v19.43", "333 €","Selecionar" } };
+                Object[][] data = null;
+                List<Componente> list = null;
+        try {
+            list = facade.getTypeComponentes("Jante");
+        } catch (SQLException ex) {
+            Logger.getLogger(ComponentesFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                data = new Object[list.size()][4];
+                for (int r=0; r<list.size(); r++) {
+                    data[r][0] = "ole";
+                    data[r][1] = list.get(r).getDescricao();
+                    data[r][2] = list.get(r).getPreco();
+                    data[r][3] = "Selecionar";
+                }
     new ComponenteFrame(colunas,data).setVisible(true);
     
     }//GEN-LAST:event_jButton3MouseClicked
@@ -206,32 +226,80 @@ ui.setNorthPane(null);
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
     ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\pneu.jpg");
         String[] colunas = { "Pneu", "Descrição","Preço","Selecionar" };
-    Object[][] data = { { aboutIcon, "pneu v19.43", "234 €","Selecionar" }, { aboutIcon, "pneu v19.43", "432 €","Selecionar" },
-        { aboutIcon, "pneu v19.43", "343 €","Selecionar" } };
+        Object[][] data = null;
+        try {
+            List<Componente> list = facade.getTypeComponentes("Pneu");
+            data = new Object[list.size()][4];
+            for (int r=0; r<list.size(); r++) {
+                data[r][0] = "ole";
+                data[r][1] = list.get(r).getDescricao();
+                data[r][2] = list.get(r).getPreco();
+                data[r][3] = "Selecionar";
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     new ComponenteFrame(colunas,data).setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
             ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\motor.jpg");
         String[] colunas = { "Motor", "Descrição","Preço","Selecionar" };
-    Object[][] data = { { aboutIcon, "Motor v19.43", "3435 €","Selecionar" }, { aboutIcon, "Motor v19.43", "24356 €","Selecionar" },
-        { aboutIcon, "Motor v19.43", "45434 €","Selecionar" } };
+        Object[][] data = null;
+        List<Componente> list = null;
+        try {
+            list = facade.getTypeComponentes("Motor");
+        } catch (SQLException ex) {
+            Logger.getLogger(ComponentesFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        data = new Object[list.size()][4];
+        for (int r=0; r<list.size(); r++) {
+            data[r][0] = "ole";
+            data[r][1] = list.get(r).getDescricao();
+            data[r][2] = list.get(r).getPreco();
+            data[r][3] = "Selecionar";
+        }
     new ComponenteFrame(colunas,data).setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
             ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\exterior.jpg");
         String[] colunas = { "Detalhe Exterior", "Descrição","Preço","Selecionar" };
-    Object[][] data = { { aboutIcon, "Para Brisas v19.43", "23 €","Selecionar" }, { aboutIcon, "Spoiler v19.43", "434 €","Selecionar" },
-        { aboutIcon, "Farol v19.43", "343 €","Selecionar" } };
+        Object[][] data = null;
+        try {
+            List<Componente> list = facade.getTypeComponentes("Exterior");
+            data = new Object[list.size()][4];
+            for (int r=0; r<list.size(); r++) {
+                data[r][0] = "ole";
+                data[r][1] = list.get(r).getDescricao();
+                data[r][2] = list.get(r).getPreco();
+                data[r][3] = "Selecionar";
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     new ComponenteFrame(colunas,data).setVisible(true);
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
             ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\interior.jpg");
         String[] colunas = { "Detalhe Interior", "Descrição","Preço","Selecionar" };
-    Object[][] data = { { aboutIcon, "Suporte para Copos v19.43", "23 €","Selecionar" }, { aboutIcon, "Ar condicionado v19.43", "323 €","Selecionar" },
-        { aboutIcon, "Radio v19.43", "45434 €","Selecionar" } };
+        Object[][] data = null;
+        try {
+            List<Componente> list = facade.getTypeComponentes("Interior");
+            data = new Object[list.size()][4];
+            for (int r=0; r<list.size(); r++) {
+                data[r][0] = "ole";
+                data[r][1] = list.get(r).getDescricao();
+                data[r][2] = list.get(r).getPreco();
+                data[r][3] = "Selecionar";
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     new ComponenteFrame(colunas,data).setVisible(true);
     }//GEN-LAST:event_jButton6MouseClicked
 
@@ -255,4 +323,5 @@ ui.setNorthPane(null);
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
+    private Facade facade;
 }

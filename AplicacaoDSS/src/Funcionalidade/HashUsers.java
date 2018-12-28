@@ -1,4 +1,4 @@
-package funcionalidade;
+package Funcionalidade;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;

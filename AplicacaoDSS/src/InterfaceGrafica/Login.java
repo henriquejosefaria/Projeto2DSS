@@ -1,5 +1,8 @@
 package interfacegrafica;
-import funcionalidade.Facade;
+import Funcionalidade.Facade;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,8 +18,9 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login(Facade facade) {
         initComponents();
+        this.facade = facade;
     }
 
     /**
@@ -109,22 +113,30 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        if( jTextField1.getText().equals("admin")){
-        new LobbyAdministrador().setVisible(true);
+        new LobbyAdministrador(facade).setVisible(true);
         System.out.println("admiiinnn");
         this.dispose();
        }
        else{
-            new LobbyFuncionario().setVisible(true);       
-            this.dispose();
+           boolean res = false;
+           try {
+               res = facade.autentication(userId, pass);
+           } catch (SQLException ex) {
+               Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+           }
+            if(res){
+                new LobbyFuncionario(facade).setVisible(true);
+            }
        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+       String user = jTextField1.getText();
+       userId = Integer.parseInt(user);
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
+       pass = jTextField2.getText();
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
@@ -157,7 +169,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Login(null).setVisible(true);
             }
         });
     }
@@ -171,4 +183,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
     private Facade facade;
+    private String pass;
+    private Integer userId;
 }

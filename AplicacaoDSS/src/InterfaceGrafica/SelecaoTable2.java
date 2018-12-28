@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package interfacegrafica;
+import Funcionalidade.Componente;
+import Funcionalidade.Facade;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -21,8 +27,9 @@ public class SelecaoTable2 extends javax.swing.JInternalFrame {
     /**
      * Creates new form SelecaoTable2
      */
-    public SelecaoTable2() {
+    public SelecaoTable2(Integer id) throws SQLException {
     initComponents();
+    this.facade = new Facade();
          BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
 
@@ -31,9 +38,22 @@ ui.setNorthPane(null);
         
      ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\interior.jpg");
         String[] colunas = { "Imagem", "Descrição","Preço","Remover" };
-    Object[][] data = { { aboutIcon, "Motor AUDI 3 CILINDROS V8", "4343 €","Remover" }, { aboutIcon, "Jantes V93 ' 19", "323 €","Remover" },
-        { aboutIcon, "Pneus", "432 €","Remover" }, { aboutIcon, "Pintura", "343 €","Remover" } };
+        Object[][] data = null;
+        List<Componente> list = facade.getConfigComponents(id);
+        data = new Object[list.size()][4];
+        for (int r=0; r<list.size(); r++) {
+            data[r][0] = "ole";
+            data[r][1] = list.get(r).getDescricao();
+            data[r][2] = list.get(r).getPreco();
+            data[r][3] = "Remover";
+        }
+        facade.setSelectedConfig(facade.getConfig(id));
+        
+
     
+            
+         /*   { { aboutIcon, , "4343 €","Remover" }, { aboutIcon, "Jantes V93 ' 19", "323 €","Remover" },
+        { aboutIcon, "Pneus", "432 €","Remover" }, { aboutIcon, "Pintura", "343 €","Remover" } };*/
     DefaultTableModel model = new DefaultTableModel(data, colunas){
         @Override
       public Class getColumnClass(int column) {
@@ -132,4 +152,5 @@ ui.setNorthPane(null);
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    private Facade facade;
 }

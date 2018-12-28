@@ -1,8 +1,10 @@
-package funcionalidade;
+package Funcionalidade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -74,4 +76,18 @@ public class ComponenteDAO {
             return res;
     }   
     
+    public List<Componente> getTipoComponentes(String tipo) throws SQLException{
+        List <Componente> list = new ArrayList<>();
+        Connection con = AConnection.createConnection();
+        if(con!=null){
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
+        ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5));
+            list.add(componente);
+        }
+        AConnection.closeConection(con);
+        }
+        return list;
+    }
 }

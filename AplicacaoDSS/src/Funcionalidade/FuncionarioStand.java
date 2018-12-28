@@ -1,4 +1,4 @@
-package funcionalidade;
+package Funcionalidade;
 import java.util.ArrayList;
 
 /*
@@ -30,7 +30,7 @@ public class FuncionarioStand extends Utilizador {
             if(verificaComponentes(componentes)){
                 Integer id = configs.getLastId() + 1;
                 //Configuracao novaConfiguracao = new Configuracao(id,nome, componentes, modelo, data);
-                configs.configuracoes.put(id, novaConfiguracao);
+                //configs.configuracoes.put(id, novaConfiguracao);
                 configs.setLastId(id);
             }
         }
