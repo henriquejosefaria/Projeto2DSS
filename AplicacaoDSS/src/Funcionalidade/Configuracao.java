@@ -68,12 +68,39 @@ public class Configuracao {
         this.nContribuinte = n;
     }
     
-    public void addComponente(Componente componente){
-        componentes.add(componente);
+    public void addComponente(Componente c){
+        for(Componente comp : componentes){
+            if(comp.getNome().equals(c.getNome())){return;}
+        }
+        if(c.getTipo().equals("Motor")||c.getTipo().equals("Pneu")|| c.getTipo().equals("Jante"))
+        {
+            replaceComponente(c);
+        }
+        else{
+        componentes.add(c);
+        }
     }
     
     public void removeComponente(Componente componente){
         componentes.remove(componente);
+    }
+    
+    public Componente getComponenteByTipo(String tipo){
+        for(Componente c :componentes){
+            if(c.getTipo().equals(tipo))
+                return c;
+        }
+        return null;
+    }
+    public void replaceComponente(Componente c){
+        Componente comp = getComponenteByTipo(c.getTipo());
+        if(comp!=null){
+        removeComponente(comp);
+        componentes.add(c);
+        }
+        else{
+            componentes.add(c);
+        }
     }
     
     public void setId(Integer id){

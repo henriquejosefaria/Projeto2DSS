@@ -4,11 +4,17 @@
  * and open the template in the editor.
  */
 package InterfaceGrafica;
+import Funcionalidade.Componente;
+import Funcionalidade.Facade;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -22,12 +28,23 @@ class ButtonSelecionar extends DefaultCellEditor {
 
   private boolean isPushed;
 
-  public ButtonSelecionar(JCheckBox checkBox) {
+  public ButtonSelecionar(JCheckBox checkBox,Facade facade,JTable table, List<Componente> list,Selecao selecao) {
     super(checkBox);
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+          int i = table.getSelectedRow();
+          Componente comp = list.get(i);
+          facade.getSelectedConfig().addComponente(comp);
+
+          if (facade == null) {System.out.println("Facadddddeeee");}
+          if(selecao == null) {System.out.println("SLENAOOOOOOO");}
+          try {
+              selecao.desenhaConfigFrame();
+          } catch (SQLException ex) {
+              Logger.getLogger(ButtonSelecionar.class.getName()).log(Level.SEVERE, null, ex);
+          }
       }
     });
   }

@@ -26,8 +26,9 @@ public class ComponentesFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form PacotesFrame
      */
-    public ComponentesFrame(Facade facade) {
+    public ComponentesFrame(Facade facade,Selecao selecao) {
         initComponents();
+        this.selecao = selecao;
         this.facade = facade;
         BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
@@ -203,104 +204,57 @@ ui.setNorthPane(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-    ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\jante.jpg");
-        String[] colunas = { "Jante", "Descrição","Preço","Selecionar" };
-                Object[][] data = null;
-                List<Componente> list = null;
+
         try {
-            list = facade.getTypeComponentes("Jante");
+            List<Componente> list = facade.getTypeComponentes("Jante");
+            new ComponenteFrame(facade,list,selecao).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(ComponentesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-                data = new Object[list.size()][4];
-                for (int r=0; r<list.size(); r++) {
-                    data[r][0] = "ole";
-                    data[r][1] = list.get(r).getDescricao();
-                    data[r][2] = list.get(r).getPreco();
-                    data[r][3] = "Selecionar";
-                }
-    new ComponenteFrame(colunas,data).setVisible(true);
-    
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-    ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\pneu.jpg");
-        String[] colunas = { "Pneu", "Descrição","Preço","Selecionar" };
-        Object[][] data = null;
+
         try {
             List<Componente> list = facade.getTypeComponentes("Pneu");
-            data = new Object[list.size()][4];
-            for (int r=0; r<list.size(); r++) {
-                data[r][0] = "ole";
-                data[r][1] = list.get(r).getDescricao();
-                data[r][2] = list.get(r).getPreco();
-                data[r][3] = "Selecionar";
-            }
-
+        new ComponenteFrame(facade,list,selecao).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
         }
-    new ComponenteFrame(colunas,data).setVisible(true);
+
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-            ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\motor.jpg");
-        String[] colunas = { "Motor", "Descrição","Preço","Selecionar" };
-        Object[][] data = null;
-        List<Componente> list = null;
+
         try {
-            list = facade.getTypeComponentes("Motor");
+            List<Componente> list = facade.getTypeComponentes("Motor");
+            new ComponenteFrame(facade,list,selecao).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(ComponentesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        data = new Object[list.size()][4];
-        for (int r=0; r<list.size(); r++) {
-            data[r][0] = "ole";
-            data[r][1] = list.get(r).getDescricao();
-            data[r][2] = list.get(r).getPreco();
-            data[r][3] = "Selecionar";
-        }
-    new ComponenteFrame(colunas,data).setVisible(true);
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-            ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\exterior.jpg");
-        String[] colunas = { "Detalhe Exterior", "Descrição","Preço","Selecionar" };
-        Object[][] data = null;
+
         try {
             List<Componente> list = facade.getTypeComponentes("Exterior");
-            data = new Object[list.size()][4];
-            for (int r=0; r<list.size(); r++) {
-                data[r][0] = "ole";
-                data[r][1] = list.get(r).getDescricao();
-                data[r][2] = list.get(r).getPreco();
-                data[r][3] = "Selecionar";
-            }
-
+            new ComponenteFrame(facade,list,selecao).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
         }
-    new ComponenteFrame(colunas,data).setVisible(true);
+
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-            ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\interior.jpg");
-        String[] colunas = { "Detalhe Interior", "Descrição","Preço","Selecionar" };
-        Object[][] data = null;
+
         try {
             List<Componente> list = facade.getTypeComponentes("Interior");
-            data = new Object[list.size()][4];
-            for (int r=0; r<list.size(); r++) {
-                data[r][0] = "ole";
-                data[r][1] = list.get(r).getDescricao();
-                data[r][2] = list.get(r).getPreco();
-                data[r][3] = "Selecionar";
-            }
-
+            new ComponenteFrame(facade,list,selecao).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
         }
-    new ComponenteFrame(colunas,data).setVisible(true);
+
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
@@ -324,4 +278,5 @@ ui.setNorthPane(null);
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
     private Facade facade;
+    private Selecao selecao;
 }

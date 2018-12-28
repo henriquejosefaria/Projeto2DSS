@@ -5,6 +5,7 @@
  */
 package InterfaceGrafica;
 
+import Funcionalidade.Facade;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,8 +21,9 @@ public class PacotesFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form PacotesFrame
      */
-    public PacotesFrame(Selecao selecao) {
+    public PacotesFrame(Facade facade,Selecao selecao) {
         this.selecao = selecao;
+        this.facade = facade;
         initComponents();
         BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
@@ -145,7 +147,8 @@ ui.setNorthPane(null);
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         try {
-            selecao.desenhaConfigFrame(2);
+            facade.setSelectedConfig(2);
+            selecao.desenhaConfigFrame();
         } catch (SQLException ex) {
             Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -153,7 +156,8 @@ ui.setNorthPane(null);
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         try {
-            selecao.desenhaConfigFrame(4);
+            facade.setSelectedConfig(4);
+            selecao.desenhaConfigFrame();
         } catch (SQLException ex) {
             Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -161,7 +165,8 @@ ui.setNorthPane(null);
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try {
-            selecao.desenhaConfigFrame(3);
+            facade.setSelectedConfig(3);
+            selecao.desenhaConfigFrame();
         } catch (SQLException ex) {
             Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -169,7 +174,8 @@ ui.setNorthPane(null);
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         try {
-            selecao.desenhaConfigFrame(1);
+            facade.setSelectedConfig(1);
+            selecao.desenhaConfigFrame();
         } catch (SQLException ex) {
             Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -187,4 +193,5 @@ ui.setNorthPane(null);
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
     private Selecao selecao;
+    private Facade facade;
 }

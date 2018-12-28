@@ -5,6 +5,9 @@
  */
 package InterfaceGrafica;
 
+import Funcionalidade.Componente;
+import Funcionalidade.Facade;
+import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
@@ -21,11 +24,20 @@ public class ComponenteFrame extends javax.swing.JFrame {
     /**
      * Creates new form JantesFrame
      */
-    public ComponenteFrame(String [] colunas, Object [][] data) {
+    public ComponenteFrame(Facade facade, List <Componente> list,Selecao selecao) {
         initComponents();
     ImageIcon addIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\ola.png");
     ImageIcon copyIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\ola.png");
-
+    ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\interior.jpg");
+        String[] colunas = { "Detalhe Interior", "Descrição","Preço","Selecionar" };
+        Object[][] data = null;
+        data = new Object[list.size()][4];
+            for (int r=0; r<list.size(); r++) {
+                data[r][0] = "ole";
+                data[r][1] = list.get(r).getDescricao();
+                data[r][2] = list.get(r).getPreco();
+                data[r][3] = "Selecionar";
+            }
     DefaultTableModel model = new DefaultTableModel(data, colunas){
         @Override
       public Class getColumnClass(int column) {
@@ -37,7 +49,7 @@ public class ComponenteFrame extends javax.swing.JFrame {
       jTable1.setModel(model);
       jTable1.getColumn("Selecionar").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Selecionar").setCellEditor(
-        new ButtonSelecionar(new JCheckBox()));
+        new ButtonSelecionar(new JCheckBox(),facade,jTable1,list,selecao));
      // jTable1.getColumnModel().getColumn(0).setMinHeight(400); 
       jTable1.setRowHeight(100);
     }
@@ -140,7 +152,7 @@ public class ComponenteFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ComponenteFrame(null,null).setVisible(true);
+                new ComponenteFrame(null,null,null).setVisible(true);
             }
         });
     }

@@ -26,7 +26,7 @@ public class Facade {
         this.userDAO = new UtilizadorDAO();
         this.configDAO = new ConfiguracaoDAO();
         this.compDAO = new ComponenteDAO();
-        this. selectedConfigId = 1;
+        this. selectedConfigId = -1;
     }
     
     public Integer getSelectedConfigId() {
@@ -40,8 +40,10 @@ public class Facade {
     public Configuracao getConfig(Integer id) throws SQLException {
         return configDAO.getConfiguracao(id);
     }
-    public void setSelectedConfig(Configuracao config) {
+    public void setSelectedConfig(Integer id) throws SQLException {
+        Configuracao config = getConfig(id);
         selectedConfig = config;
+        selectedConfigId = id;
     }
     
     public boolean autentication(Integer id, String pass) throws SQLException{

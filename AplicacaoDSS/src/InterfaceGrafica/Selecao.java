@@ -27,9 +27,9 @@ public class Selecao extends javax.swing.JFrame {
         initComponents();
         this.facade = new Facade();
         this.l = l; // para utilizar no botão de cancelar seleção (back)
-        desenhaConfigFrame(1);
+        desenhaConfigFrame();
         
-            PacotesFrame pacotesf = new PacotesFrame(this);
+            PacotesFrame pacotesf = new PacotesFrame(this.facade,this);
             pacotesf.setLocation(50, 100);
             pacotesf.setVisible(true);
             this.add(pacotesf);
@@ -40,13 +40,14 @@ public class Selecao extends javax.swing.JFrame {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public void desenhaConfigFrame(Integer idConfig) throws SQLException{
+    public void desenhaConfigFrame() throws SQLException{
         if(tableComp != null){ tableComp.dispose();}
-        tableComp = new SelecaoTable2(idConfig);
+        tableComp = new SelecaoTable2(facade);
         tableComp.setLocation(750, 100);
         tableComp.setVisible(true);
         this.add(tableComp);
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -152,7 +153,7 @@ public class Selecao extends javax.swing.JFrame {
                         if(jComboBox1.getSelectedIndex()== 0 && !(selectedframe instanceof PacotesFrame)){
            if(selectedframe!= null) selectedframe.dispose();
             System.out.println("00000");
-            PacotesFrame pacotesf = new PacotesFrame(this);
+            PacotesFrame pacotesf = new PacotesFrame(facade,this);
             pacotesf.setLocation(50, 100);
             pacotesf.setVisible(true);
             this.add(pacotesf);
@@ -162,7 +163,7 @@ public class Selecao extends javax.swing.JFrame {
             
             if(selectedframe!= null) selectedframe.dispose();
             System.out.println("111111");
-            ComponentesFrame compnentesf = new ComponentesFrame(facade);
+            ComponentesFrame compnentesf = new ComponentesFrame(facade,this);
             compnentesf.setLocation(50, 100);
             compnentesf.setVisible(true);
             this.add(compnentesf);

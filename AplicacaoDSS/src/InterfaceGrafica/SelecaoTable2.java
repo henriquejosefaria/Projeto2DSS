@@ -27,19 +27,23 @@ public class SelecaoTable2 extends javax.swing.JInternalFrame {
     /**
      * Creates new form SelecaoTable2
      */
-    public SelecaoTable2(Integer id) throws SQLException {
+    public SelecaoTable2(Facade facade) throws SQLException {
     initComponents();
-    this.facade = new Facade();
+    this.facade = facade;
          BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
 
 // to remove
 ui.setNorthPane(null);
-        
+
      ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\interior.jpg");
         String[] colunas = { "Imagem", "Descrição","Preço","Remover" };
         Object[][] data = null;
-        List<Componente> list = facade.getConfigComponents(id);
+        if(facade.getSelectedConfigId()!=-1){
+                              for(Componente c : facade.getSelectedConfig().getComponentes()){
+              System.out.println(c.getDescricao());
+          }
+        List<Componente> list = facade.getSelectedConfig().getComponentes();
         data = new Object[list.size()][4];
         for (int r=0; r<list.size(); r++) {
             data[r][0] = "ole";
@@ -47,9 +51,7 @@ ui.setNorthPane(null);
             data[r][2] = list.get(r).getPreco();
             data[r][3] = "Remover";
         }
-        facade.setSelectedConfig(facade.getConfig(id));
-        
-
+     }
     
             
          /*   { { aboutIcon, , "4343 €","Remover" }, { aboutIcon, "Jantes V93 ' 19", "323 €","Remover" },
