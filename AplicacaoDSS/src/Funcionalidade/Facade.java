@@ -29,6 +29,7 @@ public class Facade {
         this. selectedConfigId = 999;
 
         selectedConfig = new Configuracao();
+        Configuracao x = getConfig(1);
     }
     
     public Integer getSelectedConfigId() {

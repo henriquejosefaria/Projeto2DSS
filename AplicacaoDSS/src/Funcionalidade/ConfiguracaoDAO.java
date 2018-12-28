@@ -60,13 +60,12 @@ public class ConfiguracaoDAO {
         if(rs.next()){
             config = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getString(5));
         
-            PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From "
+            PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao,comp.Imagem From "
             + "configuracao_has_componentes as cc inner join Componente as comp on cc.Componentes_Nome = comp.Nome "
             + "WHERE cc.Configuracao_idConfiguracao = "+id+";");
             ResultSet rs2 = pst2.executeQuery();
             while(rs2.next()){
-                Componente comp = new Componente(rs2.getString(1),rs2.getInt(2),rs2.getString(3),
-                rs2.getDouble(4),rs2.getString(5));
+                Componente comp = new Componente(rs2.getString(1),rs2.getInt(2),rs2.getString(3),rs2.getDouble(4),rs2.getString(5),rs2.getString(6));
                 config.addComponente(comp);
             }
         }
@@ -83,14 +82,13 @@ public class ConfiguracaoDAO {
         while(rs.next()){
             conf = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getString(5));
             
-            PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From configuracao as c "
+            PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao,comp.Imagem From configuracao as c "
             +"inner join configuracao_has_componentes as cc on c.idConfiguracao = cc.Configuracao_idConfiguracao "
             +"inner join Componente as comp on cc.Componentes_Nome = comp.Nome "
             +"WHERE c.nContribuinte = "+nContribuinte+";");
             ResultSet rs2 = pst2.executeQuery();
             while(rs2.next()){
-                Componente comp = new Componente(rs2.getString(1),rs2.getInt(2),rs2.getString(3),
-                rs2.getDouble(4),rs2.getString(5));
+                Componente comp = new Componente(rs2.getString(1),rs2.getInt(2),rs2.getString(3),rs2.getDouble(4),rs2.getString(5),rs2.getString(6));
                 conf.addComponente(comp);
             }
             config.add(conf);
@@ -111,7 +109,7 @@ public class ConfiguracaoDAO {
             PreparedStatement pst2 = con.prepareStatement("SELECT * FROM configuracao_has_componente WHERE Configuracao_idConfiguracao = "+rs.getInt(1));
             ResultSet rs2 = pst2.executeQuery();
             while(rs2.next()){
-                Componente comp = new Componente(rs2.getString(1),rs2.getInt(2),rs2.getString(3),rs2.getDouble(4),rs2.getString(5));
+                Componente comp = new Componente(rs2.getString(1),rs2.getInt(2),rs2.getString(3),rs2.getDouble(4),rs2.getString(5),rs2.getString(6));
                 conf.addComponente(comp);
             }
             config.add(conf);
@@ -136,13 +134,13 @@ public class ConfiguracaoDAO {
         List<Componente> list = new ArrayList<>();
         Connection con = AConnection.createConnection();
         if(con!=null){
-        PreparedStatement pst = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From " 
+        PreparedStatement pst = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao,comp.Imagem From " 
                     + "configuracao_has_componentes as cc "
                     + "inner join Componente as comp on cc.Componentes_Nome = comp.Nome " 
                     + "where cc.Configuracao_idConfiguracao = '"+id+"';");
             ResultSet rs = pst.executeQuery();
             while(rs.next()){
-                Componente comp = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5));
+                Componente comp = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
                 list.add(comp);
             }
             AConnection.closeConection(con);

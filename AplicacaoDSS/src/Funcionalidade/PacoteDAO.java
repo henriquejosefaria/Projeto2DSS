@@ -87,7 +87,7 @@ public class PacoteDAO {
                     + "where p.Nome = '"+nome+"';");
             ResultSet rs = pst.executeQuery();
             while(rs.next()){
-                Componente comp = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5));
+                Componente comp = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
                 list.add(comp);
             }
             AConnection.closeConection(con);

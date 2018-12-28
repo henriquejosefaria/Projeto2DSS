@@ -26,14 +26,11 @@ public class ComponenteFrame extends javax.swing.JFrame {
      */
     public ComponenteFrame(Facade facade, List <Componente> list,Selecao selecao) {
         initComponents();
-    ImageIcon addIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\ola.png");
-    ImageIcon copyIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\ola.png");
-    ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\interior.jpg");
         String[] colunas = { "Detalhe Interior", "Descrição","Preço","Selecionar" };
         Object[][] data = null;
         data = new Object[list.size()][4];
             for (int r=0; r<list.size(); r++) {
-                data[r][0] = "ole";
+                data[r][0] = new ImageIcon(getClass().getResource(list.get(r).getImage()));
                 data[r][1] = list.get(r).getDescricao();
                 data[r][2] = list.get(r).getPreco();
                 data[r][3] = "Selecionar";

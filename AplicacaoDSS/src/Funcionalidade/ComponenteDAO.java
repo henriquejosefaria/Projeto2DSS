@@ -58,7 +58,7 @@ public class ComponenteDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Nome = "+comp);
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
-            componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5));
+            componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
         }
         AConnection.closeConection(con);
         return componente;
@@ -83,7 +83,7 @@ public class ComponenteDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
-            Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5));
+            Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
             list.add(componente);
         }
         AConnection.closeConection(con);

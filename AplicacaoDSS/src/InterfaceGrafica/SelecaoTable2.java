@@ -31,6 +31,7 @@ public class SelecaoTable2 extends javax.swing.JInternalFrame {
     public SelecaoTable2(Facade facade,Selecao selecao) throws SQLException {
     initComponents();
     this.facade = facade;
+    
          BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
 
@@ -45,7 +46,7 @@ ui.setNorthPane(null);
         if(list.size()>0){
         data = new Object[list.size()][4];
         for (int r=0; r<list.size(); r++) {
-            data[r][0] = "ole";
+            data[r][0] = new ImageIcon(getClass().getResource(list.get(r).getImage()));
             data[r][1] = list.get(r).getDescricao();
             data[r][2] = list.get(r).getPreco();
             data[r][3] = "Remover";

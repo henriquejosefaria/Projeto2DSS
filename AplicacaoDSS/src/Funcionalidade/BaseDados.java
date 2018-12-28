@@ -80,9 +80,9 @@ public class BaseDados {
             PreparedStatement pstComponentes = con.prepareStatement(query2);
             ResultSet rsComponente = pstComponentes.executeQuery();        
             while (rsComponente.next()) {
-                Componente comps = new Componente(rsComponente.getString(1),rsComponente.getInt(2),rsComponente.getString(3),
-                rsComponente.getDouble(4),rsComponente.getString(5));
-                comp.put(comps.getNome(),comps);
+                //Componente comps = new Componente(rsComponente.getString(1),rsComponente.getInt(2),rsComponente.getString(3),
+               // rsComponente.getDouble(4),rsComponente.getString(5));
+                //comp.put(comps.getNome(),comps);
             }
        
             System.out.println("Componentes loaded from MySQL DB: " + comp.size());
