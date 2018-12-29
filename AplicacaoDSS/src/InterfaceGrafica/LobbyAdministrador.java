@@ -1,5 +1,8 @@
 package InterfaceGrafica;
 import Funcionalidade.Facade;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -191,7 +194,11 @@ public class LobbyAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new Login(facade).setVisible(true);
+        try {
+            new Login(facade).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(LobbyAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
