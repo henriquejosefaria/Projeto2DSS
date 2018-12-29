@@ -134,7 +134,7 @@ public class Login extends javax.swing.JFrame {
                     this.dispose(); 
                 }
                 else if (s.equals("F")){
-                    //falta o lobby de funcionario de fabrica
+                    new LobbyFuncionarioFabrica(facade).setVisible(true);
                     this.dispose();
                 }
             }
