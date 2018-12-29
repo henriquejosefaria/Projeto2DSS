@@ -25,10 +25,11 @@ public class ModelosFrame extends javax.swing.JPanel {
     /**
      * Creates new form ModelosFrame
      */
-    public ModelosFrame(double custo, String nomeModelo, Facade facade) {
+    public ModelosFrame(double custo, String nomeModelo, Facade facade, ConfgOtimaFrame config) {
         initComponents();
         this.facade = facade;
         this.nomeModelo = nomeModelo;
+        this.config = config;
         initComponents();
         jButton1.setEnabled(false);
         List<Modelo> modelos;
@@ -182,6 +183,7 @@ public class ModelosFrame extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         facade.setSelectedConfigModel(modelos.get(i));
+        config.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -223,4 +225,5 @@ public class ModelosFrame extends javax.swing.JPanel {
     private String nomeModelo;
     private List<Modelo> modelos = new ArrayList<>();
     private double custo = 0;
+    private ConfgOtimaFrame config;
 }

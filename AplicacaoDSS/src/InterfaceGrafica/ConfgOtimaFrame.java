@@ -200,7 +200,8 @@ ui.setNorthPane(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new ModelosFrame(custo1,nomeModelo,facade).setVisible(true);
+        new ModelosFrame(custo1,nomeModelo,facade,this).setVisible(true);
+        this.setEnabled(false);
         custo1 = facade.getPrecoConfig();
         if(custo1>0) jButton2.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
