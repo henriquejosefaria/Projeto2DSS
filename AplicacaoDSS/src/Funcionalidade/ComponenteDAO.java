@@ -4,8 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import Funcionalidade.Componente;
+import java.util.stream.Collectors;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -74,10 +77,65 @@ public class ComponenteDAO {
                 AConnection.closeConection(con);
             }
             return res;
-    }   
+    }  
+    
+    // devolve lista ordenada por preços de tipo de componente
+    public List<Componente> getComponentesOrdemCrescente() throws SQLException{
+       List<Componente> componentes = new ArrayList<>(); // criar sort natural
+       HashMap<String,ArrayList<Componente>> res = new HashMap<String,ArrayList<Componente>>();
+       Configuracao conf;
+       Connection con = AConnection.createConnection();
+       PreparedStatement pst = con.prepareStatement("SELECT * FROM componente");
+       ResultSet rs = pst.executeQuery();
+       while(rs.next()){ // cria Map de componentes
+           if(!rs.getString(3).equals("motor") && !rs.getString(3).equals("pintura")){
+               if(!res.containsKey(rs.getString(3))){ // ex: espelho,motor,...
+                   List<Componente> c = new ArrayList<Componente>();
+                   Componente comp = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
+                   c.add(comp);
+                  res.put(rs.getString(3), (ArrayList<Componente>) c);
+               } else{
+                  res.get(rs.getString(3)).add(new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6)));
+               }
+           }
+       }
+       return res.values().stream().map(p->p.get(0)).collect(Collectors.toList());
+    }
     
     public List<Componente> getTipoComponentes(String tipo) throws SQLException{
         List <Componente> list = new ArrayList<>();
+        Connection con = AConnection.createConnection();
+        if(con!=null){
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
+        ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
+            list.add(componente);
+        }
+        AConnection.closeConection(con);
+        }
+        return list;
+    }
+
+    public ArrayList<Componente> getMotores() throws SQLException{
+         ArrayList <Componente> list = new ArrayList<>();
+         String tipo = "motor";
+        Connection con = AConnection.createConnection();
+        if(con!=null){
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
+        ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
+            list.add(componente);
+        }
+        AConnection.closeConection(con);
+        }
+        return list;
+    }
+
+    public ArrayList<Componente> getPinturas() throws SQLException{
+         ArrayList <Componente> list = new ArrayList<>();
+         String tipo = "pintura";
         Connection con = AConnection.createConnection();
         if(con!=null){
         PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");

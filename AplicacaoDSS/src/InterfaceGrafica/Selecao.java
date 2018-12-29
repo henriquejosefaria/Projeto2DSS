@@ -40,7 +40,7 @@ public class Selecao extends javax.swing.JFrame {
             selectedframe = pacotesf;
     }
 
-    Selecao(LobbyFuncionario aThis, Configuracao c) {
+    Selecao(Facade facade, Configuracao c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
@@ -117,7 +117,7 @@ public class Selecao extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(203, 203, 203))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(616, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,7 +154,7 @@ public class Selecao extends javax.swing.JFrame {
   
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-                        if(jComboBox1.getSelectedIndex()== 0 && !(selectedframe instanceof PacotesFrame)){
+        if(jComboBox1.getSelectedIndex()== 0 && !(selectedframe instanceof PacotesFrame)){
            if(selectedframe!= null) selectedframe.dispose();
             System.out.println("00000");
             PacotesFrame pacotesf = new PacotesFrame(facade,this);
@@ -175,7 +175,7 @@ public class Selecao extends javax.swing.JFrame {
     }
         else if((selectedframe != null) && jComboBox1.getSelectedIndex()== 2){
             if(selectedframe!= null) selectedframe.dispose();
-            ConfgOtimaFrame confg = new ConfgOtimaFrame();
+            ConfgOtimaFrame confg = new ConfgOtimaFrame(facade);
             confg.setLocation(70, 100);
             confg.setVisible(true);
             this.add(confg);

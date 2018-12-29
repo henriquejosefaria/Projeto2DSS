@@ -1,5 +1,6 @@
 package Funcionalidade;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -17,8 +18,8 @@ public class Facade {
     private ConfiguracaoDAO configDAO;
     private Integer selectedConfigId;
     private Configuracao selectedConfig;
-   
     private ComponenteDAO compDAO;
+    
 
     
     
@@ -75,6 +76,51 @@ public class Facade {
     
     public Configuracao newConfiguracao() throws SQLException{
         return new Configuracao();
-    }       
+    }  
+    
+    public ArrayList<Modelo> getModelos() throws SQLException{
+        return configDAO.getModelos();
+    }
+
+    public ArrayList<Componente> getMotores() throws SQLException{
+        return compDAO.getMotores();
+    }
+
+    public ArrayList<Componente> getPinturas() throws SQLException{
+        return compDAO.getPinturas();
+    }
+    
+    public List<Componente> getComponentesOrdemCrescente() throws SQLException{
+        return compDAO.getComponentesOrdemCrescente();
+    }
+
+    public List<Componente> selecaoAutomatica(Double max, List<Componente> componentes) {
+        double i = 0;
+        int indice;
+        boolean adicionou = false;
+        List<Componente> res = new ArrayList<>();
+        for(Componente c : componentes){
+            i += c.getPreco();
+          if(i < max){
+            res.add(c);
+          } else{
+            if(!adicionou){ // tenta ocupar max budjet
+              adicionou = true;
+              indice = 0;
+              for(Componente c1 : res){
+                if((i - res.get(indice).getPreco()) < max){
+                  i -= res.get(indice).getPreco();
+                  res.remove(indice);
+                  res.add(c1);
+                  adicionou = false;
+                  break;
+                }
+                indice++;
+              }
+            }
+          }
+        }
+        return res;
+    }
     
 }

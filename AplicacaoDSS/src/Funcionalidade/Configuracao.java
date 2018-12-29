@@ -21,6 +21,8 @@ public class Configuracao {
     private Integer id;
     private String modelo;
     private String nome;
+    private String data;
+    private List<Componente> componentes = new ArrayList<>();
 
     public Integer getnContribuinte() {
         return nContribuinte;
@@ -29,8 +31,6 @@ public class Configuracao {
     public String getNome() {
         return nome;
     }
-    private String data;
-    private List<Componente> componentes = new ArrayList<>();
     
     public Configuracao(){
         this.nContribuinte = -1;
@@ -93,6 +93,14 @@ public class Configuracao {
         componentes.remove(componente);
     }
     
+    public void setId(Integer id){
+        this.id = id;
+    }
+    
+    public void setModelo(String m){
+        this.modelo = m;
+    }
+    
     public Componente getComponenteByTipo(String tipo){
         for(Componente c :componentes){
             if(c.getTipo().equals(tipo))
@@ -109,10 +117,6 @@ public class Configuracao {
         else{
             componentes.add(c);
         }
-    }
-    
-    public void setId(Integer id){
-        this.id = id;
     }
     
 }
