@@ -35,16 +35,16 @@ INSERT INTO componente
         ('Amortecedor', 12344,'Exterior',213.21,'Para ir com speed nas lombas','/interfacegrafica/Img/Exterior/Amortecedor2.jpg');
 
 INSERT INTO Modelo
-	(nome)
+	(nome,preco,Img)
 	VALUES    
-    ('Audi'),
-    ('Mercedez'),
-    ('Ford');
+    ('Audi',12000,'/interfacegrafica/Img/Modelos/modelo1.jpg'),
+    ('Mercedez',13000,'/interfacegrafica/Img/Modelos/modelo2.jpg'),
+    ('Ford',14000,'/interfacegrafica/Img/Modelos/modelo3.jpg');
     
 INSERT INTO configuracao
 	(idConfiguracao,nome, nContribuinte, Modelo, Data)
 	VALUES
-		(1,'Toze',143432343,'Audi','22/12/2012'),
+		(1,'Toze',143432343,'Audi','22/12/2012',),
         (2,'Quim',343234323,'Mercedez','22/03/2017'),
         (3,'Jorge',343234545,'Audi','03/05/2015'),
         (4,'pedro',359659685,'Ford','23/07/2013');
