@@ -107,7 +107,7 @@ public class BaseDados {
             PreparedStatement pstModelo = con.prepareStatement(query5);
             ResultSet rsModelo = pstModelo.executeQuery();     
             while (rsModelo.next()) {
-                Modelo modelo = new Modelo(rsModelo.getString(1),rsModelo.getDouble(2));
+                Modelo modelo = new Modelo(rsModelo.getString(1),rsModelo.getDouble(2),rsModelo.getString(3));
                 models.add(modelo);
             }
             

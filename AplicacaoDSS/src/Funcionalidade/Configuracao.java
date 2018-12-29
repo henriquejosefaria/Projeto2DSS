@@ -24,6 +24,7 @@ public class Configuracao {
     private String modelo;
     private String nome;
     private String data;
+    private double preco;
     private List<Componente> componentes = new ArrayList<>();
 
     public Integer getnContribuinte() {
@@ -38,11 +39,13 @@ public class Configuracao {
         this.nContribuinte = -1;
         this.id = 9999999;
         this.modelo = null;
+        this.nome = null;
         this.data = null;
+        this.preco = 0;
         this.componentes = new ArrayList<>();
     }
     
-    public Configuracao(Integer id,String nome,Integer n, ArrayList<Componente> componentes, String modelo, String data){
+    public Configuracao(Integer id,String nome,Integer n, ArrayList<Componente> componentes, String modelo,double p, String data){
         this.id = id;
         this.nome = nome;
         this.nContribuinte = n;
@@ -51,6 +54,7 @@ public class Configuracao {
             this.componentes.add(c);
     });
         this.modelo = modelo;
+        this.preco = p;
         this.data = data;
     }
 
@@ -65,6 +69,10 @@ public class Configuracao {
     public String getModelo() {
         return modelo;
     }
+    
+    public double getPreco(){
+        return preco;
+    }
 
     public String getData() {
         return data;
@@ -75,6 +83,7 @@ public class Configuracao {
         data = dateTime.format(formatter);
         
     }
+
 
     public List<Componente> getComponentes() {
         return componentes;
@@ -110,6 +119,10 @@ public class Configuracao {
     
     public void setModelo(String m){
         this.modelo = m;
+    }
+    
+    public void addPreco(double d){
+        this.preco+=d;
     }
     
     public Componente getComponenteByTipo(String tipo){
