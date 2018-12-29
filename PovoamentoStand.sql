@@ -37,9 +37,9 @@ INSERT INTO componente
 INSERT INTO Modelo
 	(nome)
 	VALUES    
-    ('Audi'),
-    ('Mercedez'),
-    ('Ford');
+    ('Audi',43),
+    ('Mercedez',43),
+    ('Ford',43);
     
 INSERT INTO configuracao
 	(idConfiguracao,nome, nContribuinte, Modelo, Data)

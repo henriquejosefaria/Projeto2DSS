@@ -83,6 +83,10 @@ public class Facade {
         return compDAO.getTipoComponentes(type);
     }
 
+    public void saveSelectedConfig() throws SQLException{
+        selectedConfig.setData();
+        configDAO.addConfiguracao(selectedConfig);
+    }
     
     public List<Configuracao> getConfiguracoes(Integer n) throws SQLException{
         List<Configuracao> configs = configDAO.getConfiguracoes(n); 

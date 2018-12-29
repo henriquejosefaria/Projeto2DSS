@@ -8,6 +8,8 @@ package Funcionalidade;/*
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +69,12 @@ public class Configuracao {
     public String getData() {
         return data;
     }
+    public void setData(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime dateTime = LocalDateTime.now();
+        data = dateTime.format(formatter);
+        
+    }
 
     public List<Componente> getComponentes() {
         return componentes;
@@ -95,6 +103,9 @@ public class Configuracao {
     
     public void setId(Integer id){
         this.id = id;
+    }
+    public void setNome(String nome){
+        this.nome = nome;
     }
     
     public void setModelo(String m){
