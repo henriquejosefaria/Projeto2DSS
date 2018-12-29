@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class Admin extends Utilizador {
     
     public Admin(Integer id,String nome,String password){
-        id = id;
-        nome = nome;
-        password = password;
+        this.id = id;
+        this.nome = nome;
+        this.password = password;
     }
     
     // metodo para verificar se é possivel criar um pacote com os componentes dados

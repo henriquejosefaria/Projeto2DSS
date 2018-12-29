@@ -28,9 +28,7 @@ public class Facade {
         this.configDAO = new ConfiguracaoDAO();
         this.compDAO = new ComponenteDAO();
         this. selectedConfigId = 999;
-
         selectedConfig = new Configuracao();
-        Configuracao x = getConfig(1);
     }
     
     public Integer getSelectedConfigId() {
@@ -39,6 +37,20 @@ public class Facade {
     
     public Configuracao getSelectedConfig() {
         return selectedConfig;
+    }
+    
+    public UtilizadorDAO getUserDAO(){
+        return userDAO;
+    }
+    
+    public String checkUserType(Utilizador u){
+        if(u instanceof FuncionarioStand){
+            return "S";
+        }
+        else if(u instanceof FuncionarioFabrica){
+            return "F";
+        }
+        else return "A";
     }
     
     public Configuracao getConfig(Integer id) throws SQLException {
@@ -56,8 +68,11 @@ public class Facade {
     }
     
     public boolean autentication(Integer id, String pass) throws SQLException{
-        Utilizador user = userDAO.getUtilizador(id);
-        return user.getPassword().equals(pass);
+        if(userDAO.containsUtilizador(id)){
+            Utilizador user = userDAO.getUtilizador(id);
+            return user.getPassword().equals(pass);
+        }
+        return false;
     }
     
     public List<Componente> getConfigComponents(Integer configID) throws SQLException{
