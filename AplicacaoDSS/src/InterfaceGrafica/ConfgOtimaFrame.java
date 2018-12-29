@@ -31,33 +31,10 @@ public class ConfgOtimaFrame extends javax.swing.JInternalFrame {
         initComponents();
         BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
-        /*
-        try {
-            modelos = facade.getModelos();
-            for(Modelo m : modelos){
-                jComboBox1.addItem(m.getNome());
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            motores = facade.getMotores();
-            for(Componente m : motores){
-                jComboBox1.addItem(m.getTipo());
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            pinturas = facade.getPinturas();
-            for(Componente p : pinturas){
-                jComboBox1.addItem(p.getTipo());
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        
-
+        jButton2.setEnabled(false);
+        jButton4.setEnabled(false);
+        jButton3.setEnabled(false);
+       
 // to remove
 ui.setNorthPane(null);
     }
@@ -120,6 +97,11 @@ ui.setNorthPane(null);
         });
 
         jButton4.setText("Tintas");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,29 +180,36 @@ ui.setNorthPane(null);
         List<Componente> componentes = new ArrayList<>();
         Configuracao c;
         // escrever mensagem de erro (try catch)
-        if(custo1 != 0 && custo2 != 0 && custo3 != 0){
-            max -= (custo1 + custo2 + custo3);
-            if(max > 0){
-                try {
-                    componentes = facade.getComponentesOrdemCrescente();
-                    c = new Configuracao(-1,null,-1, (ArrayList<Componente>) facade.selecaoAutomatica(max,componentes),nomeModelo,LocalDateTime.now().toString());
-                    new Selecao(facade,c);
-                    
-                } catch (SQLException ex) {
-                    Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } // escrever mensagem de erro
+        max -= custo3;
+        if(max > 0){
+            try {
+                componentes = facade.getComponentesOrdemCrescente();
+                c = new Configuracao(-1,null,-1, (ArrayList<Componente>) facade.selecaoAutomatica(max,componentes),nomeModelo,facade.getPrecoConfig(),LocalDateTime.now().toString());
+                new Selecao(facade,c);            
+            } catch (SQLException ex) {
+                Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        //frame
+        
+        custo2 = facade.getPrecoConfig();
+        if(custo2>custo1) jButton4.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new ModelosFrame(jButton1,nomeModelo,facade).setVisible(true);
-        jButton1.setEnabled(false);
+        new ModelosFrame(custo1,nomeModelo,facade,this).setVisible(true);
+        this.setEnabled(false);
+        custo1 = facade.getPrecoConfig();
+        if(custo1>0) jButton2.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        custo3 = facade.getPrecoConfig();
+        if(custo3>2) jButton3.setEnabled(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

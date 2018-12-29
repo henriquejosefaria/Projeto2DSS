@@ -68,6 +68,11 @@ public class Facade {
         selectedConfigId = config.getId();
     }
     
+    public void setSelectedConfigModel(Modelo m){
+        selectedConfig.setModelo(m.getNome());
+        selectedConfig.addPreco(m.getPreco());
+    }
+    
     public boolean autentication(Integer id, String pass) throws SQLException{
         if(userDAO.containsUtilizador(id)){
             Utilizador user = userDAO.getUtilizador(id);
@@ -92,6 +97,10 @@ public class Facade {
         return compDAO.getAllEncomendas();
     }
 
+    public void saveSelectedConfig() throws SQLException{
+        selectedConfig.setData();
+        configDAO.addConfiguracao(selectedConfig);
+    }
     
     public List<Configuracao> getConfiguracoes(Integer n) throws SQLException{
         List<Configuracao> configs = configDAO.getConfiguracoes(n); 
@@ -145,6 +154,10 @@ public class Facade {
           }
         }
         return res;
+    }
+    
+    public double getPrecoConfig(){
+       return this.selectedConfig.getPreco();
     }
     
 }

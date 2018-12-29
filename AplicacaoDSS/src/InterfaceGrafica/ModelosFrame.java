@@ -25,10 +25,13 @@ public class ModelosFrame extends javax.swing.JPanel {
     /**
      * Creates new form ModelosFrame
      */
-    public ModelosFrame(javax.swing.JButton jButton1, String nomeModelo, Facade facade) {
+    public ModelosFrame(double custo, String nomeModelo, Facade facade, ConfgOtimaFrame config) {
         initComponents();
         this.facade = facade;
+        this.nomeModelo = nomeModelo;
+        this.config = config;
         initComponents();
+        jButton1.setEnabled(false);
         List<Modelo> modelos;
         int indice = 2;
           try {
@@ -179,23 +182,28 @@ public class ModelosFrame extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        facade.setSelectedConfigModel(modelos.get(i));
+        config.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        i = 2;
+        jButton1.setEnabled(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        i = 0;
+        jButton1.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        i = 1;
+        jButton1.setEnabled(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        i = 3;
+        jButton1.setEnabled(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
@@ -213,4 +221,9 @@ public class ModelosFrame extends javax.swing.JPanel {
     private javax.swing.JScrollBar jScrollBar1;
     // End of variables declaration//GEN-END:variables
     private Facade facade;
+    private int i;
+    private String nomeModelo;
+    private List<Modelo> modelos = new ArrayList<>();
+    private double custo = 0;
+    private ConfgOtimaFrame config;
 }
