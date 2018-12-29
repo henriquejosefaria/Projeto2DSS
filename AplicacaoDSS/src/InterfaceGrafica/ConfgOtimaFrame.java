@@ -9,6 +9,8 @@ import Funcionalidade.Componente;
 import Funcionalidade.Configuracao;
 import Funcionalidade.Facade;
 import Funcionalidade.Modelo;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -200,10 +203,19 @@ ui.setNorthPane(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new ModelosFrame(custo1,nomeModelo,facade,this).setVisible(true);
+        ModelosFrame m = new ModelosFrame(custo1,nomeModelo,facade,this);
+        m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        m.addWindowListener(new WindowAdapter(){
+           public void windowClosing(WindowEvent evt){
+               m.closing();
+           }
+        });
+        m.setVisible(true);
         this.setEnabled(false);
         custo1 = facade.getPrecoConfig();
-        if(custo1>0) jButton2.setEnabled(true);
+        if(custo1>0){
+            jButton2.setEnabled(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
