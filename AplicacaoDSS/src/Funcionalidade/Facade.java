@@ -91,6 +91,7 @@ public class Facade {
 
     public void saveSelectedConfig() throws SQLException{
         selectedConfig.setData();
+        selectedConfig.calculaPrecoTotal();
         configDAO.addConfiguracao(selectedConfig);
     }
     

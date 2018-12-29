@@ -124,6 +124,9 @@ public class Configuracao {
     public void addPreco(double d){
         this.preco+=d;
     }
+    public void setPreco(int preco){
+        this.preco = preco;
+    }
     
     public Componente getComponenteByTipo(String tipo){
         for(Componente c :componentes){
@@ -141,6 +144,13 @@ public class Configuracao {
         else{
             componentes.add(c);
         }
+    }
+    public int calculaPrecoTotal(){
+        int valor = 0;
+        for(Componente c :componentes){
+            valor += c.getPreco();
+        }
+        return valor;
     }
     
 }
