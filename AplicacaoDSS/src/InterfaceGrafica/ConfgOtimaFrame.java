@@ -208,6 +208,7 @@ ui.setNorthPane(null);
         m.addWindowListener(new WindowAdapter(){
            public void windowClosing(WindowEvent evt){
                m.closing();
+               m.dispose();
            }
         });
         m.setVisible(true);
