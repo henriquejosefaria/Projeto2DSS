@@ -68,6 +68,11 @@ public class Facade {
         selectedConfigId = config.getId();
     }
     
+    public void setSelectedConfigModel(Modelo m){
+        selectedConfig.setModelo(m.getNome());
+        selectedConfig.addPreco(m.getPreco());
+    }
+    
     public boolean autentication(Integer id, String pass) throws SQLException{
         if(userDAO.containsUtilizador(id)){
             Utilizador user = userDAO.getUtilizador(id);
@@ -137,6 +142,10 @@ public class Facade {
           }
         }
         return res;
+    }
+    
+    public double getPrecoConfig(){
+       return this.selectedConfig.getPreco();
     }
     
 }

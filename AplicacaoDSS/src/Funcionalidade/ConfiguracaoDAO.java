@@ -23,7 +23,7 @@ public class ConfiguracaoDAO {
         
     }
     
-    public void addConfiguracao(Integer id, String nomeCliente,String modelo,String data) throws SQLException{
+    public void addConfiguracao(Integer id, String nomeCliente,String modelo,String data,double preco) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
             String query = "INSERT INTO configuracao (Nome,Stock,Preco,Descricao)";
@@ -32,6 +32,7 @@ public class ConfiguracaoDAO {
             pst.setString(2, nomeCliente);
             pst.setString(3, modelo);
             pst.setString(4, data);
+            pst.setDouble(5, preco);
             pst.execute();
             AConnection.closeConection(con);
         }
@@ -58,7 +59,7 @@ public class ConfiguracaoDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE idConfiguracao = "+id+";");
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
-            config = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getString(5));
+            config = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getDouble(6),rs.getString(5));
         
             PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao,comp.Imagem From "
             + "configuracao_has_componentes as cc inner join Componente as comp on cc.Componentes_Nome = comp.Nome "
@@ -80,7 +81,7 @@ public class ConfiguracaoDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE nContribuinte = " + nContribuinte+";");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
-            conf = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getString(5));
+            conf = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getDouble(6),rs.getString(5));
             
             PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao,comp.Imagem From configuracao as c "
             +"inner join configuracao_has_componentes as cc on c.idConfiguracao = cc.Configuracao_idConfiguracao "
@@ -104,7 +105,7 @@ public class ConfiguracaoDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
-            conf = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getString(5));
+            conf = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getDouble(6),rs.getString(5));
         
             PreparedStatement pst2 = con.prepareStatement("SELECT * FROM configuracao_has_componente WHERE Configuracao_idConfiguracao = "+rs.getInt(1));
             ResultSet rs2 = pst2.executeQuery();

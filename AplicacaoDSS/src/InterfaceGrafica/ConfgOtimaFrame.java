@@ -203,7 +203,7 @@ ui.setNorthPane(null);
             if(max > 0){
                 try {
                     componentes = facade.getComponentesOrdemCrescente();
-                    c = new Configuracao(-1,null,-1, (ArrayList<Componente>) facade.selecaoAutomatica(max,componentes),nomeModelo,LocalDateTime.now().toString());
+                    c = new Configuracao(-1,null,-1, (ArrayList<Componente>) facade.selecaoAutomatica(max,componentes),nomeModelo,facade.getPrecoConfig(),LocalDateTime.now().toString());
                     new Selecao(facade,c);
                     
                 } catch (SQLException ex) {
@@ -218,8 +218,7 @@ ui.setNorthPane(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new ModelosFrame(jButton1,nomeModelo,facade).setVisible(true);
-        jButton1.setEnabled(false);
+        new ModelosFrame(custo1,nomeModelo,facade).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
