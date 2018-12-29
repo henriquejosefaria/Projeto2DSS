@@ -19,6 +19,7 @@ public class Facade {
     private Integer selectedConfigId;
     private Configuracao selectedConfig;
     private ComponenteDAO compDAO;
+    private ModeloDAO modeloDAO;
     
 
     
@@ -94,7 +95,7 @@ public class Facade {
     }  
     
     public ArrayList<Modelo> getModelos() throws SQLException{
-        return configDAO.getModelos();
+        return modeloDAO.getModelos();
     }
 
     public ArrayList<Componente> getMotores() throws SQLException{

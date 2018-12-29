@@ -147,18 +147,6 @@ public class ConfiguracaoDAO {
         }
         return list;
     }
-
-    public ArrayList<Modelo> getModelos() throws SQLException {
-        ArrayList<Modelo> modelos = new ArrayList<>();
-        Connection con = AConnection.createConnection();
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM modelo");
-        ResultSet rs = pst.executeQuery();
-        while(rs.next()){
-            modelos.add(new Modelo(rs.getString(1),rs.getDouble(2)));
-        }
-        AConnection.closeConection(con);
-        return modelos;
-    }
     
     
 }

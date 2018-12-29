@@ -10,7 +10,7 @@ package Funcionalidade;
  *
  * @author André
  */
-public class Componente {
+public class Componente implements Comparable<Componente>{
     
     private String nome;
     private Integer stock;
@@ -54,5 +54,10 @@ public class Componente {
     
     public void setStock(Integer stock){
         this.stock = stock;
+    }
+    
+    public int compareTo(Componente b){
+        if(this.getPreco() > b.getPreco()) return -1;
+        else return 1;
     }
 }
