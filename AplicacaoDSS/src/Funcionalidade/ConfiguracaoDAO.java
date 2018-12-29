@@ -23,17 +23,34 @@ public class ConfiguracaoDAO {
         
     }
     
-    public void addConfiguracao(Integer id, String nomeCliente,String modelo,String data,double preco) throws SQLException{
+
+    public void addConfiguracao(Configuracao config) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "INSERT INTO configuracao (Nome,Stock,Preco,Descricao)";
-            PreparedStatement pst = con.prepareStatement(query);
-            pst.setInt(1, id);
-            pst.setString(2, nomeCliente);
-            pst.setString(3, modelo);
-            pst.setString(4, data);
-            pst.setDouble(5, preco);
+            String query = "INSERT INTO configuracao ( nome, nContribuinte, Modelo, Data) VALUES (?,?,?,?);";
+            PreparedStatement pst = con.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
+
+            pst.setString(1, config.getNome());
+            pst.setInt(2, config.getNContribuinte());
+            pst.setString(3, "Audi");
+            pst.setString(4, config.getData());
+
             pst.execute();
+            
+            ResultSet rs = pst.getGeneratedKeys();
+            int generatedKey = 0;
+            if (rs.next()) {
+                generatedKey = rs.getInt(1);
+            }
+            String query2 = "INSERT INTO configuracao_has_componentes ( Configuracao_idConfiguracao, Componentes_Nome) VALUES (?,?);";
+            PreparedStatement pst2 = con.prepareStatement(query2);
+        
+            for(Componente c : config.getComponentes()){
+                pst2.setInt(1, generatedKey);
+                pst2.setString(2, c.getNome());
+                pst2.execute();
+            }
+      
             AConnection.closeConection(con);
         }
         else{

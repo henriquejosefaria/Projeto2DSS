@@ -88,7 +88,19 @@ public class Facade {
     public List<Componente> getTypeComponentes(String type) throws SQLException{
         return compDAO.getTipoComponentes(type);
     }
+    
+    public List<Componente> getAllComponentes() throws SQLException{
+        return compDAO.getAllcomponentes();
+    }
+    
+    public List<Encomenda> getAllEncomendas() throws SQLException{
+        return compDAO.getAllEncomendas();
+    }
 
+    public void saveSelectedConfig() throws SQLException{
+        selectedConfig.setData();
+        configDAO.addConfiguracao(selectedConfig);
+    }
     
     public List<Configuracao> getConfiguracoes(Integer n) throws SQLException{
         List<Configuracao> configs = configDAO.getConfiguracoes(n); 
