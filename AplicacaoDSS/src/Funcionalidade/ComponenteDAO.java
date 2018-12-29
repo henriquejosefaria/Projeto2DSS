@@ -102,6 +102,37 @@ public class ComponenteDAO {
        return res.values().stream().map(p->p.get(0)).collect(Collectors.toList());
     }
     
+    public List<Componente> getAllcomponentes() throws SQLException{
+        List <Componente> list = new ArrayList<>();
+        Connection con = AConnection.createConnection();
+        if(con!=null){
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM componente");
+        ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
+            list.add(componente);
+        }
+        AConnection.closeConection(con);
+        }
+        return list;
+    }
+    
+    public List<Encomenda> getAllEncomendas() throws SQLException{
+        List <Encomenda> list = new ArrayList<>();
+        Connection con = AConnection.createConnection();
+        if(con!=null){
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM encomenda");
+        ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            Encomenda encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
+            list.add(encomenda);
+        }
+        AConnection.closeConection(con);
+        }
+        return list;
+    }
+    
+    
     public List<Componente> getTipoComponentes(String tipo) throws SQLException{
         List <Componente> list = new ArrayList<>();
         Connection con = AConnection.createConnection();

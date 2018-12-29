@@ -1,7 +1,10 @@
 package InterfaceGrafica;
+import Funcionalidade.Componente;
 import Funcionalidade.Configuracao;
+import Funcionalidade.Encomenda;
 import Funcionalidade.Facade;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -198,8 +201,10 @@ public class LobbyFuncionarioFabrica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
         try {
-            new AtualizarStock(facade).setVisible(true);
+            List<Componente> list = facade.getAllComponentes();
+            new AtualizarStock(facade, list).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(LobbyFuncionarioFabrica.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -223,8 +228,10 @@ public class LobbyFuncionarioFabrica extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
         try {
-            new VerEncomendas(facade).setVisible(true);
+            List<Encomenda> list = facade.getAllEncomendas();
+            new VerEncomendas(facade, list).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(LobbyFuncionarioFabrica.class.getName()).log(Level.SEVERE, null, ex);
         }
