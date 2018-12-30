@@ -273,8 +273,5 @@ ui.setNorthPane(null);
     private double custo2 = 0;
     private double custo3 = 0;
     private String nomeModelo = null;
-    private ArrayList<Modelo> modelos = new ArrayList<>();
-    private ArrayList<Componente> motores = new ArrayList<>();
-    private ArrayList<Componente> pinturas = new ArrayList<>();
     private Configuracao config = new Configuracao();
 }

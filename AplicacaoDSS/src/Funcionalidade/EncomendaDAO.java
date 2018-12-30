@@ -30,6 +30,7 @@ public class EncomendaDAO {
             pst.setString(2, enc.getEstado());
             pst.setInt(3, enc.getConfigId());
             pst.setDouble(4, enc.getPreco());
+
             pst.execute();
             AConnection.closeConection(con);
         }
