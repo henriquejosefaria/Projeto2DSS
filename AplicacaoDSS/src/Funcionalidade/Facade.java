@@ -182,7 +182,7 @@ public class Facade {
         this.selectedConfig.addComponente(c);
     }
     public void saveEncomenda() throws SQLException{
-        Encomenda enc = new Encomenda(-1,null,1,selectedConfig.getId(),selectedConfig.getPreco());
+        Encomenda enc = new Encomenda(-1,null,"a fazer",selectedConfig.getId(),selectedConfig.getPreco(),"/interfacegrafica/Img/Modelos/modelo1.jpg");
         enc.setData();
         configDAO.decrementaStockConfig(selectedConfig.getId());
         encDAO.addEncomenda(enc);

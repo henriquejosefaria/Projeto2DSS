@@ -27,7 +27,7 @@ public class EncomendaDAO {
             String query = "INSERT INTO encomenda (Data, Estado, Configuracao_idConfiguracao, preco)VALUES (?,?,?,?);";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, enc.getData());
-            pst.setInt(2, enc.getEstado());
+            pst.setString(2, enc.getEstado());
             pst.setInt(3, enc.getConfigId());
             pst.setDouble(4, enc.getPreco());
 
@@ -57,7 +57,7 @@ public class EncomendaDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM encomenda WHERE idEncomenda = "+id);
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
-            encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getDouble(5));
+            encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getDouble(5),rs.getString(6));
         }
         AConnection.closeConection(con);
         return encomenda;

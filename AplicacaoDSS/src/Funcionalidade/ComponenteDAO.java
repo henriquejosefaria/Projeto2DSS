@@ -138,7 +138,7 @@ public class ComponenteDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM encomenda");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
-            Encomenda encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getDouble(5));
+            Encomenda encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getDouble(5),rs.getString(6));
             list.add(encomenda);
         }
         AConnection.closeConection(con);

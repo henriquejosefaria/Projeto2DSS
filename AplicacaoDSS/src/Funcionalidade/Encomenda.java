@@ -17,15 +17,17 @@ public class Encomenda {
     
     private Integer id;
     private String data; //usar data noutro formato?
-    private Integer estado; //0: em progresso / 0: confirmada / 1: finalizada (enviada para a fabrica)
+    private String estado; //a fazer / completo
     private Double preco;
+    private String image;
 
-    public Encomenda(Integer id, String data, Integer estado, Integer configId,Double preco) {
+    public Encomenda(Integer id, String data, String estado, Integer configId,Double preco,String image) {
         this.id = id;
         this.data = data;
         this.estado = estado;
         this.configId = configId;
         this.preco = preco;
+        this.image = image;
     }
 
     public Integer getId() {
@@ -36,8 +38,12 @@ public class Encomenda {
         return data;
     }
 
-    public Integer getEstado() {
+    public String getEstado() {
         return estado;
+    }
+    
+    public String getImagem() {
+        return image;
     }
 
     public Integer getConfigId() {
@@ -45,7 +51,7 @@ public class Encomenda {
     }
     private Integer configId;
     
-    public void setEstado(Integer estado){
+    public void setEstado(String estado){
         this.estado = estado;
     }
 

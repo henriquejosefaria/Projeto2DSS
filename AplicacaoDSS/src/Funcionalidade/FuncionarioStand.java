@@ -72,7 +72,7 @@ public class FuncionarioStand extends Utilizador {
     }
     
     public void finalizaEncomenda(Encomenda encomenda){
-        encomenda.setEstado(2);
+        encomenda.setEstado("a fazer");
         // falta enviar para a base de dados ordenadamente
     }
 }
