@@ -14,6 +14,7 @@ public class Encomenda {
     private Integer id;
     private String data; //usar data noutro formato?
     private Integer estado; //0: em progresso / 0: confirmada / 1: finalizada (enviada para a fabrica)
+    private Integer configId;
 
     public Encomenda(Integer id, String data, Integer estado, Integer configId) {
         this.id = id;
@@ -37,7 +38,7 @@ public class Encomenda {
     public Integer getConfigId() {
         return configId;
     }
-    private Integer configId;
+
     
     public void setEstado(Integer estado){
         this.estado = estado;
