@@ -24,12 +24,13 @@ public class EncomendaDAO {
     public void addEncomenda(Encomenda enc) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "INSERT INTO encomenda (idEncomenda, Data, Estado, Configuracao_idConfiguracao)";
+            String query = "INSERT INTO encomenda (idEncomenda, Data, Estado, Configuracao_idConfiguracao, preco)VALUES (?,?,?,?,?);";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setInt(1, enc.getId());
             pst.setString(2, enc.getData());
             pst.setInt(3, enc.getEstado());
             pst.setInt(4, enc.getConfigId());
+            pst.setDouble(5, enc.getPreco());
             pst.execute();
             AConnection.closeConection(con);
         }
@@ -56,7 +57,7 @@ public class EncomendaDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM encomenda WHERE idEncomenda = "+id);
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
-            encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
+            encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getDouble(5));
         }
         AConnection.closeConection(con);
         return encomenda;
