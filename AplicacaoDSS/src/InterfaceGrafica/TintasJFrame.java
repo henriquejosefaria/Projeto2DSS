@@ -42,7 +42,8 @@ public class TintasJFrame extends javax.swing.JFrame {
             tintas = facade.getPinturas();
             System.out.println(tintas.size());
         } catch (SQLException ex) {
-            Logger.getLogger(ModelosJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Não conseguiu aceder à BD!");
+            //Logger.getLogger(ModelosJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         this.dm = dm;

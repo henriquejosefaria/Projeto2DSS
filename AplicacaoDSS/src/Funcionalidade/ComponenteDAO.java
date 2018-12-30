@@ -163,33 +163,33 @@ public class ComponenteDAO {
     }
 
     public ArrayList<Componente> getMotores() throws SQLException{
-         ArrayList <Componente> list = new ArrayList<>();
-         String tipo = "motor";
+        ArrayList <Componente> list = new ArrayList<>();
+        String tipo = "motor";
         Connection con = AConnection.createConnection();
         if(con!=null){
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
-        ResultSet rs = pst.executeQuery();
-        while(rs.next()){
-            Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
-            list.add(componente);
-        }
-        AConnection.closeConection(con);
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
+                list.add(componente);
+            }
+            AConnection.closeConection(con);
         }
         return list;
     }
 
     public ArrayList<Componente> getPinturas() throws SQLException{
-         ArrayList <Componente> list = new ArrayList<>();
-         String tipo = "pintura";
+        ArrayList <Componente> list = new ArrayList<>();
+        String tipo = "pintura";
         Connection con = AConnection.createConnection();
         if(con!=null){
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
-        ResultSet rs = pst.executeQuery();
-        while(rs.next()){
-            Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
-            list.add(componente);
-        }
-        AConnection.closeConection(con);
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
+                list.add(componente);
+            }
+            AConnection.closeConection(con);
         }
         return list;
     }
