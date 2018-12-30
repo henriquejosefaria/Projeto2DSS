@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class Facade {
     private UtilizadorDAO userDAO;
+    private EncomendaDAO encDAO;
     private ConfiguracaoDAO configDAO;
     private Integer selectedConfigId;
     private Configuracao selectedConfig;
@@ -28,6 +29,7 @@ public class Facade {
         this.userDAO = new UtilizadorDAO();
         this.configDAO = new ConfiguracaoDAO();
         this.compDAO = new ComponenteDAO();
+        this.encDAO = new EncomendaDAO();
         this. selectedConfigId = 999;
         selectedConfig = new Configuracao();
     }
@@ -174,6 +176,11 @@ public class Facade {
     
     public void addComponente(Componente c){
         this.selectedConfig.addComponente(c);
+    }
+    public void saveEncomenda() throws SQLException{
+        Encomenda enc = new Encomenda(-1,null,1,selectedConfig.getId(),selectedConfig.getPreco());
+        enc.setData();
+        encDAO.addEncomenda(enc);
     }
     
 }
