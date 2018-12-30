@@ -55,6 +55,20 @@ public class ComponenteDAO {
         }
     }
     
+    public void updateStockComponente(Componente c) throws SQLException{
+        Connection con = AConnection.createConnection();
+        if(con != null){   
+            String query = "UPDATE componente SET Stock = ? where Nome = '"+c.getNome()+"';";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, c.getStock());
+            pst.execute();
+            AConnection.closeConection(con);
+        }
+        else{
+            System.err.println("Exception! Componente not inserted!");
+        }
+    }
+    
     public Componente getComponente(String comp) throws SQLException{
         Connection con = AConnection.createConnection();
         Componente componente = null;
@@ -81,6 +95,7 @@ public class ComponenteDAO {
     
     // devolve lista ordenada por preços de tipo de componente
     public List<Componente> getComponentesOrdemCrescente() throws SQLException{
+       List<Componente> componentes = new ArrayList<>(); // criar sort natural
        HashMap<String,ArrayList<Componente>> res = new HashMap<String,ArrayList<Componente>>();
        Configuracao conf;
        Connection con = AConnection.createConnection();
@@ -123,7 +138,7 @@ public class ComponenteDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM encomenda");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
-            Encomenda encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getDouble(5));
+            Encomenda encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
             list.add(encomenda);
         }
         AConnection.closeConection(con);
