@@ -24,12 +24,13 @@ public class EncomendaDAO {
     public void addEncomenda(Encomenda enc) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "INSERT INTO encomenda (Data, Estado, Configuracao_idConfiguracao, preco)VALUES (?,?,?,?);";
+            String query = "INSERT INTO encomenda (Data,Estado,Configuracao_idConfiguracao,preco,Imagem)VALUES (?,?,?,?,?);";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, enc.getData());
             pst.setString(2, enc.getEstado());
             pst.setInt(3, enc.getConfigId());
             pst.setDouble(4, enc.getPreco());
+            pst.setString(5, enc.getImagem());
 
             pst.execute();
             AConnection.closeConection(con);

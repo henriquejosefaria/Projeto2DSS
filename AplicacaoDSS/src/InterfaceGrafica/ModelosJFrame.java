@@ -28,7 +28,7 @@ public class ModelosJFrame extends javax.swing.JFrame {
      * Creates new form ModelosJFrame
      */
     public ModelosJFrame(Facade facade, ConfgOtimaFrame config) throws SQLException {
-        this.facade = new Facade();
+        this.facade = facade;
         initComponents();
         this.config = config;
         
