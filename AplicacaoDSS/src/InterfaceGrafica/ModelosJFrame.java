@@ -49,7 +49,6 @@ public class ModelosJFrame extends javax.swing.JFrame {
         jTable1.getColumn("Ação").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Ação").setCellEditor(
         new ButtonModelos(new JCheckBox(),this,jTable1,modelos,facade));
-        jTable1.setRowHeight(120);
        dm.isCellEditable(1,1);
        modelos.forEach((m) -> {
            jTable1.getColumn("Imagem").setCellRenderer(new ImageButton(m.getImg()));
