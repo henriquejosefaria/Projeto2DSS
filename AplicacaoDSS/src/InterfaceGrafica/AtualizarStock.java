@@ -30,9 +30,9 @@ public class AtualizarStock extends javax.swing.JFrame {
      */
     public AtualizarStock(Facade facade, List<Componente> list) throws SQLException {
         initComponents();
-        String[] colunas = { "Componente", "Nome","Stock","Tipo","Preço","Descrição" };
+        String[] colunas = { "Componente", "Nome","Stock","Tipo","Preço","Descrição","Atualizar Stock" };
         Object[][] data = null;
-        data = new Object[list.size()][6];
+        data = new Object[list.size()][7];
             for (int r=0; r<list.size(); r++) {
                 data[r][0] = new ImageIcon(getClass().getResource(list.get(r).getImage()));
                 data[r][1] = list.get(r).getNome();
@@ -40,7 +40,7 @@ public class AtualizarStock extends javax.swing.JFrame {
                 data[r][3] = list.get(r).getTipo();
                 data[r][4] = list.get(r).getPreco();
                 data[r][5] = list.get(r).getDescricao();
-                //data[r][6] = "Atualizar Stock";
+                data[r][6] = "Atualizar Stock";
             }
         DefaultTableModel model = new DefaultTableModel(data, colunas){
         @Override
@@ -48,12 +48,12 @@ public class AtualizarStock extends javax.swing.JFrame {
             return (column == 0) ? Icon.class : Object.class;
         }
         public boolean isCellEditable(int row, int column) {
-            if( column == 2)return true; return false;
+            if( column == 6)return true; return false;
         }};
         jTable1.setModel(model);
-        /*jTable1.getColumn("Atualizar Stock").setCellRenderer(new ButtonRenderer());
+        jTable1.getColumn("Atualizar Stock").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Atualizar Stock").setCellEditor(
-            new ButtonAtualizarStock(new JCheckBox(),facade,jTable1,list)); */
+            new ButtonAtualizarStock(new JCheckBox(),facade,jTable1,list, jTextField1));
         jTable1.setRowHeight(100);
         
     }
@@ -70,6 +70,8 @@ public class AtualizarStock extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,43 +80,64 @@ public class AtualizarStock extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Valor a acrescentar:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(359, Short.MAX_VALUE)
+                .addContainerGap(244, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(350, 350, 350))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(299, 299, 299))))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(446, 446, 446))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(117, 117, 117))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(61, 61, 61)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
   
 
@@ -162,8 +185,10 @@ public class AtualizarStock extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     private Facade facade;
 }
