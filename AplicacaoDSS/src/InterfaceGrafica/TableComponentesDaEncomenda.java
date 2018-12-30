@@ -28,6 +28,11 @@ public class TableComponentesDaEncomenda extends javax.swing.JInternalFrame {
 
     public TableComponentesDaEncomenda(Facade facade,Encomenda e) throws SQLException {
     initComponents();
+BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
+        JComponent title = ui.getNorthPane();
+
+// to remove
+ui.setNorthPane(null);
     this.facade = facade;
         String[] colunas = { "Componente", "Nome","Descrição","Preço"};
         Object[][] data = null;

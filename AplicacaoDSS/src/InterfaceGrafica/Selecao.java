@@ -29,7 +29,7 @@ public class Selecao extends javax.swing.JFrame {
      */
     public Selecao(Facade facade) throws SQLException {
         initComponents();
-        this.facade = new Facade();
+        this.facade = facade;
         this.l = l; // para utilizar no botão de cancelar seleção (back)
         desenhaConfigFrame();
         
