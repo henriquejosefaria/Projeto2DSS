@@ -121,14 +121,6 @@ public class Facade {
     public ArrayList<Modelo> getModelos() throws SQLException{
         return modeloDAO.getModelos();
     }
-
-    public ArrayList<Componente> getMotores() throws SQLException{
-        return compDAO.getMotores();
-    }
-
-    public ArrayList<Componente> getPinturas() throws SQLException{
-        return compDAO.getPinturas();
-    }
     
     public List<Componente> getComponentesOrdemCrescente() throws SQLException{
         return compDAO.getComponentesOrdemCrescente();
