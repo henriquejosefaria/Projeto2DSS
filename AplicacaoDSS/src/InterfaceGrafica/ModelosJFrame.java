@@ -192,4 +192,7 @@ public class ModelosJFrame extends javax.swing.JFrame {
     private ConfgOtimaFrame config;
     private Facade facade;
 
+
 }
+
+
