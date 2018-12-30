@@ -167,5 +167,18 @@ public class ConfiguracaoDAO {
         return list;
     }
     
+    public void decrementaStockConfig(Integer configID) throws SQLException{
+        Connection con = AConnection.createConnection();
+        if(con!=null){
+        PreparedStatement pst = con.prepareStatement("UPDATE componente as comp " +
+            "inner join configuracao_has_componentes as cc on cc.Componentes_Nome = comp.Nome " +
+            "SET comp.Stock =  comp.Stock -1 " +
+            "WHERE cc.Configuracao_idConfiguracao = "+configID+";");
+            pst.execute();
+        AConnection.closeConection(con);
+        }
+        
+    }
+    
     
 }

@@ -180,6 +180,7 @@ public class Facade {
     public void saveEncomenda() throws SQLException{
         Encomenda enc = new Encomenda(-1,null,1,selectedConfig.getId(),selectedConfig.getPreco());
         enc.setData();
+        configDAO.decrementaStockConfig(selectedConfigId);
         encDAO.addEncomenda(enc);
     }
     

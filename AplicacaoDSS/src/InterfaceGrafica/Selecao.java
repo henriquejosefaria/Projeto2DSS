@@ -207,6 +207,7 @@ public class Selecao extends javax.swing.JFrame {
         new Pagamento(this).setVisible(true);
         try {
             facade.saveEncomenda();
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
         }
