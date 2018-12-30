@@ -31,14 +31,13 @@ public class VerEncomendas extends javax.swing.JFrame {
      */
     public VerEncomendas(Facade facade, List<Encomenda> list) throws SQLException {
         initComponents();
-        String[] colunas = { "Id","Data","Estado","Id da Configuração"};
+        String[] colunas = { "Encomenda","Data","Estado"};
         Object[][] data = null;
         data = new Object[list.size()][4];
             for (int r=0; r<list.size(); r++) {
-                data[r][0] = list.get(r).getId();
+                data[r][0] = new ImageIcon(getClass().getResource(list.get(r).getImagem()));
                 data[r][1] = list.get(r).getData();
                 data[r][2] = list.get(r).getEstado();
-                data[r][3] = list.get(r).getConfigId();
             }
         DefaultTableModel model = new DefaultTableModel(data, colunas){
         @Override
