@@ -93,11 +93,11 @@ INSERT INTO pacote
     ('Turbo',4,'src\InterfaceGrafica\Img\Motor\motor3.jpg');
 
 INSERT INTO encomenda
-	(idEncomenda,Data,Estado,Configuracao_idConfiguracao,preco)
+	(idEncomenda,Data,Estado,Configuracao_idConfiguracao,preco,Imagem)
 	VALUES
-		(1,'30/12/2018',1,1,5095.92),
-        (2,'30/12/2018',1,2,5331.92),
-        (3,'30/12/2018',1,3,44547.92);
+		(1,'30/12/2018',1,1,5095.92,'/interfacegrafica/Img/Modelos/modelo1.jpg'),
+        (2,'30/12/2018',1,2,5331.92,'/interfacegrafica/Img/Modelos/modelo1.jpg'),
+        (3,'30/12/2018',1,3,44547.92,'/interfacegrafica/Img/Modelos/modelo1.jpg');
     
 Select comp From Pacote as p 
 inner join configuracao as c on p.Configuracao_idConfiguracao = c.idConfiguracao 
