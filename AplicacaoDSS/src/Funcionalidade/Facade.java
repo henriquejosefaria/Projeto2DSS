@@ -28,6 +28,7 @@ public class Facade {
     public Facade() throws SQLException{
         this.userDAO = new UtilizadorDAO();
         this.configDAO = new ConfiguracaoDAO();
+        this.modeloDAO = new ModeloDAO();
         this.compDAO = new ComponenteDAO();
         this. selectedConfigId = 999;
         this.encDAO = new EncomendaDAO();

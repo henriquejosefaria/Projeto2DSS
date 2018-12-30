@@ -21,10 +21,10 @@ public class ModeloDAO {
         ArrayList <Modelo> list = new ArrayList<>();
         Connection con = AConnection.createConnection();
         if(con!=null){
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM modelo");
+        PreparedStatement pst = con.prepareStatement("SELECT* FROM modelo");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
-            Modelo modelo = new Modelo(rs.getString(1),rs.getInt(2),rs.getString(3));
+            Modelo modelo = new Modelo(rs.getString(1),rs.getDouble(2),rs.getString(3));
             list.add(modelo);
         }
         AConnection.closeConection(con);

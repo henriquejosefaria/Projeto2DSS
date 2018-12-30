@@ -44,6 +44,12 @@ public class ButtonModelos  extends DefaultCellEditor  {
               int i = table.getSelectedRow();
               Modelo m = modelos.get(i);
               facade.setSelectedConfigModel(m);
+              try {
+                  new Selecao(facade).setVisible(true);
+                  mod.dispose();
+              } catch (SQLException ex) {
+                  Logger.getLogger(ButtonModelos.class.getName()).log(Level.SEVERE, null, ex);
+              }
           }
         });
     }
