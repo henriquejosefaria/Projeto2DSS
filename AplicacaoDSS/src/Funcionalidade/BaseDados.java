@@ -124,8 +124,8 @@ public class BaseDados {
             PreparedStatement pstEncomenda = con.prepareStatement(query7);
             ResultSet rsEncomenda = pstEncomenda.executeQuery();     
             while (rsEncomenda.next()) {
-                Encomenda encomenda = new Encomenda(rsEncomenda.getInt(1),rsEncomenda.getString(2),rsEncomenda.getInt(3),rsEncomenda.getInt(4));
-                encom.put(encomenda.getId(),encomenda);
+                //Encomenda encomenda = new Encomenda(rsEncomenda.getInt(1),rsEncomenda.getString(2),rsEncomenda.getInt(3),rsEncomenda.getInt(4));
+                //encom.put(encomenda.getId(),encomenda);
             }
             System.out.println("Encomendas loaded from MySQL DB: " + encom.size());
             

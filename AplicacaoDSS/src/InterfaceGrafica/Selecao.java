@@ -205,15 +205,12 @@ public class Selecao extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new Pagamento(this).setVisible(true);
-<<<<<<< HEAD
         try {
             facade.saveEncomenda();
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
         }
-=======
->>>>>>> 20410deb594a9df2a1067f2e81e50b75f2cbbdcf
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked

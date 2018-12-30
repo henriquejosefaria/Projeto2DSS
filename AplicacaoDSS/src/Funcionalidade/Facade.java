@@ -20,6 +20,7 @@ public class Facade {
     private Configuracao selectedConfig;
     private ComponenteDAO compDAO;
     private ModeloDAO modeloDAO;
+    private EncomendaDAO encDAO;
     
 
     
@@ -29,6 +30,7 @@ public class Facade {
         this.configDAO = new ConfiguracaoDAO();
         this.compDAO = new ComponenteDAO();
         this. selectedConfigId = 999;
+        this.encDAO = new EncomendaDAO();
         selectedConfig = new Configuracao();
     }
     
@@ -179,14 +181,12 @@ public class Facade {
     public void addComponente(Componente c){
         this.selectedConfig.addComponente(c);
     }
-<<<<<<< HEAD
     public void saveEncomenda() throws SQLException{
         Encomenda enc = new Encomenda(-1,null,1,selectedConfig.getId(),selectedConfig.getPreco());
         enc.setData();
-        configDAO.decrementaStockConfig(selectedConfigId);
+        configDAO.decrementaStockConfig(selectedConfig.getId());
         encDAO.addEncomenda(enc);
     }
-=======
->>>>>>> 20410deb594a9df2a1067f2e81e50b75f2cbbdcf
+
     
 }
