@@ -30,9 +30,9 @@ public class SelecaoGuardada extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public SelecaoGuardada() throws SQLException {
+    public SelecaoGuardada(Facade facade) throws SQLException {
         initComponents();
-        facade = new Facade();
+        this.facade = facade;
         DefaultTableModel dm = new DefaultTableModel(){
             @Override
         public boolean isCellEditable(int row, int column) {
@@ -159,7 +159,7 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new SelecaoGuardada().setVisible(true);
+                    new SelecaoGuardada(new Facade()).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(SelecaoGuardada.class.getName()).log(Level.SEVERE, null, ex);
                 }

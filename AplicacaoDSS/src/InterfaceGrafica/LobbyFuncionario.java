@@ -200,15 +200,14 @@ public class LobbyFuncionario extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            new SelecaoGuardada().setVisible(true);
+            new SelecaoGuardada(facade).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(LobbyFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Configuracao c = null;
-        Facade facade = null;
+
         try {
             new Selecao(facade).setVisible(true);
         } catch (SQLException ex) {
