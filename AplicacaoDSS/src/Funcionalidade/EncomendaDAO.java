@@ -21,15 +21,15 @@ public class EncomendaDAO {
         
     }
     
-    public void addEncomenda(Integer id, String data,String estado,Integer configId) throws SQLException{
+    public void addEncomenda(Encomenda enc) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
             String query = "INSERT INTO encomenda (idEncomenda, Data, Estado, Configuracao_idConfiguracao)";
             PreparedStatement pst = con.prepareStatement(query);
-            pst.setInt(1, id);
-            pst.setString(2, data);
-            pst.setString(3, estado);
-            pst.setInt(4, configId);
+            pst.setInt(1, enc.getId());
+            pst.setString(2, enc.getData());
+            pst.setInt(3, enc.getEstado());
+            pst.setInt(4, enc.getConfigId());
             pst.execute();
             AConnection.closeConection(con);
         }
