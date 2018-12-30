@@ -42,7 +42,6 @@ public class ConfiguracaoDAO {
             if (rs.next()) {
                 generatedKey = rs.getInt(1);
             }
-            config.setId(generatedKey);
             String query2 = "INSERT INTO configuracao_has_componentes ( Configuracao_idConfiguracao, Componentes_Nome) VALUES (?,?);";
             PreparedStatement pst2 = con.prepareStatement(query2);
         

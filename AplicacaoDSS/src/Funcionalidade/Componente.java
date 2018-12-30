@@ -56,6 +56,10 @@ public class Componente implements Comparable<Componente>{
         this.stock = stock;
     }
     
+    public void addStock(Integer valor){
+        stock = stock + valor;
+    }
+    
     public int compareTo(Componente b){
         if(this.getPreco() > b.getPreco()) return -1;
         else return 1;

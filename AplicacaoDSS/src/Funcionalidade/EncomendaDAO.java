@@ -56,7 +56,7 @@ public class EncomendaDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM encomenda WHERE idEncomenda = "+id);
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
-            encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getDouble(5));
+            encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
         }
         AConnection.closeConection(con);
         return encomenda;
