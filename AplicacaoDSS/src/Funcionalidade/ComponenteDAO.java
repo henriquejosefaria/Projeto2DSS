@@ -167,7 +167,7 @@ public class ComponenteDAO {
         String tipo = "motor";
         Connection con = AConnection.createConnection();
         if(con!=null){
-            PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = "+tipo);
             ResultSet rs = pst.executeQuery();
             while(rs.next()){
                 Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
@@ -183,7 +183,7 @@ public class ComponenteDAO {
         String tipo = "pintura";
         Connection con = AConnection.createConnection();
         if(con!=null){
-            PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = "+tipo);
             ResultSet rs = pst.executeQuery();
             while(rs.next()){
                 Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
