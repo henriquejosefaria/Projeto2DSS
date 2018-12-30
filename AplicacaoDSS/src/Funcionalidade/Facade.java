@@ -114,11 +114,6 @@ public class Facade {
         return configs;
     }
     
-     public List<Configuracao> getConfiguracoes() throws SQLException{
-        List<Configuracao> configs = configDAO.getConfiguracoes(); 
-        return configs;
-    }
-    
     public Configuracao newConfiguracao() throws SQLException{
         return new Configuracao();
     }  
