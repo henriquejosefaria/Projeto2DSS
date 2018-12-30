@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -187,25 +188,43 @@ ui.setNorthPane(null);
         if(max > 0){
             try {
                 componentes = facade.getComponentesOrdemCrescente();
-                c = new Configuracao(-1,null,-1, (ArrayList<Componente>) facade.selecaoAutomatica(max,componentes),nomeModelo,facade.getPrecoConfig(),LocalDateTime.now().toString());
-                new Selecao(facade,c);            
+                facade.selecaoAutomatica(max,componentes);
+                Selecao s = new Selecao(facade);
+                s.setVisible(true);
+                this.dispose();
             } catch (SQLException ex) {
                 Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "O valor inserido é muito baixo, minimo : " + facade.getPrecoConfig(), "Não sabes fazer contas", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //frame
-        
+        MotoresJFrame m = new MotoresJFrame(facade,this);
+        m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        m.addWindowListener(new WindowAdapter(){
+           @Override
+           public void windowClosing(WindowEvent evt){
+               m.closing();
+               m.dispose();
+           }
+        });
+        m.setVisible(true);
+        this.setEnabled(false);
         custo2 = facade.getPrecoConfig();
-        if(custo2>custo1) jButton4.setEnabled(true);
+        if(custo2>custo1){
+            jButton4.setEnabled(true);
+            jButton2.setEnabled(false);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ModelosFrame m = new ModelosFrame(custo1,nomeModelo,facade,this);
+        ModelosJFrame m = new ModelosJFrame(facade,this);
         m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         m.addWindowListener(new WindowAdapter(){
+           @Override
            public void windowClosing(WindowEvent evt){
                m.closing();
                m.dispose();
@@ -214,14 +233,30 @@ ui.setNorthPane(null);
         m.setVisible(true);
         this.setEnabled(false);
         custo1 = facade.getPrecoConfig();
+        nomeModelo = facade.getNomeModelo();
         if(custo1>0){
             jButton2.setEnabled(true);
+            jButton1.setEnabled(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        TintasJFrame m = new TintasJFrame(facade,this);
+        m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        m.addWindowListener(new WindowAdapter(){
+           @Override
+           public void windowClosing(WindowEvent evt){
+               m.closing();
+               m.dispose();
+           }
+        });
+        m.setVisible(true);
+        this.setEnabled(false);
         custo3 = facade.getPrecoConfig();
-        if(custo3>2) jButton3.setEnabled(true);
+        if(custo3>custo2){
+            jButton3.setEnabled(true);
+            jButton4.setEnabled(false);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
 

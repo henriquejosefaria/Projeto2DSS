@@ -80,8 +80,4 @@ class ButtonRetomarSelecao extends DefaultCellEditor {
   protected void fireEditingStopped() {
     super.fireEditingStopped();
   }
-  
-  private Integer numeroAluno;
-  private ArrayList<Integer> quotasPagas = new ArrayList<Integer>();
-  private ArrayList<Integer> quotasAPagar = new ArrayList<Integer>();
 }

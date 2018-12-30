@@ -39,7 +39,7 @@ public class SelecaoGuardada extends javax.swing.JFrame {
             if( column == 5)return true; return false;
         }};
         
-        List<Configuracao> configs = facade.getConfiguracoes(143432343);
+        List<Configuracao> configs = facade.getConfiguracoes();
         System.out.println(configs.size());
 
         this.dm = dm;

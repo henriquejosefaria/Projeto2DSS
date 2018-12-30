@@ -66,10 +66,10 @@ ui.setNorthPane(null);
         }};
       jTable1.setModel(model);
       jTable1.getColumn("Remover").setCellRenderer(new ButtonRenderer());
-        jTable1.getColumn("Remover").setCellEditor(
-        new ButtonRemoverSelecao(new JCheckBox(),facade,jTable1,list,selecao));
+      jTable1.getColumn("Remover").setCellEditor(
+      new ButtonRemoverSelecao(new JCheckBox(),facade,jTable1,list,selecao));
      // jTable1.getColumnModel().getColumn(0).setMinHeight(400); 
-      jTable1.setRowHeight(80);
+      jTable1.setRowHeight(120);
     }
 
     /**

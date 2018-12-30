@@ -107,6 +107,11 @@ public class Facade {
         return configs;
     }
     
+     public List<Configuracao> getConfiguracoes() throws SQLException{
+        List<Configuracao> configs = configDAO.getConfiguracoes(); 
+        return configs;
+    }
+    
     public Configuracao newConfiguracao() throws SQLException{
         return new Configuracao();
     }  
@@ -127,7 +132,7 @@ public class Facade {
         return compDAO.getComponentesOrdemCrescente();
     }
 
-    public List<Componente> selecaoAutomatica(Double max, List<Componente> componentes) {
+    public void selecaoAutomatica(Double max, List<Componente> componentes) {
         double i = 0;
         int indice;
         boolean adicionou = false;
@@ -153,11 +158,21 @@ public class Facade {
             }
           }
         }
-        return res;
+        res.forEach((c)->{
+          this.addComponente(c);
+        });
     }
     
     public double getPrecoConfig(){
        return this.selectedConfig.getPreco();
+    }
+    
+    public String getNomeModelo(){
+        return this.selectedConfig.getNome();
+    }
+    
+    public void addComponente(Componente c){
+        this.selectedConfig.addComponente(c);
     }
     
 }
