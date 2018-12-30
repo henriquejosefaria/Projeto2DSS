@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,14 +31,17 @@ public class VerEncomendas extends javax.swing.JFrame {
      * Creates new form VerEncomendas
      */
     public VerEncomendas(Facade facade, List<Encomenda> list) throws SQLException {
+        this.facade = facade;
+        List<Componente> comps = new ArrayList<Componente>();
         initComponents();
-        String[] colunas = { "Encomenda","Data","Estado"};
+        String[] colunas = { "Encomenda","Data","Estado","Concluir Encomenda"};
         Object[][] data = null;
         data = new Object[list.size()][4];
             for (int r=0; r<list.size(); r++) {
                 data[r][0] = new ImageIcon(getClass().getResource(list.get(r).getImagem()));
                 data[r][1] = list.get(r).getData();
                 data[r][2] = list.get(r).getEstado();
+                data[r][3] = "Concluir Encomenda";
             }
         DefaultTableModel model = new DefaultTableModel(data, colunas){
         @Override
@@ -45,7 +49,56 @@ public class VerEncomendas extends javax.swing.JFrame {
             return (column == 0) ? Icon.class : Object.class;
         }};
         jTable1.setModel(model);
+        jTable1.getColumn("Concluir Encomenda").setCellRenderer(new ButtonRenderer());
+        jTable1.getColumn("Concluir Encomenda").setCellEditor(
+            new ButtonConcluirEncomenda(new JCheckBox(),facade,jTable1,list));
         jTable1.setRowHeight(100);
+        
+        /*String[] colunas2 = {"Componente", "Descrição","Preço"};
+        Object[][] data2 = null;
+        comps = facade.getConfig(list.get(0).getConfigId()).getComponentes();
+        if(comps.size()>0){
+        data2 = new Object[comps.size()][3];
+            for (int r=0; r<comps.size(); r++) {
+            data[r][0] = new ImageIcon(getClass().getResource(comps.get(r).getImage()));
+            data[r][1] = comps.get(r).getDescricao();
+            data[r][2] = comps.get(r).getPreco();
+            }
+        }
+        DefaultTableModel model2 = new DefaultTableModel(data2, colunas2){
+        @Override
+        public Class getColumnClass(int column) {
+            return (column == 0) ? Icon.class : Object.class;
+        }};
+        jTable2.setModel(model);
+        jTable2.setRowHeight(100);*/
+        
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = jTable1.rowAtPoint(evt.getPoint());
+                int col = jTable1.columnAtPoint(evt.getPoint());
+                Encomenda e = list.get(row);
+                if (row >= 0 && col >= 0) {
+                    try {
+                        desenhaComponentes(e);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(VerEncomendas.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        
+        
+        desenhaComponentes(list.get(0));
+    }
+    
+    public void desenhaComponentes(Encomenda e) throws SQLException{
+        if(tableComp != null){ tableComp.dispose();}
+        tableComp = new TableComponentesDaEncomenda(facade,e);
+        tableComp.setLocation(720, 90);
+        tableComp.setVisible(true);
+        this.add(tableComp);
     }
     
     /**
@@ -87,33 +140,36 @@ public class VerEncomendas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(707, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(426, 426, 426))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(304, 304, 304))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(502, 667, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(426, 426, 426))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(216, 216, 216))
+                .addGap(52, 52, 52)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  
+
 
     /**
      * @param args the command line arguments
@@ -164,4 +220,5 @@ public class VerEncomendas extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
     private Facade facade;
+    private TableComponentesDaEncomenda tableComp;
 }

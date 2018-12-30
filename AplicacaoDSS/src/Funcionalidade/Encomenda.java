@@ -65,4 +65,10 @@ public class Encomenda {
         data = dateTime.format(formatter);
         
     }
+    
+    public LocalDateTime stringToDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(data, formatter);
+        return dateTime;
+    }
 }

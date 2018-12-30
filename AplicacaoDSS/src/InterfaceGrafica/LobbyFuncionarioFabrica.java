@@ -4,6 +4,8 @@ import Funcionalidade.Configuracao;
 import Funcionalidade.Encomenda;
 import Funcionalidade.Facade;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -231,6 +233,7 @@ public class LobbyFuncionarioFabrica extends javax.swing.JFrame {
 
         try {
             List<Encomenda> list = facade.getAllEncomendas();
+            list.sort(Comparator.comparing(o -> o.stringToDate()));
             new VerEncomendas(facade, list).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(LobbyFuncionarioFabrica.class.getName()).log(Level.SEVERE, null, ex);

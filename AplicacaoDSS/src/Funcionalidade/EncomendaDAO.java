@@ -75,4 +75,18 @@ public class EncomendaDAO {
             return res;
     }   
     
+    public void concluiEncomenda(Encomenda e) throws SQLException{
+        Connection con = AConnection.createConnection();
+        if(con != null){   
+            String query = "UPDATE encomenda SET Estado = ? where idEncomenda = '"+e.getId()+"';";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, e.getEstado());
+            pst.execute();
+            AConnection.closeConection(con);
+        }
+        else{
+            System.err.println("Exception! Encomenda not inserted!");
+        }
+    }
+    
 }

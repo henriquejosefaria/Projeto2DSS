@@ -1,4 +1,5 @@
 package InterfaceGrafica;
+import Funcionalidade.Encomenda;
 import Funcionalidade.Facade;
 import java.sql.SQLException;
 import java.util.logging.Level;

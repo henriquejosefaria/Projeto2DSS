@@ -38,6 +38,10 @@ public class Facade {
         return compDAO;
     }
     
+    public EncomendaDAO getEncDAO(){
+        return encDAO;
+    }
+    
     public Integer getSelectedConfigId() {
         return selectedConfigId;
     }
