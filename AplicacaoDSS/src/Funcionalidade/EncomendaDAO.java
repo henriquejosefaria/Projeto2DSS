@@ -21,16 +21,15 @@ public class EncomendaDAO {
         
     }
     
-    public void addEncomenda(Encomenda enc) throws SQLException{
+    public void addEncomenda(Integer id, String data,String estado,Integer configId) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "INSERT INTO encomenda (idEncomenda, Data, Estado, Configuracao_idConfiguracao, preco)VALUES (?,?,?,?,?);";
+            String query = "INSERT INTO encomenda (idEncomenda, Data, Estado, Configuracao_idConfiguracao)";
             PreparedStatement pst = con.prepareStatement(query);
-            pst.setInt(1, enc.getId());
-            pst.setString(2, enc.getData());
-            pst.setInt(3, enc.getEstado());
-            pst.setInt(4, enc.getConfigId());
-            pst.setDouble(5, enc.getPreco());
+            pst.setInt(1, id);
+            pst.setString(2, data);
+            pst.setString(3, estado);
+            pst.setInt(4, configId);
             pst.execute();
             AConnection.closeConection(con);
         }
@@ -57,7 +56,7 @@ public class EncomendaDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM encomenda WHERE idEncomenda = "+id);
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
-            encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getDouble(5));
+            encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
         }
         AConnection.closeConection(con);
         return encomenda;
