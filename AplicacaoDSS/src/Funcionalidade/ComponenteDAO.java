@@ -193,4 +193,17 @@ public class ComponenteDAO {
         }
         return list;
     }
+    
+    public int getComponenteStock(String nome) throws SQLException{
+        Connection con = AConnection.createConnection();
+        Componente componente = null;
+        int stock = -1;
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Nome = '"+nome+"';");
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            stock = rs.getInt(2);
+        }
+        AConnection.closeConection(con);
+        return stock;
+    }
 }
