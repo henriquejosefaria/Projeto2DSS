@@ -31,6 +31,7 @@ public class TintasJFrame extends javax.swing.JFrame {
     public TintasJFrame(Facade facade, ConfgOtimaFrame config) {
         initComponents();
         this.config = config;
+        this.facade = facade;
         DefaultTableModel dm = new DefaultTableModel(){
             @Override
         public boolean isCellEditable(int row, int column) {
@@ -39,7 +40,7 @@ public class TintasJFrame extends javax.swing.JFrame {
         
         List<Componente> tintas = new ArrayList<>();
         try {
-            tintas = facade.getTypeComponentes("pintura");
+            tintas = this.facade.getTypeComponentes("pintura");
             System.out.println(tintas.size());
         } catch (SQLException ex) {
             System.out.println("Não conseguiu aceder à BD!");
@@ -90,7 +91,12 @@ public class TintasJFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Confirmar Escolha");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,15 +108,14 @@ public class TintasJFrame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(166, 166, 166)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(134, 134, 134)
-                                .addComponent(jButton1)))
-                        .addGap(0, 163, Short.MAX_VALUE)))
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel1)
+                        .addGap(0, 183, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,6 +130,11 @@ public class TintasJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        config.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void closing(){
         config.setEnabled(true);
@@ -171,4 +181,5 @@ public class TintasJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    private Facade facade;
 }
