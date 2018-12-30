@@ -5,7 +5,6 @@
  */
 package InterfaceGrafica;
 
-import Funcionalidade.Configuracao;
 import Funcionalidade.Facade;
 import Funcionalidade.Modelo;
 import java.sql.SQLException;
@@ -13,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
@@ -26,34 +27,46 @@ public class ModelosJFrame extends javax.swing.JFrame {
     /**
      * Creates new form ModelosJFrame
      */
-    public ModelosJFrame(Facade facade, ConfgOtimaFrame config) {
+    public ModelosJFrame(Facade facade, ConfgOtimaFrame config) throws SQLException {
+        this.facade = new Facade();
         initComponents();
         this.config = config;
-        DefaultTableModel dm = new DefaultTableModel(){
-            @Override
-        public boolean isCellEditable(int row, int column) {
-            if( column == 5)return true; return false;
-        }};
         
-        List<Modelo> modelos = new ArrayList<>();
+
+        
+        String[] colunas = { "Nome","Imagem","Preço","Ação" };
+        Object[][] data = null;
+
         try {
-            modelos = facade.getModelos();
+            List<Modelo> modelos = facade.getModelos();
             System.out.println(modelos.size());
         } catch (SQLException ex) {
             Logger.getLogger(ModelosJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.dm = dm;
-        dm.setColumnIdentifiers(new String [] {"Nome","Imagem","Preço","Ação"});
-        jTable1.setModel(dm);
+
+        List<Modelo> modelos  = modelos = facade.getModelos();
+        System.out.println(modelos.size());
+        data = new Object[modelos.size()][4];
+        for (int r=0; r<modelos.size(); r++) {
+            data[r][0] = modelos.get(r).getNome();
+            data[r][1] = new ImageIcon(getClass().getResource(modelos.get(r).getImg()));
+            data[r][2] = modelos.get(r).getPreco();
+            data[r][3] = "Selecionar";
+        }
+    DefaultTableModel model = new DefaultTableModel(data, colunas){
+        @Override
+      public Class getColumnClass(int column) {
+        return (column == 1) ? Icon.class : Object.class;
+      }
+     public boolean isCellEditable(int row, int column) {
+            if( column == 3)return true; return false;
+        }};
+        jTable1.setModel(model);
         jTable1.getColumn("Ação").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Ação").setCellEditor(
         new ButtonModelos(new JCheckBox(),this,jTable1,modelos,facade));
-       dm.isCellEditable(1,1);
-       modelos.forEach((m) -> {
-           jTable1.getColumn("Imagem").setCellRenderer(new ImageButton(m.getImg()));
-        dm.addRow(new Object[]{m.getNome(),"",m.getPreco(),"Escolher"});
-       });
+      jTable1.setRowHeight(120);
     }
 
     /**
@@ -68,10 +81,12 @@ public class ModelosJFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Modelos");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Selecione o seu modelo!");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,31 +101,43 @@ public class ModelosJFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setText("Confirmar Escolha");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(jLabel1)
-                .addContainerGap(187, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(248, 248, 248)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        config.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public void closing(){
         config.setEnabled(true);
@@ -146,16 +173,26 @@ public class ModelosJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModelosJFrame(null,null).setVisible(true);
+                try {
+                    new ModelosJFrame(new Facade(),null).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ModelosJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
     private DefaultTableModel dm;
     private ConfgOtimaFrame config;
+    private Facade facade;
+
+
 }
+
+

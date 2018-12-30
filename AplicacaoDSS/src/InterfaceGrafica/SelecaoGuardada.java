@@ -30,28 +30,22 @@ public class SelecaoGuardada extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public SelecaoGuardada() throws SQLException {
+    public SelecaoGuardada(Facade facade) throws SQLException {
         initComponents();
-        facade = new Facade();
+        this.facade = facade;
         DefaultTableModel dm = new DefaultTableModel(){
             @Override
         public boolean isCellEditable(int row, int column) {
             if( column == 5)return true; return false;
         }};
         
-        List<Configuracao> configs = facade.getConfiguracoes();
-        System.out.println(configs.size());
+
 
         this.dm = dm;
         dm.setColumnIdentifiers(new String [] {"Número de Save","Nome", "Número Contribuinte", "Data", "Modelo","Ação"});
         jTable1.setModel(dm);
-        jTable1.getColumn("Ação").setCellRenderer(new ButtonRenderer());
-        jTable1.getColumn("Ação").setCellEditor(
-        new ButtonRetomarSelecao(new JCheckBox(),this,jTable1,configs,facade)); // jTable2.getEditingRow() isto é que estava a estourar
-       dm.isCellEditable(1,1);
-       configs.forEach((c) -> {
-        dm.addRow(new Object[]{c.getId().toString(),c.getNome().toString(),c.getNContribuinte().toString(),c.getData(),c.getModelo(),"Retomar Selecao"});
-    });
+
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,6 +64,9 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -111,6 +108,15 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Seleções Guardadas");
 
+        jLabel2.setText("Insira o numero de contribuinte do cliente:");
+
+        jButton2.setText("Pesquisar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
         if(permissao == 0) jMenuBar1.setVisible(false);
 
         jMenu1.setText("File");
@@ -126,22 +132,37 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(201, 201, 201))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(269, 269, 269))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 194, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(201, 201, 201))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(269, 269, 269))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
@@ -154,12 +175,31 @@ public class SelecaoGuardada extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        List<Configuracao> configs;
+        try {
+            dm.setRowCount(0);
+            configs = facade.getConfiguracoes(Integer.parseInt(jTextField1.getText()));
+        jTable1.getColumn("Ação").setCellRenderer(new ButtonRenderer());
+        jTable1.getColumn("Ação").setCellEditor(
+        new ButtonRetomarSelecao(new JCheckBox(),this,jTable1,configs,facade)); // jTable2.getEditingRow() isto é que estava a estourar
+       dm.isCellEditable(1,1);
+            configs.forEach((c) -> {
+        dm.addRow(new Object[]{c.getId().toString(),c.getNome().toString(),c.getNContribuinte().toString(),c.getData(),c.getModelo(),"Retomar Selecao"});
+    });
+        } catch (SQLException ex) {
+            Logger.getLogger(SelecaoGuardada.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+ 
+    }//GEN-LAST:event_jButton2MouseClicked
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new SelecaoGuardada().setVisible(true);
+                    new SelecaoGuardada(new Facade()).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(SelecaoGuardada.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -171,7 +211,9 @@ public class SelecaoGuardada extends javax.swing.JFrame {
 */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -181,6 +223,7 @@ public class SelecaoGuardada extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     private DefaultTableModel dm;

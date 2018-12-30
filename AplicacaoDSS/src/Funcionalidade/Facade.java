@@ -28,6 +28,7 @@ public class Facade {
     public Facade() throws SQLException{
         this.userDAO = new UtilizadorDAO();
         this.configDAO = new ConfiguracaoDAO();
+        this.modeloDAO = new ModeloDAO();
         this.compDAO = new ComponenteDAO();
         this. selectedConfigId = 999;
         this.encDAO = new EncomendaDAO();
@@ -118,25 +119,12 @@ public class Facade {
         return configs;
     }
     
-     public List<Configuracao> getConfiguracoes() throws SQLException{
-        List<Configuracao> configs = configDAO.getConfiguracoes(); 
-        return configs;
-    }
-    
     public Configuracao newConfiguracao() throws SQLException{
         return new Configuracao();
     }  
     
     public ArrayList<Modelo> getModelos() throws SQLException{
         return modeloDAO.getModelos();
-    }
-
-    public ArrayList<Componente> getMotores() throws SQLException{
-        return compDAO.getMotores();
-    }
-
-    public ArrayList<Componente> getPinturas() throws SQLException{
-        return compDAO.getPinturas();
     }
     
     public List<Componente> getComponentesOrdemCrescente() throws SQLException{

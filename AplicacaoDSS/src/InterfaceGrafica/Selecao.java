@@ -192,10 +192,14 @@ public class Selecao extends javax.swing.JFrame {
         Configuracao c = this.facade.getSelectedConfig();
         String s;
         for (Componente comp : c.getComponentes()){
-            if (comp.getStock()<=0){
+            try {
                 s = comp.getNome();
-                JOptionPane.showMessageDialog(null, "O seguinte componente não tem stock: "+s, "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
-                return;
+                if (facade.getCompDAO().getComponenteStock(s)<=0){
+                    JOptionPane.showMessageDialog(null, "O seguinte componente não tem stock: "+s, "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         JOptionPane.showMessageDialog(null, "Pode agora finalizar a sua configuração!", "InfoBox: " + "Sucesso!", JOptionPane.INFORMATION_MESSAGE);

@@ -169,7 +169,7 @@ ui.setNorthPane(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         ModelosJFrame m = new ModelosJFrame(facade,this);
+        /*ModelosJFrame m = new ModelosJFrame(facade,this);
         m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         m.addWindowListener(new WindowAdapter(){
            @Override
@@ -185,7 +185,7 @@ ui.setNorthPane(null);
         if(custo1>0){
             jButton2.setEnabled(true);
             jButton1.setEnabled(false);
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -273,8 +273,5 @@ ui.setNorthPane(null);
     private double custo2 = 0;
     private double custo3 = 0;
     private String nomeModelo = null;
-    private ArrayList<Modelo> modelos = new ArrayList<>();
-    private ArrayList<Componente> motores = new ArrayList<>();
-    private ArrayList<Componente> pinturas = new ArrayList<>();
     private Configuracao config = new Configuracao();
 }

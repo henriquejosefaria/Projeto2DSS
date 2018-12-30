@@ -39,7 +39,7 @@ public class MotoresJFrame extends javax.swing.JFrame {
         
         List<Componente> motores = new ArrayList<>();
         try {
-            motores = facade.getMotores();
+            motores = facade.getTypeComponentes("motor");
             System.out.println(motores.size());
         } catch (SQLException ex) {
             Logger.getLogger(ModelosJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,7 +89,12 @@ public class MotoresJFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Confirmar Escolha");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,7 +109,7 @@ public class MotoresJFrame extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
+                        .addGap(211, 211, 211)
                         .addComponent(jButton1)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -121,6 +126,11 @@ public class MotoresJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        config.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void closing(){
         config.setEnabled(true);
