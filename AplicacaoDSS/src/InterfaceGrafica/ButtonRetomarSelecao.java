@@ -37,6 +37,7 @@ class ButtonRetomarSelecao extends DefaultCellEditor {
       public void actionPerformed(ActionEvent e) {
          int configuracaoId = table.getSelectedRow();
          Configuracao c = configs.get(configuracaoId);
+         System.out.println(c.getComponentes().size()+"fdasds");
          facade.setSelectedConfig(c);
           try {
               new Selecao(facade).setVisible(true);
