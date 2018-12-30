@@ -35,7 +35,9 @@ public class ConfgOtimaFrame extends javax.swing.JInternalFrame {
         initComponents();
         BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
-      //  jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
+        jButton4.setEnabled(false);
        
 // to remove
 ui.setNorthPane(null);

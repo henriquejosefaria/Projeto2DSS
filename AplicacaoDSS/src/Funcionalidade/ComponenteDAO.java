@@ -81,7 +81,6 @@ public class ComponenteDAO {
     
     // devolve lista ordenada por preços de tipo de componente
     public List<Componente> getComponentesOrdemCrescente() throws SQLException{
-       List<Componente> componentes = new ArrayList<>(); // criar sort natural
        HashMap<String,ArrayList<Componente>> res = new HashMap<String,ArrayList<Componente>>();
        Configuracao conf;
        Connection con = AConnection.createConnection();
