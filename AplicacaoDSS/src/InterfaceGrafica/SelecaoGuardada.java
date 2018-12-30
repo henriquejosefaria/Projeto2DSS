@@ -52,12 +52,6 @@ public class SelecaoGuardada extends javax.swing.JFrame {
        configs.forEach((c) -> {
         dm.addRow(new Object[]{c.getId().toString(),c.getNome().toString(),c.getNContribuinte().toString(),c.getData(),c.getModelo(),"Retomar Selecao"});
     });
-       /*
-        dm.addRow(new Object[]{"98232","André Peixoto","22-02-2013","Shelby","Retomar Selecao"});
-        dm.addRow(new Object[]{"98374","Henrique Faria","12-03-2012","Sharty","Retomar Selecao"});
-        dm.addRow(new Object[]{"93845","Miguel Brandão","24-08-2016","Ponei","Retomar Selecao"});
-        dm.addRow(new Object[]{"983745","Filipe Cunha","22-04-2017","Gtx","Retomar Selecao"});
-       */
     }
     /**
      * This method is called from within the constructor to initialize the form.

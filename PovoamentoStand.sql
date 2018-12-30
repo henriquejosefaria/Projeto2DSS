@@ -6,7 +6,7 @@ INSERT INTO utilizador
         (2,'Luis Cunha','123','F');
 
 INSERT INTO componente
-	(Nome,Stock,Tipo,Preco,Descricao,Imagem)
+	(Nome,Stock,Tipo,preco,Descricao,Imagem)
 	VALUES
 		('Jantes Liga Leve',832,'Jante',434.32,'Rodam bem','/interfacegrafica/Img/Jantes/Jantes1.jpg'),
         ('Jantes Liga Pesada',454,'Jante',434.32,'Rodam bem pesadamente','/interfacegrafica/Img/Jantes/Jantes2.jpg'),
@@ -43,12 +43,12 @@ INSERT INTO Modelo
     ('Ford',14000,'/interfacegrafica/Img/Modelos/modelo3.jpg');
     
 INSERT INTO configuracao
-	(idConfiguracao,nome, nContribuinte, Modelo, Data)
+	(idConfiguracao,nome, nContribuinte, Modelo, Data,preco)
 	VALUES
-		(1,'Toze',143432343,'Audi','22/12/2012'),
-        (2,'Quim',343234323,'Mercedez','22/03/2017'),
-        (3,'Jorge',343234545,'Audi','03/05/2015'),
-        (4,'pedro',359659685,'Ford','23/07/2013');
+		(1,'Toze',143432343,'Audi','22/12/2012',4322),
+        (2,'Quim',343234323,'Mercedez','22/03/2017',4323),
+        (3,'Jorge',343234545,'Audi','03/05/2015',5343),
+        (4,'pedro',359659685,'Ford','23/07/2013',2454);
         
 INSERT INTO configuracao_has_componentes
 	(Configuracao_idConfiguracao, Componentes_Nome)
