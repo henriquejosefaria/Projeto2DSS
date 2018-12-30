@@ -91,7 +91,13 @@ INSERT INTO pacote
     ('Confort',2,'src\InterfaceGrafica\Img\Motor\motor3.jpg'),
     ('Sport+',3,'src\InterfaceGrafica\Img\Motor\motor3.jpg'),
     ('Turbo',4,'src\InterfaceGrafica\Img\Motor\motor3.jpg');
-    
+
+INSERT INTO encomenda
+	(idEncomenda,Data,Estado,Configuracao_idConfiguracao,preco)
+	VALUES
+		(1,'30/12/2018',1,1,5095.92),
+        (2,'30/12/2018',1,2,5331.92),
+        (3,'30/12/2018',1,3,44547.92);
     
 Select comp From Pacote as p 
 inner join configuracao as c on p.Configuracao_idConfiguracao = c.idConfiguracao 
