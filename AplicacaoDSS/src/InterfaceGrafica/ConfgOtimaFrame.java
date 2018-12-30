@@ -169,7 +169,7 @@ ui.setNorthPane(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         ModelosJFrame m = new ModelosJFrame(facade,this);
+        ModelosJFrame m = new ModelosJFrame(facade,this);
         m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         m.addWindowListener(new WindowAdapter(){
            @Override

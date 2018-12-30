@@ -39,7 +39,7 @@ public class TintasJFrame extends javax.swing.JFrame {
         
         List<Componente> tintas = new ArrayList<>();
         try {
-            tintas = facade.getPinturas();
+            tintas = facade.getTypeComponentes("pintura");
             System.out.println(tintas.size());
         } catch (SQLException ex) {
             System.out.println("Não conseguiu aceder à BD!");
