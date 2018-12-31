@@ -31,10 +31,11 @@ public class ConfgOtimaFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form ConfgOtimaFrame
      */
-    public ConfgOtimaFrame(Facade facade) {
+    public ConfgOtimaFrame(Facade facade, Selecao s) {
         initComponents();
         BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
+        this.s = s;
         jButton3.setEnabled(false);
         jButton4.setEnabled(false);
 // to remove
@@ -179,30 +180,40 @@ ui.setNorthPane(null);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        TintasJFrame m = new TintasJFrame(facade,this,jButton4);
-        m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        m.addWindowListener(new WindowAdapter(){
+        ComponenteFrame cf = null;
+        try{
+            cf = new ComponenteFrame(facade,facade.getTypeComponentes("pintura"),s);
+        } catch (SQLException ex) { 
+            Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     /*   cf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        cf.addWindowListener(new WindowAdapter(){
            @Override
            public void windowClosing(WindowEvent evt){
-               m.closing();
-               m.dispose();
+               cf.closing();
+               cf.dispose();
            }
-        });
-        m.setVisible(true);
-        this.setEnabled(false);
+        });*/
+        cf.setVisible(true);
+        //this.setEnabled(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        MotoresJFrame m = new MotoresJFrame(facade,this,jButton3);
-        m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        m.addWindowListener(new WindowAdapter(){
+        ComponenteFrame cf = null;
+        try{
+            cf = new ComponenteFrame(facade,facade.getTypeComponentes("motor"),s);
+        } catch (SQLException ex) { 
+            Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     /*   cf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        cf.addWindowListener(new WindowAdapter(){
            @Override
            public void windowClosing(WindowEvent evt){
-               m.closing();
-               m.dispose();
+               cf.closing();
+               cf.dispose();
            }
-        });
-        m.setVisible(true);
+        });*/
+        cf.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -223,4 +234,5 @@ ui.setNorthPane(null);
     private double custo2 = 0;
     private String nomeModelo = null;
     private Configuracao config = new Configuracao();
+    private Selecao s;
 }
