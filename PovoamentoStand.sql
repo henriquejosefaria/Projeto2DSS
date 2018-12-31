@@ -1,9 +1,9 @@
 INSERT INTO utilizador
 	(idUtilizador,Nome,Password,Tipo)
 	VALUES
-		(999999,'Admin','admin','A'),
         (1,'André Peixoto','123','S'),
-        (2,'Luis Cunha','123','F');
+        (2,'Luis Cunha','123','F'),
+		(3,'Admin','123','A');
 
 INSERT INTO componente
 	(Nome,Stock,Tipo,preco,Descricao,Imagem)
