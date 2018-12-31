@@ -85,6 +85,11 @@ ui.setNorthPane(null);
         jButton4.setText("Calcular");
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfaceGrafica/Img/Componentes/motor.jpg"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,27 +178,8 @@ ui.setNorthPane(null);
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        MotoresJFrame m = new MotoresJFrame(facade,this);
-        m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        m.addWindowListener(new WindowAdapter(){
-           @Override
-           public void windowClosing(WindowEvent evt){
-               m.closing();
-               m.dispose();
-           }
-        });
-        m.setVisible(true);
-        this.setEnabled(false);
-        custo1 = facade.getPrecoConfig();
-        if(custo1>0){
-            jButton3.setEnabled(true);
-            jButton2.setEnabled(false);
-        }
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        TintasJFrame m = new TintasJFrame(facade,this);
+        TintasJFrame m = new TintasJFrame(facade,this,jButton4);
         m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         m.addWindowListener(new WindowAdapter(){
            @Override
@@ -204,12 +190,20 @@ ui.setNorthPane(null);
         });
         m.setVisible(true);
         this.setEnabled(false);
-        custo2 = facade.getPrecoConfig();
-        if(custo2>custo1){
-            jButton4.setEnabled(true);
-            jButton3.setEnabled(false);
-        }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        MotoresJFrame m = new MotoresJFrame(facade,this,jButton3);
+        m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        m.addWindowListener(new WindowAdapter(){
+           @Override
+           public void windowClosing(WindowEvent evt){
+               m.closing();
+               m.dispose();
+           }
+        });
+        m.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
 

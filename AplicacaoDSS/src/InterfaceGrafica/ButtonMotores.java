@@ -34,7 +34,7 @@ public class ButtonMotores extends DefaultCellEditor {
     private String label;
     private boolean isPushed;
     
-    public ButtonMotores(JCheckBox checkBox,MotoresJFrame mod, JTable table,List<Componente> motores, Facade facade) {
+    public ButtonMotores(JCheckBox checkBox,MotoresJFrame mod, JTable table,List<Componente> motores, Facade facade, JButton x) {
         super(checkBox);
         button = new JButton();
         this.facade = facade;
@@ -44,6 +44,8 @@ public class ButtonMotores extends DefaultCellEditor {
               int i = table.getSelectedRow();
               Componente t = motores.get(i);
               facade.addComponente(t);
+              x.setEnabled(true);
+              mod.dispose();
           }
         });
     }
