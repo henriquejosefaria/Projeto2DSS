@@ -237,7 +237,7 @@ public class Selecao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    new SaveFrame(facade,this).setVisible(true);
+    new SaveFrame(facade,this,fabrica).setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

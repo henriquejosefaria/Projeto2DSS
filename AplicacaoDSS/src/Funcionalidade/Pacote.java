@@ -22,6 +22,10 @@ public class Pacote {
         this.configId = configId;
         this.image = image;
     }
+    
+    public void setImage(String imagem){
+        image = "/interfacegrafica/Img/Pacotes/"+imagem;
+    }
 
     public String getImage() {
         return image;

@@ -163,7 +163,7 @@ public class SavePacote extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SaveFrame(null,null).setVisible(true);
+                new SavePacote(null,null).setVisible(true);
             }
         });
     }

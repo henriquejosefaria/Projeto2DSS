@@ -232,7 +232,8 @@ public class Facade {
     }
     
     public void savePacote(String nome,String imagem) throws SQLException{
-        Pacote pacote = new Pacote(nome,selectedConfig.getId(),imagem);
+        Pacote pacote = new Pacote(nome,selectedConfig.getId(),null);
+        pacote.setImage(imagem);
         pacoteDAO.addPacote(pacote);
     }
 
