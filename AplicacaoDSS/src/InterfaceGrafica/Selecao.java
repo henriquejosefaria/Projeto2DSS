@@ -33,7 +33,7 @@ public class Selecao extends javax.swing.JFrame {
         this.l = l; // para utilizar no botão de cancelar seleção (back)
         desenhaConfigFrame();
         
-            PacotesFrame pacotesf = new PacotesFrame(this.facade,this);
+            PacotesFrame2 pacotesf = new PacotesFrame2(this.facade,this);
             pacotesf.setLocation(50, 100);
             pacotesf.setVisible(true);
             this.add(pacotesf);

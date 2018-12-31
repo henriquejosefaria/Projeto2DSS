@@ -14,11 +14,17 @@ import java.util.ArrayList;
 public class Pacote {
     
     private String nome;
-    private Integer configId; //strings com os nomes dos componentes do pacote
+    private Integer configId; 
+    private String image;
     
-    public Pacote(String nome, Integer configId){
+    public Pacote(String nome, Integer configId,String image){
         this.nome = nome;
         this.configId = configId;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public String getNome() {

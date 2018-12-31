@@ -87,10 +87,10 @@ INSERT INTO configuracao_has_componentes
 INSERT INTO pacote
 	(Nome, Configuracao_idConfiguracao,Imagem)
 	VALUES
-    ('Sport',1,'src\InterfaceGrafica\Img\Motor\motor3.jpg'),
-    ('Confort',2,'src\InterfaceGrafica\Img\Motor\motor3.jpg'),
-    ('Sport+',3,'src\InterfaceGrafica\Img\Motor\motor3.jpg'),
-    ('Turbo',4,'src\InterfaceGrafica\Img\Motor\motor3.jpg');
+    ('Sport',1,'/interfacegrafica/Img/Pacotes/comfort.jpg'),
+    ('Confort',2,'/interfacegrafica/Img/Pacotes/sport.jpg'),
+    ('Sport+',3,'/interfacegrafica/Img/Pacotes/sport+.jpg'),
+    ('Turbo',4,'/interfacegrafica/Img/Pacotes/turbo.jpg');
 
 INSERT INTO encomenda
 	(idEncomenda,Data,Estado,Configuracao_idConfiguracao,preco,Imagem)

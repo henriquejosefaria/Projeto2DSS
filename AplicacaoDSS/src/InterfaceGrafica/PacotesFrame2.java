@@ -6,6 +6,7 @@
 package InterfaceGrafica;
 import Funcionalidade.Componente;
 import Funcionalidade.Facade;
+import Funcionalidade.Pacote;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,12 +24,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Filipe Universidade
  */
-public class SelecaoTable2 extends javax.swing.JInternalFrame {
+public class PacotesFrame2 extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form SelecaoTable2
      */
-    public SelecaoTable2(Facade facade,Selecao selecao) throws SQLException {
+    public PacotesFrame2(Facade facade,Selecao selecao) throws SQLException {
     initComponents();
     this.facade = facade;
     
@@ -38,18 +39,16 @@ public class SelecaoTable2 extends javax.swing.JInternalFrame {
 // to remove
 ui.setNorthPane(null);
 
-     ImageIcon aboutIcon = new ImageIcon("C:\\Users\\Filipe Universidade\\Documents\\NetBeansProjects\\Projeto2DSS\\InterfaceGrafica\\src\\interfacegrafica\\Img\\Componentes\\interior.jpg");
-        String[] colunas = { "Imagem", "Descrição","Preço","Remover" };
+        String[] colunas = { "Nome","Imagem", "Selecionar" };
         Object[][] data = null;
 
-        list = facade.getSelectedConfig().getComponentes();
+        list = facade.getPacoteDAO().getAllPacotes();
         if(list.size()>0){
-        data = new Object[list.size()][4];
+        data = new Object[list.size()][3];
         for (int r=0; r<list.size(); r++) {
             data[r][0] = new ImageIcon(getClass().getResource(list.get(r).getImage()));
-            data[r][1] = list.get(r).getDescricao();
-            data[r][2] = list.get(r).getPreco();
-            data[r][3] = "Remover";
+            data[r][1] = list.get(r).getNome();
+            data[r][2] = "Selecionar";
         }
         }
     
@@ -62,12 +61,12 @@ ui.setNorthPane(null);
         return (column == 0) ? Icon.class : Object.class;
       }
      public boolean isCellEditable(int row, int column) {
-            if( column == 2)return true; return false;
+            if( column == 3)return true; return false;
         }};
       jTable1.setModel(model);
-      jTable1.getColumn("Remover").setCellRenderer(new ButtonRenderer());
-      jTable1.getColumn("Remover").setCellEditor(
-      new ButtonRemoverSelecao(new JCheckBox(),facade,jTable1,list,selecao));
+      jTable1.getColumn("Selecionar").setCellRenderer(new ButtonRenderer());
+      jTable1.getColumn("Selecionar").setCellEditor(
+      new ButtonSelecionarPacote(new JCheckBox(),facade,jTable1,list,selecao));
      // jTable1.getColumnModel().getColumn(0).setMinHeight(400); 
       jTable1.setRowHeight(120);
     }
@@ -123,5 +122,5 @@ ui.setNorthPane(null);
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
     private Facade facade;
-    private List<Componente> list;
+    private List<Pacote> list;
 }

@@ -58,7 +58,7 @@ public class PacoteDAO {
         PreparedStatement pst = con.prepareStatement("SELECT * FROM pacote WHERE Nome = "+nome);
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
-            pacote = new Pacote(rs.getString(1),rs.getInt(2));
+            pacote = new Pacote(rs.getString(1),rs.getInt(2),rs.getString(3));
         }
         }
         AConnection.closeConection(con);
@@ -93,5 +93,22 @@ public class PacoteDAO {
             AConnection.closeConection(con);
         }
         return list;
+    }
+    public List<Pacote> getAllPacotes() throws SQLException{
+        Connection con = AConnection.createConnection();
+        List<Pacote> list = new ArrayList<>();
+        Pacote pacote = null;
+        if(con!=null)
+        {
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM pacote;");
+        ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            pacote = new Pacote(rs.getString(1),rs.getInt(2),rs.getString(3));
+            list.add(pacote);
+        }
+        AConnection.closeConection(con);
+        }
+        
+        return list;    
     }
 }

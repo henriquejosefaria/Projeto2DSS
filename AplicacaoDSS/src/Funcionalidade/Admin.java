@@ -28,7 +28,7 @@ public class Admin extends Utilizador {
     public boolean criarPacote(String nome, Integer configId, Pacotes pacotes){
         if(!pacotes.pacotes.containsKey(nome)){
             if(verificaPacote(configId)){
-                Pacote novoPacote = new Pacote(nome, configId);
+                Pacote novoPacote = new Pacote(nome, configId,null);
                 pacotes.pacotes.put(nome, novoPacote);
             }
         }
