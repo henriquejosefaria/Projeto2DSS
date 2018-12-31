@@ -202,9 +202,12 @@ ui.setNorthPane(null);
         ComponenteFrame cf = null;
         try{
             List<Componente> l = facade.getTypeComponentes("motor");
+            if (l == null) System.out.println("l é null");
             cf = new ComponenteFrame(facade,l,s);
         } catch (SQLException ex) { 
             Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(NullPointerException e){
+           System.out.println("Null pointer Exception");
         }
      /*   cf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         cf.addWindowListener(new WindowAdapter(){
