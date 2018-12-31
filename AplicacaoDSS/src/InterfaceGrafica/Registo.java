@@ -2,6 +2,7 @@ package InterfaceGrafica;
 
 import Funcionalidade.Facade;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -167,6 +168,10 @@ public class Registo extends javax.swing.JFrame {
             else {
                 try {
                     facade.getUserDAO().addUtilizador(nome, password, tipo);
+                    List<Integer> l = facade.getUserDAO().getAllIdsUtilizadores();
+                    Integer lastID = l.get(l.size()-1);
+                    JOptionPane.showMessageDialog(null, "O seu id é: "+lastID, "InfoBox: " + "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
                 } catch (SQLException ex) {
                     Logger.getLogger(Registo.class.getName()).log(Level.SEVERE, null, ex);
                 }
