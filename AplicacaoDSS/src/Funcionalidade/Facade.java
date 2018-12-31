@@ -2,6 +2,8 @@ package Funcionalidade;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +23,8 @@ public class Facade {
     private ComponenteDAO compDAO;
     private ModeloDAO modeloDAO;
     private EncomendaDAO encDAO;
+    private boolean stock;
+    private boolean configSaved;
     
 
     
@@ -33,6 +37,8 @@ public class Facade {
         this. selectedConfigId = 999;
         this.encDAO = new EncomendaDAO();
         selectedConfig = new Configuracao();
+        stock = false;
+        configSaved = false;
     }
     
     public ComponenteDAO getCompDAO(){
@@ -108,11 +114,7 @@ public class Facade {
         return compDAO.getAllEncomendas();
     }
 
-    public void saveSelectedConfig() throws SQLException{
-        selectedConfig.setData();
-        selectedConfig.setPreco(selectedConfig.calculaPrecoTotal());
-        configDAO.addConfiguracao(selectedConfig);
-    }
+
     
     public List<Configuracao> getConfiguracoes(Integer n) throws SQLException{
         List<Configuracao> configs = configDAO.getConfiguracoes(n); 
@@ -173,11 +175,51 @@ public class Facade {
     public void addComponente(Componente c){
         this.selectedConfig.addComponente(c);
     }
+    
+        public void saveSelectedConfig() throws SQLException{
+        selectedConfig.setData();
+        selectedConfig.setPreco(selectedConfig.calculaPrecoTotal());
+        configDAO.addConfiguracao(selectedConfig);
+        configSaved = true;
+    }
+
+    public boolean isStock() {
+        return stock;
+    }
+
+    public boolean isConfigSaved() {
+        return configSaved;
+    }
+
+    public void setStock(boolean stock) {
+        this.stock = stock;
+    }
+
+    public void setConfigSaved(boolean configSaved) {
+        this.configSaved = configSaved;
+    }
+        
     public void saveEncomenda() throws SQLException{
         Encomenda enc = new Encomenda(-1,null,"a fazer",selectedConfig.getId(),selectedConfig.getPreco(),"/interfacegrafica/Img/Modelos/modelo1.jpg");
         enc.setData();
         configDAO.decrementaStockConfig(selectedConfig.getId());
         encDAO.addEncomenda(enc);
+    }
+    public String checkStock(){
+        String s;
+        for (Componente comp : selectedConfig.getComponentes()){
+                s = comp.getNome();
+            try {
+                if (compDAO.getComponenteStock(s)<=0){
+                    stock = false;
+                    return s;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Facade.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        stock = true;
+        return null;
     }
 
     

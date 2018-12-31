@@ -19,9 +19,10 @@ public class SaveFrame extends javax.swing.JFrame {
     /**
      * Creates new form SaveFrame
      */
-    public SaveFrame(Facade facade) {
+    public SaveFrame(Facade facade, Selecao selecao) {
         initComponents();
         this.facade = facade;
+        this.selecao = selecao;
     }
 
     /**
@@ -135,6 +136,9 @@ public class SaveFrame extends javax.swing.JFrame {
         facade.getSelectedConfig().setNome(jTextField2.getText());
          try {
             facade.saveSelectedConfig();
+            if(facade.isStock() && facade.isConfigSaved()){
+            selecao.setEncomendaButton(true);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -175,7 +179,7 @@ public class SaveFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SaveFrame(null).setVisible(true);
+                new SaveFrame(null,null).setVisible(true);
             }
         });
     }
@@ -190,4 +194,5 @@ public class SaveFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
     private Facade facade;
+    private Selecao selecao;
 }

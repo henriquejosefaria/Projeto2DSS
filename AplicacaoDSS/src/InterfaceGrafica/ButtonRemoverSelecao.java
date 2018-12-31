@@ -37,6 +37,8 @@ class ButtonRemoverSelecao extends DefaultCellEditor {
           int i = table.getSelectedRow();
           Componente comp = list.get(i);
           facade.getSelectedConfig().removeComponente(comp);
+          facade.setConfigSaved(false);
+          selecao.setEncomendaButton(false);
           try {
               selecao.desenhaConfigFrame();
           } catch (SQLException ex) {
