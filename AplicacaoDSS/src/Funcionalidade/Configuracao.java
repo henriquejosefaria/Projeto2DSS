@@ -26,6 +26,7 @@ public class Configuracao {
     private String data;
     private double preco;
     private List<Componente> componentes = new ArrayList<>();
+    private String estado;
 
     public Integer getnContribuinte() {
         return nContribuinte;
@@ -43,9 +44,10 @@ public class Configuracao {
         this.data = null;
         this.preco = 0;
         this.componentes = new ArrayList<>();
+        this.estado = "A";
     }
     
-    public Configuracao(Integer id,String nome,Integer n, ArrayList<Componente> componentes, String modelo,double p, String data){
+    public Configuracao(Integer id,String nome,Integer n, ArrayList<Componente> componentes, String modelo,double p, String data, String estado){
         this.id = id;
         this.nome = nome;
         this.nContribuinte = n;
@@ -56,7 +58,18 @@ public class Configuracao {
         this.modelo = modelo;
         this.preco = p;
         this.data = data;
+        this.estado = estado;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
 
     public Integer getNContribuinte() {
         return nContribuinte;

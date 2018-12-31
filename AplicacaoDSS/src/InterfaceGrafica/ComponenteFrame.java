@@ -10,6 +10,7 @@ import Funcionalidade.Facade;
 import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -26,6 +27,7 @@ public class ComponenteFrame extends javax.swing.JFrame {
      */
     public ComponenteFrame(Facade facade, List <Componente> list,Selecao selecao) {
         initComponents();
+        this.facade = facade;
         String[] colunas = { "Detalhe Interior", "Descrição","Preço","Selecionar" };
         Object[][] data = null;
         data = new Object[list.size()][4];
@@ -117,7 +119,8 @@ public class ComponenteFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+     
     /**
      * @param args the command line arguments
      */
@@ -160,4 +163,6 @@ public class ComponenteFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
     private JTable table;
+    private Facade facade;
+
 }

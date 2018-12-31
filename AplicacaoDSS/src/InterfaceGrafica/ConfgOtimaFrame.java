@@ -32,11 +32,17 @@ public class ConfgOtimaFrame extends javax.swing.JInternalFrame {
      * Creates new form ConfgOtimaFrame
      */
     public ConfgOtimaFrame(Facade facade, Selecao s) {
+        try {
+            this.facade = new Facade();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
         this.s = s;
-        jButton3.setEnabled(false);
+        this.facade = facade;
+        //jButton3.setEnabled(false);
         jButton4.setEnabled(false);
 // to remove
 ui.setNorthPane(null);
@@ -186,22 +192,16 @@ ui.setNorthPane(null);
         } catch (SQLException ex) { 
             Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-     /*   cf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        cf.addWindowListener(new WindowAdapter(){
-           @Override
-           public void windowClosing(WindowEvent evt){
-               cf.closing();
-               cf.dispose();
-           }
-        });*/
+        cf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         cf.setVisible(true);
-        //this.setEnabled(false);
+        jButton4.setEnabled(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ComponenteFrame cf = null;
         try{
             List<Componente> l = facade.getTypeComponentes("motor");
+            System.out.println("Passou 1ª linha");
             if (l == null) System.out.println("l é null");
             cf = new ComponenteFrame(facade,l,s);
         } catch (SQLException ex) { 
@@ -209,15 +209,9 @@ ui.setNorthPane(null);
         } catch(NullPointerException e){
            System.out.println("Null pointer Exception");
         }
-     /*   cf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        cf.addWindowListener(new WindowAdapter(){
-           @Override
-           public void windowClosing(WindowEvent evt){
-               cf.closing();
-               cf.dispose();
-           }
-        });*/
+        cf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         cf.setVisible(true);
+        jButton3.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

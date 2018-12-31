@@ -110,10 +110,7 @@ public class Facade {
     
     public List<Componente> getTypeComponentes(String type) throws SQLException{
         List<Componente> comp = new ArrayList<Componente>();
-        System.out.println("A chamar compDAO.getTipoComponentes(type)");
         comp = compDAO.getTipoComponentes(type);
-        System.out.println("Recebeu lista");
-        if(comp != null) System.out.println("facade.getTypeComponentes() a funcionar");
         return comp;
     }
     
@@ -126,7 +123,7 @@ public class Facade {
     }
     
     public List<Configuracao> getConfiguracoes(Integer n) throws SQLException{
-        List<Configuracao> configs = configDAO.getConfiguracoes(n); 
+        List<Configuracao> configs = configDAO.getConfiguracoesAtivas(n); 
         return configs;
     }
     
@@ -177,6 +174,10 @@ public class Facade {
     
     public double getPrecoConfig(){
        return this.selectedConfig.getPreco();
+    }
+    
+    public ConfiguracaoDAO getConfigDAO(){
+        return configDAO;
     }
     
     public String getNomeModelo(){
@@ -238,6 +239,4 @@ public class Facade {
         pacote.setImage(imagem);
         pacoteDAO.addPacote(pacote);
     }
-
-    
 }
