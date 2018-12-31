@@ -44,7 +44,7 @@ public class SavePacote extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("Introduza o nome do Modelo:");
+        jLabel2.setText("Introduza o nome do Pacote:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Gravar Pacote");

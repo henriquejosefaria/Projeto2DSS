@@ -31,15 +31,15 @@ import javax.swing.table.AbstractTableModel;
  */
 public class GerirPacotes extends javax.swing.JFrame {
     
-    public GerirPacotes(Facade facade, List<Pacote> pacotes) throws SQLException {
+    public GerirPacotes(Facade facade) throws SQLException {
         initComponents();
         this.facade = facade;
-        desenhaTabelaPacotes(pacotes);
+        desenhaTabelaPacotes();
         
     }
-    public void desenhaTabelaPacotes(List<Pacote> pacotes) throws SQLException{
+    public void desenhaTabelaPacotes() throws SQLException{
         if(table != null){ table.dispose();}
-        table = new TablePacotes(facade,pacotes, this);
+        table = new TablePacotes(facade, this);
         table.setLocation(400, 90);
         table.setVisible(true);
         this.add(table);
@@ -99,7 +99,12 @@ public class GerirPacotes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        //
+        try {
+            new ModelosFrame(facade,true).setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(GerirPacotes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -139,7 +144,7 @@ public class GerirPacotes extends javax.swing.JFrame {
             public void run() {
                 Facade facade = null;
                 try {
-                    new GerirPacotes(facade,null).setVisible(true);
+                    new GerirPacotes(facade).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(GerirPacotes.class.getName()).log(Level.SEVERE, null, ex);
                 }

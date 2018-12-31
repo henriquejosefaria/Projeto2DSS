@@ -143,9 +143,9 @@ public class LobbyAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         try {
-            List<Pacote> list = facade.getPacoteDAO().getAllPacotes();
-            new GerirPacotes(facade, list).setVisible(true);
+            new GerirPacotes(facade).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(LobbyAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }

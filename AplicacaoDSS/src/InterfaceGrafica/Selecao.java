@@ -45,6 +45,8 @@ public class Selecao extends javax.swing.JFrame {
             jComboBox1.setVisible(false);
             jButton2.setEnabled(false);
             jButton2.setVisible(false);
+            jButton2.setEnabled(false);
+            jLabel2.setVisible(false);
             }
             else{   
             PacotesFrame2 pacotesf = new PacotesFrame2(this.facade,this);
@@ -271,7 +273,7 @@ public class Selecao extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Selecao(new Facade(),false).setVisible(true);
+                    new Selecao(new Facade(),true).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
                 }

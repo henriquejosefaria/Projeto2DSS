@@ -27,7 +27,7 @@ public class ConfiguracaoDAO {
     public void addConfiguracao(Configuracao config) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "INSERT INTO configuracao ( nome, nContribuinte, Modelo, Data,preco) VALUES (?,?,?,?,?);";
+            String query = "INSERT INTO configuracao ( nome, nContribuinte, Modelo, Data,preco,Estado) VALUES (?,?,?,?,?,?);";
             PreparedStatement pst = con.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
 
             pst.setString(1, config.getNome());
@@ -35,6 +35,7 @@ public class ConfiguracaoDAO {
             pst.setString(3, "Audi");
             pst.setString(4, config.getData());
             pst.setDouble(5, config.getPreco());
+            pst.setString(6, "A");
             pst.execute();
             
             ResultSet rs = pst.getGeneratedKeys();

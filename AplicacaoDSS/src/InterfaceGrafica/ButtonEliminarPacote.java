@@ -46,7 +46,7 @@ class ButtonEliminarPacote extends DefaultCellEditor {
           }
           list.remove(i);
           try {
-              t.desenhaTabelaPacotes(list);
+              t.desenhaTabelaPacotes();
           } catch (SQLException ex) {
               Logger.getLogger(ButtonEliminarPacote.class.getName()).log(Level.SEVERE, null, ex);
           }
