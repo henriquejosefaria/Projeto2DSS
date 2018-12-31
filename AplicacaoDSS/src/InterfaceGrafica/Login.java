@@ -127,15 +127,15 @@ public class Login extends javax.swing.JFrame {
             else {
                 s = facade.checkUserType(facade.getUserDAO().getUtilizador(userId));
                 if(s.equals("A")){
-                    new LobbyAdministrador(facade).setVisible(true);
+                    new LobbyAdministrador(facade,facade.getUserDAO().getUtilizador(userId)).setVisible(true);
                     this.dispose(); 
                 }
                 else if(s.equals("S")){
-                    new LobbyFuncionario(facade).setVisible(true);
+                    new LobbyFuncionario(facade, facade.getUserDAO().getUtilizador(userId)).setVisible(true);
                     this.dispose(); 
                 }
                 else if (s.equals("F")){
-                    new LobbyFuncionarioFabrica(facade).setVisible(true);
+                    new LobbyFuncionarioFabrica(facade, facade.getUserDAO().getUtilizador(userId)).setVisible(true);
                     this.dispose();
                 }
             }
