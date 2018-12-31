@@ -156,7 +156,9 @@ public class Selecao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  
+    public void setEncomendaButton(boolean a){
+        jButton3.setEnabled(a);
+    }
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         if(jComboBox1.getSelectedIndex()== 0 && !(selectedframe instanceof PacotesFrame)){
@@ -189,22 +191,16 @@ public class Selecao extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Configuracao c = this.facade.getSelectedConfig();
-        String s;
-        for (Componente comp : c.getComponentes()){
-            try {
-                s = comp.getNome();
-                if (facade.getCompDAO().getComponenteStock(s)<=0){
-                    JOptionPane.showMessageDialog(null, "O seguinte componente não tem stock: "+s, "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
-                    return;
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
+        String s =facade.checkStock();
+        if( s == null){
+            JOptionPane.showMessageDialog(null, "Pode agora finalizar a sua configuração!", "InfoBox: " + "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            if(facade.isStock() && facade.isConfigSaved()){
+            setEncomendaButton(true);
             }
+        }            
+        else{
+            JOptionPane.showMessageDialog(null, "O seguinte componente não tem stock: "+s, "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
         }
-        JOptionPane.showMessageDialog(null, "Pode agora finalizar a sua configuração!", "InfoBox: " + "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-        jButton3.setEnabled(true);
-        jButton2.setEnabled(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -218,7 +214,7 @@ public class Selecao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        new SaveFrame(facade).setVisible(true);
+        new SaveFrame(facade,this).setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

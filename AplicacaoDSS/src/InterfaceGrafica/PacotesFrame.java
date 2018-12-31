@@ -148,6 +148,9 @@ ui.setNorthPane(null);
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         try {
             facade.setSelectedConfig(2);
+            facade.setConfigSaved(false);
+            facade.setStock(false);
+            selecao.setEncomendaButton(false);
             selecao.desenhaConfigFrame();
         } catch (SQLException ex) {
             Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -158,6 +161,9 @@ ui.setNorthPane(null);
         try {
             facade.setSelectedConfig(4);
             selecao.desenhaConfigFrame();
+            facade.setConfigSaved(false);
+            facade.setStock(false);
+            selecao.setEncomendaButton(false);
         } catch (SQLException ex) {
             Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -167,6 +173,9 @@ ui.setNorthPane(null);
         try {
             facade.setSelectedConfig(3);
             selecao.desenhaConfigFrame();
+            facade.setConfigSaved(false);
+            facade.setStock(false);
+            selecao.setEncomendaButton(false);
         } catch (SQLException ex) {
             Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -176,6 +185,9 @@ ui.setNorthPane(null);
         try {
             facade.setSelectedConfig(1);
             selecao.desenhaConfigFrame();
+            facade.setConfigSaved(false);
+            selecao.setEncomendaButton(false);
+            facade.setStock(false);
         } catch (SQLException ex) {
             Logger.getLogger(PacotesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
