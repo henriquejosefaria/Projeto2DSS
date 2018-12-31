@@ -126,7 +126,13 @@ public class Facade {
     }  
     
     public List<Modelo> getModelos() throws SQLException{
-        return modeloDAO.getModelos();
+        List<Modelo> m = new ArrayList<>();
+        try{
+            m = modeloDAO.getModelos();
+        } catch(NullPointerException e){
+            System.out.println("Erro no modeloDAO");
+        }
+        return m;
     }
     
     public List<Componente> getComponentesOrdemCrescente() throws SQLException{
