@@ -36,13 +36,13 @@ public class SelecaoGuardada extends javax.swing.JFrame {
         DefaultTableModel dm = new DefaultTableModel(){
             @Override
         public boolean isCellEditable(int row, int column) {
-            if( column == 5)return true; return false;
+            if( column == 5 || column == 6)return true; return false;
         }};
         
 
 
         this.dm = dm;
-        dm.setColumnIdentifiers(new String [] {"Número de Save","Nome", "Número Contribuinte", "Data", "Modelo","Ação"});
+        dm.setColumnIdentifiers(new String [] {"Número de Save","Nome", "Número Contribuinte", "Data", "Modelo","Retomar","Apagar"});
         jTable1.setModel(dm);
 
 
@@ -177,23 +177,46 @@ public class SelecaoGuardada extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        List<Configuracao> configs;
+        desenhaTabela();
+        /*List<Configuracao> configs;
         try {
             dm.setRowCount(0);
             configs = facade.getConfiguracoes(Integer.parseInt(jTextField1.getText()));
-        jTable1.getColumn("Ação").setCellRenderer(new ButtonRenderer());
-        jTable1.getColumn("Ação").setCellEditor(
+        jTable1.getColumn("Retomar").setCellRenderer(new ButtonRenderer());
+        jTable1.getColumn("Retomar").setCellEditor(
         new ButtonRetomarSelecao(new JCheckBox(),this,jTable1,configs,facade)); // jTable2.getEditingRow() isto é que estava a estourar
-       dm.isCellEditable(1,1);
+        jTable1.getColumn("Apagar").setCellRenderer(new ButtonRenderer());
+        jTable1.getColumn("Apagar").setCellEditor(
+        new ButtonApagarSelecao(new JCheckBox(),this,jTable1,configs,facade));
+        dm.isCellEditable(1,1);
             configs.forEach((c) -> {
-        dm.addRow(new Object[]{c.getId().toString(),c.getNome().toString(),c.getNContribuinte().toString(),c.getData(),c.getModelo(),"Retomar Selecao"});
+        dm.addRow(new Object[]{c.getId().toString(),c.getNome().toString(),c.getNContribuinte().toString(),c.getData(),c.getModelo(),"Retomar Selecao","Apagar Selecao"});
+    });
+        } catch (SQLException ex) {
+            Logger.getLogger(SelecaoGuardada.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+    }//GEN-LAST:event_jButton2MouseClicked
+    
+    public void desenhaTabela(){
+        List<Configuracao> configs = null;
+        try {
+            dm.setRowCount(0);
+            configs = facade.getConfiguracoes(Integer.parseInt(jTextField1.getText()));
+        jTable1.getColumn("Retomar").setCellRenderer(new ButtonRenderer());
+        jTable1.getColumn("Retomar").setCellEditor(
+        new ButtonRetomarSelecao(new JCheckBox(),this,jTable1,configs,facade)); // jTable2.getEditingRow() isto é que estava a estourar
+        jTable1.getColumn("Apagar").setCellRenderer(new ButtonRenderer());
+        jTable1.getColumn("Apagar").setCellEditor(
+        new ButtonApagarSelecao(new JCheckBox(),this,jTable1,configs,facade));
+        dm.isCellEditable(1,1);
+            configs.forEach((c) -> {
+        dm.addRow(new Object[]{c.getId().toString(),c.getNome().toString(),c.getNContribuinte().toString(),c.getData(),c.getModelo(),"Retomar Selecao","Apagar Selecao"});
     });
         } catch (SQLException ex) {
             Logger.getLogger(SelecaoGuardada.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
- 
-    }//GEN-LAST:event_jButton2MouseClicked
+    }
+    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {

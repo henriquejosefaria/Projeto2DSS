@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TablePacotes extends javax.swing.JInternalFrame {
 
-    public TablePacotes(Facade facade,List<Pacote> pacotes, GerirPacotes t) throws SQLException {
+    public TablePacotes(Facade facade, GerirPacotes t) throws SQLException {
     initComponents();
 BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
@@ -35,6 +35,7 @@ BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.get
 // to remove
 ui.setNorthPane(null);
     this.facade = facade;
+    List<Pacote> pacotes = facade.getPacoteDAO().getAllPacotes();
         String[] colunas = { "Pacote", "Nome","Id da Configuração","Eliminar Pacote"};
         Object[][] data = null;
         data = new Object[pacotes.size()][4];

@@ -4,54 +4,46 @@
  * and open the template in the editor.
  */
 package InterfaceGrafica;
-import Funcionalidade.Componente;
-import Funcionalidade.Encomenda;
-import Funcionalidade.Facade;
-import Funcionalidade.Pacote;
 
+import Funcionalidade.Configuracao;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import Funcionalidade.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-class ButtonEliminarPacote extends DefaultCellEditor {
+class ButtonApagarSelecao extends DefaultCellEditor {
   protected JButton button;
 
   private String label;
 
   private boolean isPushed;
 
-  public ButtonEliminarPacote(JCheckBox checkBox,Facade facade,JTable table, List<Pacote> list, GerirPacotes t) {
+  public ButtonApagarSelecao(JCheckBox checkBox,SelecaoGuardada selecaog, JTable table,List<Configuracao> configs, Facade facade) {
     super(checkBox);
     button = new JButton();
     button.setOpaque(true);
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-          int i = table.getSelectedRow();
+         int i = table.getSelectedRow();
           try {
-              facade.getPacoteDAO().removePacote(list.get(i).getNome());
+              facade.getConfigDAO().removeConfiguracao(configs.get(i).getId());
           } catch (SQLException ex) {
-              Logger.getLogger(ButtonEliminarPacote.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(ButtonApagarSelecao.class.getName()).log(Level.SEVERE, null, ex);
           }
-          list.remove(i);
-          try {
-              t.desenhaTabelaPacotes();
-          } catch (SQLException ex) {
-              Logger.getLogger(ButtonEliminarPacote.class.getName()).log(Level.SEVERE, null, ex);
-          }
-    }
-  });
+          selecaog.desenhaTabela();
+      }
+    });
   }
 
   public Component getTableCellEditorComponent(JTable table, Object value,
@@ -86,8 +78,4 @@ class ButtonEliminarPacote extends DefaultCellEditor {
   protected void fireEditingStopped() {
     super.fireEditingStopped();
   }
-  
-  private Integer numeroAluno;
-  private ArrayList<Integer> quotasPagas = new ArrayList<Integer>();
-  private ArrayList<Integer> quotasAPagar = new ArrayList<Integer>();
 }
