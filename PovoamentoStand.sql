@@ -43,12 +43,12 @@ INSERT INTO Modelo
     ('Ford',14000,'/interfacegrafica/Img/Modelos/modelo3.jpg');
     
 INSERT INTO configuracao
-	(idConfiguracao,nome, nContribuinte, Modelo, Data,preco)
+	(idConfiguracao,nome, nContribuinte, Modelo, Data,preco, Estado)
 	VALUES
-		(1,'Toze',143432343,'Audi','22/12/2012',4322),
-        (2,'Quim',343234323,'Mercedez','22/03/2017',4323),
-        (3,'Jorge',343234545,'Audi','03/05/2015',5343),
-        (4,'pedro',359659685,'Ford','23/07/2013',2454);
+		(1,'Toze',143432343,'Audi','22/12/2012',4322,'A'),
+        (2,'Quim',343234323,'Mercedez','22/03/2017',4323,'A'),
+        (3,'Jorge',343234545,'Audi','03/05/2015',5343,'A'),
+        (4,'pedro',359659685,'Ford','23/07/2013',2454,'I');
         
 INSERT INTO configuracao_has_componentes
 	(Configuracao_idConfiguracao, Componentes_Nome)
