@@ -110,7 +110,9 @@ public class Facade {
     
     public List<Componente> getTypeComponentes(String type) throws SQLException{
         List<Componente> comp = new ArrayList<Componente>();
+        System.out.println("A chamar compDAO.getTipoComponentes(type)");
         comp = compDAO.getTipoComponentes(type);
+        System.out.println("Recebeu lista");
         if(comp != null) System.out.println("facade.getTypeComponentes() a funcionar");
         return comp;
     }

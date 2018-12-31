@@ -153,8 +153,15 @@ public class ComponenteDAO {
         if(con!=null){
         PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
         ResultSet rs = pst.executeQuery();
+        System.out.println("A começar iteração");
         while(rs.next()){
             Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
+            System.out.println("1º" + rs.getString(1));
+            System.out.println("2º" + rs.getInt(2));
+            System.out.println("3º" + rs.getString(3));
+            System.out.println("4º" + rs.getDouble(4));
+            System.out.println("5º" + rs.getString(5));
+            System.out.println("1º" + rs.getString(6));
             list.add(componente);
         }
         System.out.println("Acabei iteracao");

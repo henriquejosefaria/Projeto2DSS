@@ -201,7 +201,8 @@ ui.setNorthPane(null);
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ComponenteFrame cf = null;
         try{
-            cf = new ComponenteFrame(facade,facade.getTypeComponentes("motor"),s);
+            List<Componente> l = facade.getTypeComponentes("motor");
+            cf = new ComponenteFrame(facade,l,s);
         } catch (SQLException ex) { 
             Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
