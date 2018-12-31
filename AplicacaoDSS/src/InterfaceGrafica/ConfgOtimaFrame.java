@@ -169,23 +169,28 @@ ui.setNorthPane(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*ModelosJFrame m = new ModelosJFrame(facade,this);
-        m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        m.addWindowListener(new WindowAdapter(){
-           @Override
-           public void windowClosing(WindowEvent evt){
-               m.closing();
-               m.dispose();
-           }
-        });
-        m.setVisible(true);
+        ModelosFrame m;
+        try {
+            m = new ModelosFrame(facade,this);
+            m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            m.addWindowListener(new WindowAdapter(){
+               @Override
+               public void windowClosing(WindowEvent evt){
+                    m.closing();
+                    m.dispose();
+               }
+            });
+            m.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setEnabled(false);
         custo1 = facade.getPrecoConfig();
         nomeModelo = facade.getNomeModelo();
         if(custo1>0){
             jButton2.setEnabled(true);
             jButton1.setEnabled(false);
-        }*/
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

@@ -125,7 +125,7 @@ public class Facade {
         return new Configuracao();
     }  
     
-    public ArrayList<Modelo> getModelos() throws SQLException{
+    public List<Modelo> getModelos() throws SQLException{
         return modeloDAO.getModelos();
     }
     

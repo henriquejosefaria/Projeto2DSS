@@ -14,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,12 +21,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author henriquefaria
  */
-public class ModelosJFrame extends javax.swing.JFrame {
+public class ModelosFrame extends javax.swing.JFrame {
+
+    private final Facade facade;
+    private final ConfgOtimaFrame config;
 
     /**
-     * Creates new form ModelosJFrame
+     * Creates new form ModelosFrame
      */
-    public ModelosJFrame(Facade facade, ConfgOtimaFrame config) throws SQLException {
+    public ModelosFrame(Facade facade, ConfgOtimaFrame config) throws SQLException {
         this.facade = facade;
         initComponents();
         this.config = config;
@@ -37,15 +39,15 @@ public class ModelosJFrame extends javax.swing.JFrame {
         String[] colunas = { "Nome","Imagem","Preço","Ação" };
         Object[][] data = null;
 
+        List <Modelo> modelos = new ArrayList<>();
         try {
-            List<Modelo> modelos = facade.getModelos();
-            System.out.println(modelos.size());
+            modelos = facade.getModelos();
         } catch (SQLException ex) {
-            Logger.getLogger(ModelosJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModelosFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(NullPointerException e){
+            System.out.println("Erro no acesso á base de dados");
         }
 
-
-        List<Modelo> modelos  = modelos = facade.getModelos();
         System.out.println(modelos.size());
         data = new Object[modelos.size()][4];
         for (int r=0; r<modelos.size(); r++) {
@@ -68,7 +70,6 @@ public class ModelosJFrame extends javax.swing.JFrame {
         new ButtonModelos(new JCheckBox(),this,jTable1,modelos,facade));
       jTable1.setRowHeight(120);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,8 +86,7 @@ public class ModelosJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Selecione o seu modelo!");
+        jLabel1.setText("Modelos");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,7 +101,7 @@ public class ModelosJFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Confirmar Escolha");
+        jButton1.setText("Confirmar escolha");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -113,22 +113,29 @@ public class ModelosJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(248, 248, 248)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(116, 116, 116)
+                .addComponent(jButton1)
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jButton1))
         );
 
         pack();
@@ -138,10 +145,11 @@ public class ModelosJFrame extends javax.swing.JFrame {
         config.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     public void closing(){
         config.setEnabled(true);
     }
+    
     
     /**
      * @param args the command line arguments
@@ -160,13 +168,13 @@ public class ModelosJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModelosJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModelosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModelosJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModelosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModelosJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModelosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModelosJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModelosFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -174,9 +182,9 @@ public class ModelosJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new ModelosJFrame(new Facade(),null).setVisible(true);
+                    new ModelosFrame(new Facade(),null).setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(ModelosJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ModelosFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -188,11 +196,4 @@ public class ModelosJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-    private DefaultTableModel dm;
-    private ConfgOtimaFrame config;
-    private Facade facade;
-
-
 }
-
-

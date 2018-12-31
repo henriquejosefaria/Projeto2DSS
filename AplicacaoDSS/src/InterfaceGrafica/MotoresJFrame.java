@@ -42,7 +42,7 @@ public class MotoresJFrame extends javax.swing.JFrame {
             motores = facade.getTypeComponentes("motor");
             System.out.println(motores.size());
         } catch (SQLException ex) {
-            Logger.getLogger(ModelosJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModelosFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         this.dm = dm;
