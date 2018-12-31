@@ -37,15 +37,15 @@ public class ModelosJFrame extends javax.swing.JFrame {
         String[] colunas = { "Nome","Imagem","Preço","Ação" };
         Object[][] data = null;
 
+        List <Modelo> modelos = new ArrayList<>();
         try {
-            List<Modelo> modelos = facade.getModelos();
-            System.out.println(modelos.size());
+            modelos = facade.getModelos();
         } catch (SQLException ex) {
             Logger.getLogger(ModelosJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(NullPointerException e){
+            System.out.println("Erro no acesso á base de dados");
         }
 
-
-        List<Modelo> modelos  = modelos = facade.getModelos();
         System.out.println(modelos.size());
         data = new Object[modelos.size()][4];
         for (int r=0; r<modelos.size(); r++) {
