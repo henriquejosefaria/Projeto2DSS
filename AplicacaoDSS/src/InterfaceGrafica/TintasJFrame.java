@@ -45,6 +45,8 @@ public class TintasJFrame extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("Não conseguiu aceder à BD!");
             //Logger.getLogger(ModelosJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  catch(NullPointerException e){
+            System.out.println("Erro no acesso á base de dados");
         }
 
         this.dm = dm;

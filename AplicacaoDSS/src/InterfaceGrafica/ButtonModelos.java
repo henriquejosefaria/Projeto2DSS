@@ -34,7 +34,7 @@ public class ButtonModelos  extends DefaultCellEditor  {
     private String label;
     private boolean isPushed;
     
-    public ButtonModelos(JCheckBox checkBox,ModelosJFrame mod, JTable table,List<Modelo> modelos, Facade facade){
+    public ButtonModelos(JCheckBox checkBox,ModelosFrame mod, JTable table,List<Modelo> modelos, Facade facade){
         super(checkBox);
         button = new JButton();
         this.facade = facade;
