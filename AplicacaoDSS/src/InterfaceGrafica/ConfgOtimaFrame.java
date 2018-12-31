@@ -177,10 +177,10 @@ ui.setNorthPane(null);
                @Override
                public void windowClosing(WindowEvent evt){
                     m.closing();
-                   m.dispose();
+                    m.dispose();
                }
-        });
-        m.setVisible(true);
+            });
+            m.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
