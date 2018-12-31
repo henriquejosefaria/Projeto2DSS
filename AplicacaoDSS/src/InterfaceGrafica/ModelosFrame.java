@@ -24,15 +24,13 @@ import javax.swing.table.DefaultTableModel;
 public class ModelosFrame extends javax.swing.JFrame {
 
     private final Facade facade;
-    private final ConfgOtimaFrame config;
 
     /**
      * Creates new form ModelosFrame
      */
-    public ModelosFrame(Facade facade, ConfgOtimaFrame config) throws SQLException {
+    public ModelosFrame(Facade facade) throws SQLException {
         this.facade = facade;
         initComponents();
-        this.config = config;
         
 
         
@@ -142,14 +140,8 @@ public class ModelosFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        config.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    public void closing(){
-        config.setEnabled(true);
-    }
-    
     
     /**
      * @param args the command line arguments
@@ -182,7 +174,7 @@ public class ModelosFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new ModelosFrame(new Facade(),null).setVisible(true);
+                    new ModelosFrame(new Facade()).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(ModelosFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }

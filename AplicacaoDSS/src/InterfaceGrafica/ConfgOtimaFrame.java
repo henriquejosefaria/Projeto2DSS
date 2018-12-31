@@ -35,7 +35,6 @@ public class ConfgOtimaFrame extends javax.swing.JInternalFrame {
         initComponents();
         BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
-        jButton2.setEnabled(false);
         jButton3.setEnabled(false);
         jButton4.setEnabled(false);
 // to remove
@@ -56,15 +55,12 @@ ui.setNorthPane(null);
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(574, 454));
         setMinimumSize(new java.awt.Dimension(574, 454));
-        setPreferredSize(new java.awt.Dimension(574, 454));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Configuração Ótima");
@@ -78,16 +74,6 @@ ui.setNorthPane(null);
         jLabel4.setText("Insira o dinheiro que está disposto a pagar pelo carro:");
 
         jTextField1.setText("18000 €");
-
-        jLabel5.setText("Escolha o modelo do seu carro:");
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/modelo.jpg")));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfaceGrafica/Img/Modelos/modelo1.jpg"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfaceGrafica/Img/Componentes/tinta.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -110,14 +96,11 @@ ui.setNorthPane(null);
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(93, 93, 93)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addComponent(jLabel3))
-                                .addGap(90, 90, 90)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
@@ -137,26 +120,21 @@ ui.setNorthPane(null);
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel5))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)))
+                        .addGap(58, 58, 58)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(62, 62, 62)))
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -168,31 +146,6 @@ ui.setNorthPane(null);
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ModelosFrame m;
-        try {
-            m = new ModelosFrame(facade,this);
-            m.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-            m.addWindowListener(new WindowAdapter(){
-               @Override
-               public void windowClosing(WindowEvent evt){
-                    m.closing();
-                    m.dispose();
-               }
-            });
-            m.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.setEnabled(false);
-        custo1 = facade.getPrecoConfig();
-        nomeModelo = facade.getNomeModelo();
-        if(custo1>0){
-            jButton2.setEnabled(true);
-            jButton1.setEnabled(false);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         double max = 0;
         try{
@@ -203,7 +156,7 @@ ui.setNorthPane(null);
         List<Componente> componentes = new ArrayList<>();
         Configuracao c;
         // escrever mensagem de erro (try catch)
-        max -= custo3;
+        max -= custo2;
         if(max > 0){
             try {
                 componentes = facade.getComponentesOrdemCrescente();
@@ -232,8 +185,8 @@ ui.setNorthPane(null);
         });
         m.setVisible(true);
         this.setEnabled(false);
-        custo2 = facade.getPrecoConfig();
-        if(custo2>custo1){
+        custo1 = facade.getPrecoConfig();
+        if(custo1>0){
             jButton3.setEnabled(true);
             jButton2.setEnabled(false);
         }
@@ -251,8 +204,8 @@ ui.setNorthPane(null);
         });
         m.setVisible(true);
         this.setEnabled(false);
-        custo3 = facade.getPrecoConfig();
-        if(custo3>custo2){
+        custo2 = facade.getPrecoConfig();
+        if(custo2>custo1){
             jButton4.setEnabled(true);
             jButton3.setEnabled(false);
         }
@@ -261,7 +214,6 @@ ui.setNorthPane(null);
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -269,14 +221,12 @@ ui.setNorthPane(null);
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     private javax.swing.JInternalFrame selectedframe;
     private Facade facade;
     private double custo1 = 0;
     private double custo2 = 0;
-    private double custo3 = 0;
     private String nomeModelo = null;
     private Configuracao config = new Configuracao();
 }
