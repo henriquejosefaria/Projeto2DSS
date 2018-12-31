@@ -31,6 +31,10 @@ public class Pacote {
         return nome;
     }
 
+    public void setConfigId(Integer configId) {
+        this.configId = configId;
+    }
+
     public Integer getConfigId() {
         return configId;
     }

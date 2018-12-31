@@ -227,6 +227,11 @@ public class Facade {
         stock = true;
         return null;
     }
+    
+    public void savePacote(String nome,String imagem) throws SQLException{
+        Pacote pacote = new Pacote(nome,selectedConfig.getId(),imagem);
+        pacoteDAO.addPacote(pacote);
+    }
 
     
 }

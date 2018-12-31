@@ -40,7 +40,7 @@ class ButtonRetomarSelecao extends DefaultCellEditor {
          System.out.println(c.getComponentes().size()+"fdasds");
          facade.setSelectedConfig(c);
           try {
-              new Selecao(facade).setVisible(true);
+              new Selecao(facade,false).setVisible(true);
           } catch (SQLException ex) {
               Logger.getLogger(ButtonRetomarSelecao.class.getName()).log(Level.SEVERE, null, ex);
           }

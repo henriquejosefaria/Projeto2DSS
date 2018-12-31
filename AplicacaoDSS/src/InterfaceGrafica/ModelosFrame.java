@@ -23,13 +23,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ModelosFrame extends javax.swing.JFrame {
 
-    private final Facade facade;
+    private Facade facade;
 
     /**
      * Creates new form ModelosFrame
      */
-    public ModelosFrame(Facade facade) throws SQLException {
+    public ModelosFrame(Facade facade,boolean fabrica) throws SQLException {
         this.facade = facade;
+        this.fabrica = fabrica;
         initComponents();
         
 
@@ -65,7 +66,7 @@ public class ModelosFrame extends javax.swing.JFrame {
         jTable1.setModel(model);
         jTable1.getColumn("Ação").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn("Ação").setCellEditor(
-        new ButtonModelos(new JCheckBox(),this,jTable1,modelos,facade));
+        new ButtonModelos(new JCheckBox(),this,jTable1,modelos,facade,fabrica));
       jTable1.setRowHeight(120);
     }
     /**
@@ -156,7 +157,7 @@ public class ModelosFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new ModelosFrame(new Facade()).setVisible(true);
+                    new ModelosFrame(new Facade(),true).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(ModelosFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -169,4 +170,5 @@ public class ModelosFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    private boolean fabrica;
 }
