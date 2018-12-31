@@ -31,7 +31,8 @@ public class ConfgOtimaFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form ConfgOtimaFrame
      */
-    public ConfgOtimaFrame(Facade facade, Selecao s) {
+    public ConfgOtimaFrame(Facade facade, Selecao s) throws SQLException {
+        this.facade = new Facade();
         initComponents();
         BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
