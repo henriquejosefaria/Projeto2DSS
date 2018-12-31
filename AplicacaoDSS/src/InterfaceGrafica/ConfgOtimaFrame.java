@@ -73,10 +73,9 @@ ui.setNorthPane(null);
         jLabel1.setText("Configuração Ótima");
 
         jLabel2.setText("Escolha o motor do seu carro:");
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/motor.jpg")));
 
         jLabel3.setText("Escolha a pintura do seu carro:");
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/tinta.png")));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/motor.png")));
 
         jLabel4.setText("Insira o dinheiro que está disposto a pagar pelo carro:");
 
