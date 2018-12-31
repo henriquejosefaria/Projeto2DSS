@@ -113,8 +113,6 @@ public class Facade {
     public List<Encomenda> getAllEncomendas() throws SQLException{
         return compDAO.getAllEncomendas();
     }
-
-
     
     public List<Configuracao> getConfiguracoes(Integer n) throws SQLException{
         List<Configuracao> configs = configDAO.getConfiguracoes(n); 
@@ -127,11 +125,7 @@ public class Facade {
     
     public List<Modelo> getModelos() throws SQLException{
         List<Modelo> m = new ArrayList<>();
-        try{
-            m = modeloDAO.getModelos();
-        } catch(NullPointerException e){
-            System.out.println("Erro no modeloDAO");
-        }
+        m = modeloDAO.getModelos();
         return m;
     }
     

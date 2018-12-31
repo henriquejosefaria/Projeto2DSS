@@ -39,7 +39,7 @@ public class ModelosFrame extends javax.swing.JFrame {
 
         List <Modelo> modelos = new ArrayList<>();
         try {
-            modelos = facade.getModelos();
+            modelos = new ArrayList<Modelo>(facade.getModelos());
         } catch (SQLException ex) {
             Logger.getLogger(ModelosFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch(NullPointerException e){
