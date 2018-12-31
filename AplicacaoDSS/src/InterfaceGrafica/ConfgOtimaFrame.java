@@ -36,6 +36,7 @@ public class ConfgOtimaFrame extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
         JComponent title = ui.getNorthPane();
         this.s = s;
+        this.facade = facade;
         jButton3.setEnabled(false);
         jButton4.setEnabled(false);
 // to remove
@@ -202,6 +203,7 @@ ui.setNorthPane(null);
         ComponenteFrame cf = null;
         try{
             List<Componente> l = facade.getTypeComponentes("motor");
+            System.out.println("Passou 1ª linha");
             if (l == null) System.out.println("l é null");
             cf = new ComponenteFrame(facade,l,s);
         } catch (SQLException ex) { 
