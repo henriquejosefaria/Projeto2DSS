@@ -279,7 +279,7 @@ public class Selecao extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Selecao(new Facade(),false).setVisible(true);
+                    new Selecao(new Facade(),true).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
                 }

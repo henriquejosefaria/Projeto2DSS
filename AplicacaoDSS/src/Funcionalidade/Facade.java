@@ -126,7 +126,7 @@ public class Facade {
     }
     
     public List<Configuracao> getConfiguracoes(Integer n) throws SQLException{
-        List<Configuracao> configs = configDAO.getConfiguracoes(n); 
+        List<Configuracao> configs = configDAO.getConfiguracoesAtivas(n); 
         return configs;
     }
     
@@ -177,6 +177,10 @@ public class Facade {
     
     public double getPrecoConfig(){
        return this.selectedConfig.getPreco();
+    }
+    
+    public ConfiguracaoDAO getConfigDAO(){
+        return configDAO;
     }
     
     public String getNomeModelo(){
