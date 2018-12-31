@@ -119,8 +119,6 @@ public class Facade {
     public List<Encomenda> getAllEncomendas() throws SQLException{
         return compDAO.getAllEncomendas();
     }
-
-
     
     public List<Configuracao> getConfiguracoes(Integer n) throws SQLException{
         List<Configuracao> configs = configDAO.getConfiguracoes(n); 
@@ -132,7 +130,9 @@ public class Facade {
     }  
     
     public List<Modelo> getModelos() throws SQLException{
-        return modeloDAO.getModelos();
+        List<Modelo> m = new ArrayList<>();
+        m = modeloDAO.getModelos();
+        return m;
     }
     
     public List<Componente> getComponentesOrdemCrescente() throws SQLException{

@@ -34,7 +34,7 @@ public class ButtonTintas extends DefaultCellEditor {
     private String label;
     private boolean isPushed;
     
-    public ButtonTintas(JCheckBox checkBox,TintasJFrame mod, JTable table,List<Componente> tintas, Facade facade) {
+    public ButtonTintas(JCheckBox checkBox,TintasJFrame mod, JTable table,List<Componente> tintas, Facade facade, JButton x) {
     super(checkBox);
         button = new JButton();
         this.facade = facade;
@@ -44,6 +44,8 @@ public class ButtonTintas extends DefaultCellEditor {
               int i = table.getSelectedRow();
               Componente t = tintas.get(i);
               facade.addComponente(t);
+              x.setEnabled(true);
+              mod.dispose();
           }
         });
     }

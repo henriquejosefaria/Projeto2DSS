@@ -22,12 +22,15 @@ public class ModeloDAO {
         List <Modelo> list = new ArrayList<>();
         Connection con = AConnection.createConnection();
         if(con!=null){
+            System.out.println("entrei na bd");
         PreparedStatement pst = con.prepareStatement("SELECT * FROM modelo");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
+            System.out.println("Em iteração");
             Modelo modelo = new Modelo(rs.getString(1),rs.getDouble(2),rs.getString(3));
             list.add(modelo);
         }
+        System.out.println("Acabei iteração");
         AConnection.closeConection(con);
         }
         return list;

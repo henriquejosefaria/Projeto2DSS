@@ -158,9 +158,8 @@ public class LobbyFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
         try {
-            new ModelosFrame(facade,null).setVisible(true);
+            new ModelosFrame(facade).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(LobbyFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }

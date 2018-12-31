@@ -42,7 +42,7 @@ public class ButtonModelos  extends DefaultCellEditor  {
         button.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
               int i = table.getSelectedRow();
-              Modelo m = modelos.get(i);
+              Modelo m = modelos.get(i); // possivelmente para ter a linha correta
               facade.setSelectedConfigModel(m);
               try {
                   new Selecao(facade).setVisible(true);
