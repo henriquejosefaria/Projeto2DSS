@@ -167,7 +167,7 @@ ui.setNorthPane(null);
             try {
                 componentes = facade.getComponentesOrdemCrescente();
                 facade.selecaoAutomatica(max,componentes);
-                Selecao s = new Selecao(facade);
+                Selecao s = new Selecao(facade,false);
                 s.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {

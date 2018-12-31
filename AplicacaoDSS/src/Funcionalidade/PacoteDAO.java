@@ -22,13 +22,14 @@ public class PacoteDAO {
         
     }
     
-    public void addPacote(String nome, Integer configId) throws SQLException{
+    public void addPacote(Pacote pacote) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "INSERT INTO pacote (Nome, Configuracao_idConfiguracao)";
+            String query = "INSERT INTO pacote (Nome, Configuracao_idConfiguracao, Imagem) VALUES(?,?,?)";
             PreparedStatement pst = con.prepareStatement(query);
-            pst.setString(1, nome);
-            pst.setInt(2, configId);
+            pst.setString(1, pacote.getNome());
+            pst.setInt(2, pacote.getConfigId());
+            pst.setString(3, pacote.getImage());
             pst.execute();
             AConnection.closeConection(con);
         }

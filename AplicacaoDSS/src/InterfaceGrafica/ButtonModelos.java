@@ -34,7 +34,7 @@ public class ButtonModelos  extends DefaultCellEditor  {
     private String label;
     private boolean isPushed;
     
-    public ButtonModelos(JCheckBox checkBox,ModelosFrame mod, JTable table,List<Modelo> modelos, Facade facade){
+    public ButtonModelos(JCheckBox checkBox,ModelosFrame mod, JTable table,List<Modelo> modelos, Facade facade,boolean fabrica){
         super(checkBox);
         button = new JButton();
         this.facade = facade;
@@ -45,7 +45,7 @@ public class ButtonModelos  extends DefaultCellEditor  {
               Modelo m = modelos.get(i); // possivelmente para ter a linha correta
               facade.setSelectedConfigModel(m);
               try {
-                  new Selecao(facade).setVisible(true);
+                  new Selecao(facade,fabrica).setVisible(true);
                   mod.dispose();
               } catch (SQLException ex) {
                   Logger.getLogger(ButtonModelos.class.getName()).log(Level.SEVERE, null, ex);

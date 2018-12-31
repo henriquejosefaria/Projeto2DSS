@@ -27,21 +27,32 @@ public class Selecao extends javax.swing.JFrame {
     /**
      * Creates new form Selecao
      */
-    public Selecao(Facade facade) throws SQLException {
+    public Selecao(Facade facade,boolean fabrica) throws SQLException {
         initComponents();
         this.facade = facade;
-        this.l = l; // para utilizar no botão de cancelar seleção (back)
-        desenhaConfigFrame();
-        
+        this.fabrica = fabrica;
+        if(fabrica)
+            jButton3.setText("Criar Pacote");
+            
+            desenhaConfigFrame();
+            if(fabrica){
+            ComponentesFrame compnentesf = new ComponentesFrame(facade,this);
+            compnentesf.setLocation(50, 100);
+            compnentesf.setVisible(true);
+            this.add(compnentesf);
+            selectedframe = compnentesf;
+            jComboBox1.setEnabled(false);
+            jComboBox1.setVisible(false);
+            jButton2.setEnabled(false);
+            jButton2.setVisible(false);
+            }
+            else{   
             PacotesFrame2 pacotesf = new PacotesFrame2(this.facade,this);
             pacotesf.setLocation(50, 100);
             pacotesf.setVisible(true);
             this.add(pacotesf);
             selectedframe = pacotesf;
-    }
-
-    Selecao(Facade facade, Configuracao c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
     }
     
     public void desenhaConfigFrame() throws SQLException{
@@ -211,16 +222,22 @@ public class Selecao extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new Pagamento(this).setVisible(true);
+        if(fabrica)
+        {
+            new SavePacote(facade,this).setVisible(true);
+        }
+        else{
         try {
             facade.saveEncomenda();
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        new SaveFrame(facade,this).setVisible(true);
+    new SaveFrame(facade,this,fabrica).setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
@@ -253,9 +270,8 @@ public class Selecao extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Facade facade = null;
                 try {
-                    new Selecao(facade).setVisible(true);
+                    new Selecao(new Facade(),false).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -276,4 +292,5 @@ public class Selecao extends javax.swing.JFrame {
     private Facade facade;
     private SelecaoTable2 tableComp;
     private LobbyFuncionario l;
+    private boolean fabrica;
 }
