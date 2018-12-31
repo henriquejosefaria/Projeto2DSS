@@ -10,18 +10,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import java.util.List;
+import java.util.stream.Collectors;
 /**
  *
  * @author henriquefaria
  */
 public class ModeloDAO {
     
-    public ArrayList<Modelo> getModelos() throws SQLException{
-        ArrayList <Modelo> list = new ArrayList<>();
+    public List<Modelo> getModelos() throws SQLException{
+        List <Modelo> list = new ArrayList<>();
         Connection con = AConnection.createConnection();
         if(con!=null){
-        PreparedStatement pst = con.prepareStatement("SELECT* FROM modelo");
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM modelo");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
             Modelo modelo = new Modelo(rs.getString(1),rs.getDouble(2),rs.getString(3));
