@@ -199,7 +199,7 @@ public class Selecao extends javax.swing.JFrame {
     }
         else if((selectedframe != null) && jComboBox1.getSelectedIndex()== 2){
             if(selectedframe!= null) selectedframe.dispose();
-            ConfgOtimaFrame confg = new ConfgOtimaFrame(facade);
+            ConfgOtimaFrame confg = new ConfgOtimaFrame(facade,this);
             confg.setLocation(70, 100);
             confg.setVisible(true);
             this.add(confg);

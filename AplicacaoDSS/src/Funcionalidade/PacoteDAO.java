@@ -42,7 +42,7 @@ public class PacoteDAO {
         
         Connection con = AConnection.createConnection();
         if(con!=null){
-            PreparedStatement pst = con.prepareStatement("DELETE FROM pacote WHERE Nome = "+nome);
+            PreparedStatement pst = con.prepareStatement("DELETE FROM pacote WHERE Nome = '"+nome+"';");
             pst.execute();
             AConnection.closeConection(con);
         }

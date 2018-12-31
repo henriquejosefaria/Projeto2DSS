@@ -157,6 +157,7 @@ public class ComponenteDAO {
             Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
             list.add(componente);
         }
+        System.out.println("Acabei iteracao");
         AConnection.closeConection(con);
         }
         return list;

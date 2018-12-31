@@ -97,7 +97,10 @@ INSERT INTO encomenda
 	VALUES
 		(1,'20-12-2018 17:40','a fazer',1,5095.92,'/interfacegrafica/Img/Modelos/modelo1.jpg'),
         (2,'15-12-2018 22:05','a fazer',2,5331.92,'/interfacegrafica/Img/Modelos/modelo1.jpg'),
-        (3,'30-12-2018 18:37','completo',3,44547.92,'/interfacegrafica/Img/Modelos/modelo1.jpg');
+        (3,'30-12-2018 18:37','a fazer',3,44547.92,'/interfacegrafica/Img/Modelos/modelo1.jpg'),
+		(4,'10-12-2018 12:20','a fazer',1,5095.92,'/interfacegrafica/Img/Modelos/modelo1.jpg'),
+        (5,'12-12-2018 11:45','a fazer',2,5331.92,'/interfacegrafica/Img/Modelos/modelo1.jpg'),
+        (6,'17-12-2018 19:27','completo',3,44547.92,'/interfacegrafica/Img/Modelos/modelo1.jpg');
     
 Select comp From Pacote as p 
 inner join configuracao as c on p.Configuracao_idConfiguracao = c.idConfiguracao 
