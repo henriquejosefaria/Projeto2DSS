@@ -20,12 +20,11 @@ public class UtilizadorDAO {
         
     }
     
-    public void addUtilizador(Integer id, String nome,String pass,String tipo) throws SQLException{
+    public void addUtilizador(String nome,String pass,String tipo) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "INSERT INTO utilizador (idUtilizador, Nome, Password, Tipo)";
+            String query = "INSERT INTO utilizador (Nome, Password, Tipo)";
             PreparedStatement pst = con.prepareStatement(query);
-            pst.setInt(1, id);
             pst.setString(2, nome);
             pst.setString(3, pass);
             pst.setString(4, tipo);
