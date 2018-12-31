@@ -21,6 +21,7 @@ public class Facade {
     private Integer selectedConfigId;
     private Configuracao selectedConfig;
     private ComponenteDAO compDAO;
+    private PacoteDAO pacoteDAO;
     private ModeloDAO modeloDAO;
     private EncomendaDAO encDAO;
     private boolean stock;
@@ -34,11 +35,16 @@ public class Facade {
         this.configDAO = new ConfiguracaoDAO();
         this.modeloDAO = new ModeloDAO();
         this.compDAO = new ComponenteDAO();
+        this.pacoteDAO = new PacoteDAO();
         this. selectedConfigId = 999;
         this.encDAO = new EncomendaDAO();
         selectedConfig = new Configuracao();
         stock = false;
         configSaved = false;
+    }
+
+    public PacoteDAO getPacoteDAO() {
+        return pacoteDAO;
     }
     
     public ComponenteDAO getCompDAO(){

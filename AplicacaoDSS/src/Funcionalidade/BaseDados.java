@@ -116,8 +116,8 @@ public class BaseDados {
             PreparedStatement pstPacote = con.prepareStatement(query6);
             ResultSet rsPacote = pstPacote.executeQuery();     
             while (rsPacote.next()) {
-                Pacote pacote = new Pacote(rsPacote.getString(1),rsPacote.getInt(2));
-                packages.put(pacote.getNome(), pacote);
+              //  Pacote pacote = new Pacote(rsPacote.getString(1),rsPacote.getInt(2));
+               // packages.put(pacote.getNome(), pacote);
             }
             System.out.println("Pacotes loaded from MySQL DB: " + packages.size());
 

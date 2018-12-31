@@ -33,7 +33,7 @@ public class Selecao extends javax.swing.JFrame {
         this.l = l; // para utilizar no botão de cancelar seleção (back)
         desenhaConfigFrame();
         
-            PacotesFrame pacotesf = new PacotesFrame(this.facade,this);
+            PacotesFrame2 pacotesf = new PacotesFrame2(this.facade,this);
             pacotesf.setLocation(50, 100);
             pacotesf.setVisible(true);
             this.add(pacotesf);
@@ -161,14 +161,20 @@ public class Selecao extends javax.swing.JFrame {
     }
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        if(jComboBox1.getSelectedIndex()== 0 && !(selectedframe instanceof PacotesFrame)){
+        if(jComboBox1.getSelectedIndex()== 0 && !(selectedframe instanceof PacotesFrame2)){
            if(selectedframe!= null) selectedframe.dispose();
             System.out.println("00000");
-            PacotesFrame pacotesf = new PacotesFrame(facade,this);
-            pacotesf.setLocation(50, 100);
-            pacotesf.setVisible(true);
-            this.add(pacotesf);
-            selectedframe = pacotesf;
+            PacotesFrame2 pacotesf;
+            try {
+                pacotesf = new PacotesFrame2(facade,this);
+                pacotesf.setLocation(50, 100);
+                pacotesf.setVisible(true);
+                this.add(pacotesf);
+                selectedframe = pacotesf;
+            } catch (SQLException ex) {
+                Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
         else if(jComboBox1.getSelectedIndex()== 1 && !(selectedframe instanceof ComponentesFrame)){
             
