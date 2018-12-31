@@ -61,7 +61,7 @@ ui.setNorthPane(null);
         return (column == 0) ? Icon.class : Object.class;
       }
      public boolean isCellEditable(int row, int column) {
-            if( column == 3)return true; return false;
+            if( column == 2)return true; return false;
         }};
       jTable1.setModel(model);
       jTable1.getColumn("Selecionar").setCellRenderer(new ButtonRenderer());
