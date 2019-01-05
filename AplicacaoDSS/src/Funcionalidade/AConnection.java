@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class AConnection {
     public static Connection createConnection() throws SQLException {
     
-        String url = "jdbc:mysql://localhost:3307/stand?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3307/Stand?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String username = "Jafar Strogonof";
         String password = "Jafar";
         Connection con = null;

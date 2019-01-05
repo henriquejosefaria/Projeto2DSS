@@ -258,8 +258,13 @@ ui.setNorthPane(null);
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        Color newColor = JColorChooser.showDialog(null, "Choose a color", Color.WHITE);
-        
+        String tipo = "tinta";
+        try {
+            List<Componente> list = facade.getTypeComponentes("Tinta");
+            new ComponenteFrame(facade,list,selecao,tipo).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton4MouseClicked
 
 

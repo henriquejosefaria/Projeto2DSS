@@ -22,7 +22,7 @@ public class ModeloDAO {
         List <Modelo> list = new ArrayList<>();
         Connection con = AConnection.createConnection();
         if(con!=null){
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM modelo");
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM Modelo");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
             Modelo modelo = new Modelo(rs.getString(1),rs.getDouble(2),rs.getString(3));

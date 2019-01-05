@@ -24,7 +24,7 @@ public class EncomendaDAO {
     public void addEncomenda(Encomenda enc) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "INSERT INTO encomenda (Data,Estado,Configuracao_idConfiguracao,preco,Imagem)VALUES (?,?,?,?,?);";
+            String query = "INSERT INTO Encomenda (Data,Estado,Configuracao_idConfiguracao,preco,Imagem)VALUES (?,?,?,?,?);";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, enc.getData());
             pst.setString(2, enc.getEstado());
@@ -44,18 +44,18 @@ public class EncomendaDAO {
         
         Connection con = AConnection.createConnection();
         if(con!=null){
-            PreparedStatement pst = con.prepareStatement("DELETE FROM encomenda WHERE idEncomenda = "+id);
+            PreparedStatement pst = con.prepareStatement("DELETE FROM Encomenda WHERE idEncomenda = "+id);
             pst.execute();
             AConnection.closeConection(con);
         }
         else{
-            System.err.println("Exception! encomenda not Deleted!");
+            System.err.println("Exception! Encomenda not Deleted!");
         }
     }
     public Encomenda getEncomenda(Integer id) throws SQLException{
         Connection con = AConnection.createConnection();
         Encomenda encomenda = null;
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM encomenda WHERE idEncomenda = "+id);
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM Encomenda WHERE idEncomenda = "+id);
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
             encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getDouble(5),rs.getString(6));
@@ -68,7 +68,7 @@ public class EncomendaDAO {
             boolean res = false;
             Connection con = AConnection.createConnection();
             if(con!=null){
-                PreparedStatement pst = con.prepareStatement("SELECT* FROM encomenda WHERE idEncomenda = "+id);
+                PreparedStatement pst = con.prepareStatement("SELECT* FROM Encomenda WHERE idEncomenda = "+id);
                 ResultSet rs = pst.executeQuery();
                 res = rs.next();
                 AConnection.closeConection(con);
@@ -79,7 +79,7 @@ public class EncomendaDAO {
     public void concluiEncomenda(Encomenda e) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "UPDATE encomenda SET Estado = ? where idEncomenda = '"+e.getId()+"';";
+            String query = "UPDATE Encomenda SET Estado = ? where idEncomenda = '"+e.getId()+"';";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, e.getEstado());
             pst.execute();
