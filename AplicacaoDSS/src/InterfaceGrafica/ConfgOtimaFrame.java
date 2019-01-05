@@ -81,8 +81,6 @@ ui.setNorthPane(null);
 
         jLabel4.setText("Insira o dinheiro que está disposto a pagar pelo carro:");
 
-        jTextField1.setText("18000 €");
-
         jButton4.setText("Calcular");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfaceGrafica/Img/Componentes/motor.jpg"))); // NOI18N
@@ -158,31 +156,33 @@ ui.setNorthPane(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        
         String valor = jTextField1.getText();
+        Integer max = Integer.parseInt(valor);
+        System.out.println(max);
         if(valor==null) {
             JOptionPane.showMessageDialog(null, "Tem de escrever um número!", "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
         }
         else if(valor.matches(".*[a-z].*")){
             JOptionPane.showMessageDialog(null, "O valor não pode conter letras!", "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
         }
-        Integer max = Integer.parseInt(valor);
-        List<Componente> componentes = new ArrayList<>();
-        Configuracao c;
+        else {
+            List<Componente> componentes = new ArrayList<>();
+            Configuracao c;
         
-        if(max > 10000){
-            try {
-                componentes = facade.getComponentesOrdemCrescente();
-                System.out.println(componentes +"TRALALALALALALALLALLLALALALA");
-                facade.selecaoAutomatica(max,componentes);
-                Selecao s = new Selecao(facade,false);
-                s.setVisible(true);
-                this.dispose();
-            } catch (SQLException ex) {
-                Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
+            if(max > 10000){
+                try {
+                    componentes = facade.getComponentesOrdemCrescente();
+                    facade.selecaoAutomatica(max,componentes);
+                    Selecao s = new Selecao(facade,false);
+                    s.setVisible(true);
+                    this.dispose();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
             JOptionPane.showMessageDialog(null, "O valor inserido é muito baixo, minimo : 10000", "Aviso!", JOptionPane.ERROR_MESSAGE);
-
+            }
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
