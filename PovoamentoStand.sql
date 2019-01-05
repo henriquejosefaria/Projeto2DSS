@@ -1,11 +1,11 @@
-INSERT INTO utilizador
+INSERT INTO Utilizador
 	(idUtilizador,Nome,Password,Tipo)
 	VALUES
         (1,'André Peixoto','123','S'),
         (2,'Luis Cunha','123','F'),
 		(3,'Admin','123','A');
 
-INSERT INTO componente
+INSERT INTO Componente
 	(Nome,Stock,Tipo,preco,Descricao,Imagem)
 	VALUES
 		('Jantes Liga Leve',832,'Jante',434.32,'Rodam bem','/interfacegrafica/Img/Jantes/Jantes1.jpg'),
@@ -41,14 +41,14 @@ INSERT INTO componente
         ('Tinta Amarela',9000,'Tinta',50.12,'Amarelo','/interfacegrafica/Img/Tinta/Amarelo.jpg');
 
 INSERT INTO Modelo
-	(nome,preco,Img)
+	(Nome,preco,Img)
 	VALUES    
 
     ('Audi',12000,'/interfacegrafica/Img/Modelos/modelo1.jpg'),
     ('Mercedez',13000,'/interfacegrafica/Img/Modelos/modelo2.jpg'),
     ('Ford',14000,'/interfacegrafica/Img/Modelos/modelo3.jpg');
     
-INSERT INTO configuracao
+INSERT INTO Configuracao
 	(idConfiguracao,nome, nContribuinte, Modelo, Data,preco, Estado)
 	VALUES
 		(1,'Toze',143432343,'Audi','22/12/2012',4322,'A'),
@@ -56,7 +56,7 @@ INSERT INTO configuracao
         (3,'Jorge',343234545,'Audi','03/05/2015',5343,'A'),
         (4,'pedro',359659685,'Ford','23/07/2013',2454,'I');
         
-INSERT INTO configuracao_has_componentes
+INSERT INTO Configuracao_has_Componentes
 	(Configuracao_idConfiguracao, Componentes_Nome)
 	VALUES
 		(1,'Jantes Liga Leve'),
@@ -90,7 +90,7 @@ INSERT INTO configuracao_has_componentes
 		(4,'Suporte para copos'),
         (4,'Retrovisor');
         
-INSERT INTO pacote
+INSERT INTO Pacote
 	(Nome, Configuracao_idConfiguracao,Imagem)
 	VALUES
     ('Sport',1,'/interfacegrafica/Img/Pacotes/comfort.jpg'),
@@ -98,7 +98,7 @@ INSERT INTO pacote
     ('Sport+',3,'/interfacegrafica/Img/Pacotes/sport+.jpg'),
     ('Turbo',4,'/interfacegrafica/Img/Pacotes/turbo.jpg');
 
-INSERT INTO encomenda
+INSERT INTO Encomenda
 	(idEncomenda,Data,Estado,Configuracao_idConfiguracao,preco,Imagem)
 	VALUES
 		(1,'20-12-2018 17:40','a fazer',1,5095.92,'/interfacegrafica/Img/Modelos/modelo1.jpg'),
@@ -108,24 +108,30 @@ INSERT INTO encomenda
         (5,'12-12-2018 11:45','a fazer',2,5331.92,'/interfacegrafica/Img/Modelos/modelo1.jpg'),
         (6,'17-12-2018 19:27','completo',3,44547.92,'/interfacegrafica/Img/Modelos/modelo1.jpg');
     
-Select comp From Pacote as p 
-inner join configuracao as c on p.Configuracao_idConfiguracao = c.idConfiguracao 
-inner join configuracao_has_componentes as cc on cc.Configuracao_idConfiguracao = c.idConfiguracao 
-inner join Componente as comp on cc.Componentes_Nome = comp.Nome
-where p.Nome = 'Sport' ;
+SELECT comp FROM Pacote AS p 
+INNER JOIN Configuracao AS c ON p.Configuracao_idConfiguracao = c.idConfiguracao 
+INNER JOIN Configuracao_has_Componentes AS cc ON cc.Configuracao_idConfiguracao = c.idConfiguracao 
+INNER JOIN Componente AS comp ON cc.Componentes_Nome = comp.Nome
+WHERE p.Nome = 'Sport' ;
 
-SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From
-configuracao_has_componentes as cc inner join Componente as comp on cc.Componentes_Nome = comp.Nome 
-where cc.Configuracao_idConfiguracao = '1';
+SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao FROM
+Configuracao_has_Componentes AS cc INNER JOIN Componente AS comp ON cc.Componentes_Nome = comp.Nome 
+WHERE cc.Configuracao_idConfiguracao = '1';
 
-SELECT * FROM componente WHERE Tipo = 'Motor';
+SELECT * FROM Componente WHERE Tipo = 'Motor';
 
-SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From
- configuracao_has_componentes as cc inner join Componente as comp on cc.Componentes_Nome = comp.Nome 
+SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao FROM
+ Configuracao_has_Componentes AS cc INNER JOIN Componente AS comp ON cc.Componentes_Nome = comp.Nome 
  WHERE cc.Configuracao_idConfiguracao = 1;
  
- SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao From configuracao as c 
-            inner join configuracao_has_componentes as cc on c.idConfiguracao = cc.Configuracao_idConfiguracao
-            inner join Componente as comp on cc.Componentes_Nome = comp.Nome
-		WHERE c.nContribuinte = 143432343;
+SELECT 
+    comp.Nome, comp.Stock, comp.Tipo, comp.Preco, comp.Descricao
+FROM
+    Configuracao AS c
+        INNER JOIN
+    Configuracao_has_Componentes AS cc ON c.idConfiguracao = cc.Configuracao_idConfiguracao
+        INNER JOIN
+    Componente AS comp ON cc.Componentes_Nome = comp.Nome
+WHERE
+    c.nContribuinte = 143432343;
         
