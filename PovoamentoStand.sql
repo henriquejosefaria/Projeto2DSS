@@ -32,7 +32,13 @@ INSERT INTO componente
         ('Spoiler',1746,'Exterior',174.32,'Corta tempestades','/interfacegrafica/Img/Exterior/Spoiler1.jpg'),
         ('Teto de abrir', 0,'Exterior', 23.45,'Ver o espaço daqui','/interfacegrafica/Img/Exterior/Teto3.jpg'),
         ('LEDs', 152, 'Exterior', 50.23, 'Luzes iluminantes','/interfacegrafica/Img/Exterior/Luzes2.jpg'),
-        ('Amortecedor', 12344,'Exterior',213.21,'Para ir com speed nas lombas','/interfacegrafica/Img/Exterior/Amortecedor2.jpg');
+        ('Amortecedor', 12344,'Exterior',213.21,'Para ir com speed nas lombas','/interfacegrafica/Img/Exterior/Amortecedor2.jpg'),
+
+		('Tinta azul',9000,'Tinta',50.12,'Cor Azul','/interfacegrafica/Img/Tinta/Azul.jpg'),
+        ('Tinta azul',9000,'Tinta',50.12,'Cor Vermelha','/interfacegrafica/Img/Tinta/Vermelho.jpg'),
+        ('Tinta azul',9000,'Tinta',50.12,'Cor Preta','/interfacegrafica/Img/Tinta/Preto.jpg'),
+        ('Tinta azul',9000,'Tinta',50.12,'Cor Branca','/interfacegrafica/Img/Tinta/Branco.jpg'),
+        ('Tinta azul',9000,'Tinta',50.12,'Cor Amarela','/interfacegrafica/Img/Tinta/Amarelo.jpg');
 
 INSERT INTO Modelo
 	(nome,preco,Img)
