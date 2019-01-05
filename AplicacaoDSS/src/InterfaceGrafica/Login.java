@@ -122,7 +122,7 @@ public class Login extends javax.swing.JFrame {
         try {
             res = facade.autentication(userId, pass);
             if(res == false){
-                JOptionPane.showMessageDialog(null, "Login Inválido!", "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Dados inseridos são invalidos.!", "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
             }
             else {
                 s = facade.checkUserType(facade.getUserDAO().getUtilizador(userId));

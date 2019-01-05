@@ -16,7 +16,4 @@ public class FuncionarioFabrica extends Utilizador {
         this.password = password;
     }
     
-    public void atualizaStock(Integer quantidade, String nomeComponente, HashComponentes hashcomponentes){
-        hashcomponentes.componentes.get(nomeComponente).setStock(quantidade);
-    }
 }

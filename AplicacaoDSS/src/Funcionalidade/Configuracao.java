@@ -165,5 +165,10 @@ public class Configuracao {
         }
         return valor;
     }
+    public boolean isEmpty(){
+        if(componentes.size()==0)
+            return true;
+        else return false;
+    }
     
 }
