@@ -20,10 +20,6 @@ INSERT INTO Componente
         ('Pneu 40cm rasga estrada',3424,'Pneu',98.32,'Qualidade burnout','/interfacegrafica/Img/Pneus/Pneus2.jpg'),
         ('Pneu 3m Via Verde',2343,'Pneu',342.32,'Parar para quê?','/interfacegrafica/Img/Pneus/Pneus3.png'),
 		
-        ('Tinta Metalica',4343,'Pintura',83.32,'Pintura manual','/interfacegrafica/Img/Motor/motor3.jpg'),
-        ('Tinta Gloss',4343,'Pintura',98.32,'Pintura automatica','/interfacegrafica/Img/Motor/motor3.jpg'),
-        ('Tinta Pearl',3234,'Pintura',170.32,'Pintura a jato','/interfacegrafica/Img/Motor/motor3.jpg'),
-	   
         ('Suporte para copos',34,'Interior',98.32,'Bêba sem parar!','/interfacegrafica/Img/Interior/SuporteParaCopos.jpg'),
         ('Bancos',2343,'Interior',342.32,'Sente-se no seu Trono!','/interfacegrafica/Img/Interior/Bancos1.png'),
         ('Ar condicionado',2145, 'Interior',132.21,'Aragem fresca','/interfacegrafica/Img/Interior/ArCondicionado1.jpg'),
@@ -35,8 +31,8 @@ INSERT INTO Componente
         ('Amortecedor', 12344,'Exterior',213.21,'Para ir com speed nas lombas','/interfacegrafica/Img/Exterior/Amortecedor2.jpg'),
 
 		('Tinta Azul',9000,'Tinta',50.12,'Azul','/interfacegrafica/Img/Tinta/Azul.jpg'),
-        ('Tinta Vermelha',9000,'Tinta',50.12,'Vermelho','/interfacegrafica/Img/Tinta/Vermelho.jpg'),
-        ('Tinta Preta',9000,'Tinta',50.12,'Preto','/interfacegrafica/Img/Tinta/Preto.jpg'),
+        ('Tinta Vermelha',9000,'Tinta',50.12,'Vermelho','/interfacegrafica/Img/Tinta/Vermelho.png'),
+        ('Tinta Preta',9000,'Tinta',50.12,'Preto','/interfacegrafica/Img/Tinta/Preto.png'),
         ('Tinta Branca',9000,'Tinta',50.12,'Branco','/interfacegrafica/Img/Tinta/Branco.jpg'),
         ('Tinta Amarela',9000,'Tinta',50.12,'Amarelo','/interfacegrafica/Img/Tinta/Amarelo.jpg');
 
@@ -62,7 +58,7 @@ INSERT INTO Configuracao_has_Componentes
 		(1,'Jantes Liga Leve'),
         (1,'Motor 4 CILINDROS TURBO'),
         (1,'Pneu 2mm rasga'),
-        (1,'Tinta Metalica'),
+        (1,'Tinta Azul'),
 		(1,'Suporte para copos'),
         (1,'Retrovisor'),
 
@@ -70,7 +66,7 @@ INSERT INTO Configuracao_has_Componentes
 		(2,'Jantes Liga Media'),
         (2,'Motor 4 CILINDROS TURBO'),
         (2,'Pneu 40cm rasga estrada'),
-        (2,'Tinta Pearl'),
+        (2,'Tinta Vermelha'),
 		(2,'Suporte para copos'),
         (2,'Spoiler'),
 
@@ -78,7 +74,7 @@ INSERT INTO Configuracao_has_Componentes
 		(3,'Jantes Liga Media'),
         (3,'Motor 16 CILINDROS TRUBO PLUS PLUS'),
         (3,'Pneu 3m Via Verde'),
-        (3,'Tinta Gloss'),
+        (3,'Tinta Amarela'),
 		(3,'Bancos'),
         (3,'Retrovisor'),
 
@@ -86,7 +82,7 @@ INSERT INTO Configuracao_has_Componentes
 		(4,'Jantes Liga Media'),
         (4,'Motor 8 CILINDROS TURBO PLUS'),
         (4,'Pneu 2mm rasga'),
-        (4,'Tinta Metalica'),
+        (4,'Tinta Branca'),
 		(4,'Suporte para copos'),
         (4,'Retrovisor');
         
