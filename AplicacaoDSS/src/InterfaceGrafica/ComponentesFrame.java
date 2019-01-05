@@ -207,7 +207,7 @@ ui.setNorthPane(null);
 
         try {
             List<Componente> list = facade.getTypeComponentes("Jante");
-            new ComponenteFrame(facade,list,selecao).setVisible(true);
+            new ComponenteFrame(facade,list,selecao,tipo).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(ComponentesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -217,7 +217,7 @@ ui.setNorthPane(null);
 
         try {
             List<Componente> list = facade.getTypeComponentes("Pneu");
-        new ComponenteFrame(facade,list,selecao).setVisible(true);
+        new ComponenteFrame(facade,list,selecao,tipo).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -225,10 +225,10 @@ ui.setNorthPane(null);
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-
+       
         try {
             List<Componente> list = facade.getTypeComponentes("Motor");
-            new ComponenteFrame(facade,list,selecao).setVisible(true);
+            new ComponenteFrame(facade,list,selecao,tipo).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(ComponentesFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -236,10 +236,10 @@ ui.setNorthPane(null);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-
+        String tipo = "exterior";
         try {
             List<Componente> list = facade.getTypeComponentes("Exterior");
-            new ComponenteFrame(facade,list,selecao).setVisible(true);
+            new ComponenteFrame(facade,list,selecao,tipo).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -247,10 +247,10 @@ ui.setNorthPane(null);
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-
+        String tipo = "interior";
         try {
             List<Componente> list = facade.getTypeComponentes("Interior");
-            new ComponenteFrame(facade,list,selecao).setVisible(true);
+            new ComponenteFrame(facade,list,selecao,tipo).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(SelecaoTable2.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -258,7 +258,8 @@ ui.setNorthPane(null);
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-   Color newColor = JColorChooser.showDialog(null, "Choose a color", Color.WHITE);
+        Color newColor = JColorChooser.showDialog(null, "Choose a color", Color.WHITE);
+        
     }//GEN-LAST:event_jButton4MouseClicked
 
 
@@ -279,4 +280,5 @@ ui.setNorthPane(null);
     // End of variables declaration//GEN-END:variables
     private Facade facade;
     private Selecao selecao;
+    private String tipo = "";
 }

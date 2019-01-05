@@ -187,7 +187,7 @@ ui.setNorthPane(null);
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         ComponenteFrame cf = null;
         try{
-            cf = new ComponenteFrame(facade,facade.getTypeComponentes("pintura"),s);
+            cf = new ComponenteFrame(facade,facade.getTypeComponentes("pintura"),s,tipo);
         } catch (SQLException ex) { 
             Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -202,7 +202,7 @@ ui.setNorthPane(null);
             List<Componente> l = facade.getTypeComponentes("motor");
             System.out.println("Passou 1ª linha");
             if (l == null) System.out.println("l é null");
-            cf = new ComponenteFrame(facade,l,s);
+            cf = new ComponenteFrame(facade,l,s,tipo);
         } catch (SQLException ex) { 
             Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch(NullPointerException e){
@@ -232,4 +232,5 @@ ui.setNorthPane(null);
     private String nomeModelo = null;
     private Configuracao config = new Configuracao();
     private Selecao s;
+    private String tipo = "";
 }
