@@ -62,10 +62,11 @@ ui.setNorthPane(null);
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+        setClosable(true);
         setMaximumSize(new java.awt.Dimension(574, 454));
         setMinimumSize(new java.awt.Dimension(574, 454));
 
@@ -73,24 +74,25 @@ ui.setNorthPane(null);
         jLabel1.setText("Configuração Ótima");
 
         jLabel2.setText("Escolha o motor do seu carro:");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/motor.jpg")));
 
         jLabel3.setText("Escolha a pintura do seu carro:");
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/motor.png")));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfacegrafica/Img/Componentes/tinta.png")));
 
         jLabel4.setText("Insira o dinheiro que está disposto a pagar pelo carro:");
 
         jTextField1.setText("18000 €");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfaceGrafica/Img/Componentes/tinta.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("Calcular");
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfaceGrafica/Img/Componentes/motor.jpg"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Calcular");
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfaceGrafica/Img/Componentes/motor.jpg"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfaceGrafica/Img/Componentes/tinta.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -110,21 +112,19 @@ ui.setNorthPane(null);
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2))
-                                .addGap(93, 93, 93)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(49, 49, 49)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jButton2)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(37, 37, 37)
+                                .addGap(28, 28, 28)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(205, 205, 205)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
+                        .addGap(221, 221, 221)
                         .addComponent(jButton4)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,44 +133,46 @@ ui.setNorthPane(null);
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(76, 76, 76)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jButton1)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
+                        .addGap(57, 57, 57)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(81, 81, 81)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4)
-                .addGap(24, 24, 24))
+                .addGap(7, 7, 7))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        double max = 0;
-        try{
-            max = Double.parseDouble(jTextField1.getText());
-        } catch(NumberFormatException e){
-            System.out.println("Algo que não um número foi inserido.");
+        String valor = jTextField1.getText();
+        if(valor==null) {
+            JOptionPane.showMessageDialog(null, "Tem de escrever um número!", "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
         }
+        else if(valor.matches(".*[a-z].*")){
+            JOptionPane.showMessageDialog(null, "O valor não pode conter letras!", "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+        }
+        Integer max = Integer.parseInt(valor);
         List<Componente> componentes = new ArrayList<>();
         Configuracao c;
-        // escrever mensagem de erro (try catch)
-        max -= custo2;
-        if(max > 0){
+        
+        if(max > 10000){
             try {
                 componentes = facade.getComponentesOrdemCrescente();
+                System.out.println(componentes +"TRALALALALALALALLALLLALALALA");
                 facade.selecaoAutomatica(max,componentes);
                 Selecao s = new Selecao(facade,false);
                 s.setVisible(true);
@@ -179,45 +181,45 @@ ui.setNorthPane(null);
                 Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "O valor inserido é muito baixo, minimo : " + facade.getPrecoConfig(), "Não sabes fazer contas", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "O valor inserido é muito baixo, minimo : 10000", "Aviso!", JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ComponenteFrame cf = null;
         try{
-            cf = new ComponenteFrame(facade,facade.getTypeComponentes("pintura"),s,tipo);
-        } catch (SQLException ex) { 
-            Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        cf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        cf.setVisible(true);
-        jButton4.setEnabled(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ComponenteFrame cf = null;
-        try{
-            List<Componente> l = facade.getTypeComponentes("motor");
-            System.out.println("Passou 1ª linha");
-            if (l == null) System.out.println("l é null");
+            List<Componente> l = facade.getTypeComponentes("Motor");
+            //System.out.println("Passou 1ª linha");
+            //if (l == null) System.out.println("l é null");
             cf = new ComponenteFrame(facade,l,s,tipo);
         } catch (SQLException ex) { 
             Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch(NullPointerException e){
-           System.out.println("Null pointer Exception");
+           //System.out.println("Null pointer Exception");
         }
-        cf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        //cf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         cf.setVisible(true);
-        jButton3.setEnabled(true);
+        jButton4.setEnabled(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ComponenteFrame cf = null;
+        try{
+            cf = new ComponenteFrame(facade,facade.getTypeComponentes("Tinta"),s,tipo);
+        } catch (SQLException ex) { 
+            Logger.getLogger(ConfgOtimaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //cf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        cf.setVisible(true);
+        jButton4.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -227,8 +229,6 @@ ui.setNorthPane(null);
     // End of variables declaration//GEN-END:variables
     private javax.swing.JInternalFrame selectedframe;
     private Facade facade;
-    private double custo1 = 0;
-    private double custo2 = 0;
     private String nomeModelo = null;
     private Configuracao config = new Configuracao();
     private Selecao s;

@@ -141,7 +141,7 @@ public class Facade {
         return compDAO.getComponentesOrdemCrescente();
     }
 
-    public void selecaoAutomatica(Double max, List<Componente> componentes) {
+    public void selecaoAutomatica(Integer max, List<Componente> componentes) {
         double i = 0;
         int indice;
         boolean adicionou = false;
