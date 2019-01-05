@@ -110,7 +110,7 @@ public class Configuracao {
         for(Componente comp : componentes){
             if(comp.getNome().equals(c.getNome())){return;}
         }
-        if(c.getTipo().equals("Motor")||c.getTipo().equals("Pneu")|| c.getTipo().equals("Jante"))
+        if(c.getTipo().equals("Motor")||c.getTipo().equals("Pneu")|| c.getTipo().equals("Jante")|| c.getTipo().equals("Tinta"))
         {
             replaceComponente(c);
         }
