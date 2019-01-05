@@ -25,7 +25,7 @@ public class UtilizadorDAO {
     public void addUtilizador(String nome,String pass,String tipo) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "INSERT INTO utilizador (Nome, Password, Tipo) VALUES ('"+nome+"','"+pass+"','"+tipo+"');";
+            String query = "INSERT INTO Utilizador (Nome, Password, Tipo) VALUES ('"+nome+"','"+pass+"','"+tipo+"');";
             PreparedStatement pst = con.prepareStatement(query);
             //pst.setString(2, nome);
             //pst.setString(3, pass);
@@ -42,7 +42,7 @@ public class UtilizadorDAO {
         
         Connection con = AConnection.createConnection();
         if(con!=null){
-            PreparedStatement pst = con.prepareStatement("DELETE FROM utilizador WHERE idUtilizador = "+id+";");
+            PreparedStatement pst = con.prepareStatement("DELETE FROM Utilizador WHERE idUtilizador = "+id+";");
             pst.execute();
             AConnection.closeConection(con);
         }
@@ -54,7 +54,7 @@ public class UtilizadorDAO {
     public Utilizador getUtilizador(Integer id) throws SQLException{
         Connection con = AConnection.createConnection();
         Utilizador user = null;
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM utilizador WHERE idUtilizador = "+id+";");
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM Utilizador WHERE idUtilizador = "+id+";");
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
             if(rs.getString(4).equals("A")){
@@ -75,7 +75,7 @@ public class UtilizadorDAO {
         List <Integer> list = new ArrayList<>();
         Connection con = AConnection.createConnection();
         if(con!=null){
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM utilizador");
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM Utilizador");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
             list.add(rs.getInt(1));
@@ -89,7 +89,7 @@ public class UtilizadorDAO {
             boolean res = false;
             Connection con = AConnection.createConnection();
             if(con!=null){
-                PreparedStatement pst = con.prepareStatement("SELECT* FROM utilizador WHERE idUtilizador = "+id+";");
+                PreparedStatement pst = con.prepareStatement("SELECT* FROM Utilizador WHERE idUtilizador = "+id+";");
                 ResultSet rs = pst.executeQuery();
                 res = rs.next();
                 AConnection.closeConection(con);

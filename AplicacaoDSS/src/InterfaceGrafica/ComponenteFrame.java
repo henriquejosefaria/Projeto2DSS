@@ -25,10 +25,10 @@ public class ComponenteFrame extends javax.swing.JFrame {
     /**
      * Creates new form JantesFrame
      */
-    public ComponenteFrame(Facade facade, List <Componente> list,Selecao selecao) {
+    public ComponenteFrame(Facade facade, List <Componente> list,Selecao selecao, String tipo) {
         initComponents();
         this.facade = facade;
-        String[] colunas = { "Detalhe Interior", "Descrição","Preço","Selecionar" };
+        String[] colunas = { "Detalhe "+tipo, "Descrição","Preço","Selecionar" };
         Object[][] data = null;
         data = new Object[list.size()][4];
             for (int r=0; r<list.size(); r++) {
@@ -152,7 +152,7 @@ public class ComponenteFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ComponenteFrame(null,null,null).setVisible(true);
+                new ComponenteFrame(null,null,null,null).setVisible(true);
             }
         });
     }

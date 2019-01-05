@@ -27,7 +27,7 @@ public class ConfiguracaoDAO {
     public void addConfiguracao(Configuracao config) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "INSERT INTO configuracao ( nome, nContribuinte, Modelo, Data,preco,Estado) VALUES (?,?,?,?,?,?);";
+            String query = "INSERT INTO Configuracao ( nome, nContribuinte, Modelo, Data,preco,Estado) VALUES (?,?,?,?,?,?);";
             PreparedStatement pst = con.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
 
             pst.setString(1, config.getNome());
@@ -44,7 +44,7 @@ public class ConfiguracaoDAO {
                 generatedKey = rs.getInt(1);
             }
             config.setId(generatedKey);
-            String query2 = "INSERT INTO configuracao_has_componentes ( Configuracao_idConfiguracao, Componentes_Nome) VALUES (?,?);";
+            String query2 = "INSERT INTO Configuracao_has_Componentes ( Configuracao_idConfiguracao, Componentes_Nome) VALUES (?,?);";
             PreparedStatement pst2 = con.prepareStatement(query2);
         
             for(Componente c : config.getComponentes()){
@@ -64,7 +64,7 @@ public class ConfiguracaoDAO {
         
         Connection con = AConnection.createConnection();
         if(con!=null){
-            PreparedStatement pst = con.prepareStatement("UPDATE configuracao SET Estado = 'I' WHERE idConfiguracao = "+id+";");
+            PreparedStatement pst = con.prepareStatement("UPDATE Configuracao SET Estado = 'I' WHERE idConfiguracao = "+id+";");
             pst.execute();
             AConnection.closeConection(con);
         }
@@ -75,13 +75,13 @@ public class ConfiguracaoDAO {
     public Configuracao getConfiguracao(Integer id) throws SQLException{
         Connection con = AConnection.createConnection();
         Configuracao config = null;
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE idConfiguracao = "+id+";");
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM Configuracao WHERE idConfiguracao = "+id+";");
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
             config = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getDouble(6),rs.getString(5),rs.getString(7));
         
             PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao,comp.Imagem From "
-            + "configuracao_has_componentes as cc inner join Componente as comp on cc.Componentes_Nome = comp.Nome "
+            + "Configuracao_has_Componentes as cc inner join Componente as comp on cc.Componentes_Nome = comp.Nome "
             + "WHERE cc.Configuracao_idConfiguracao = "+id+";");
             ResultSet rs2 = pst2.executeQuery();
             while(rs2.next()){
@@ -97,15 +97,15 @@ public class ConfiguracaoDAO {
         List<Configuracao> config = new ArrayList<>();
         Configuracao conf;
         Connection con = AConnection.createConnection();
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM configuracao WHERE nContribuinte = " + nContribuinte+";");
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM Configuracao WHERE nContribuinte = " + nContribuinte+";");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
             conf = new Configuracao(rs.getInt(1),rs.getString(2),rs.getInt(3),new ArrayList<Componente>(),rs.getString(4),rs.getDouble(6),rs.getString(5),rs.getString(7));
             if(rs.getString(7).equals("A")){
                 
             
-            PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao,comp.Imagem From configuracao as c "
-            +"inner join configuracao_has_componentes as cc on c.idConfiguracao = cc.Configuracao_idConfiguracao "
+            PreparedStatement pst2 = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao,comp.Imagem From Configuracao as c "
+            +"inner join Configuracao_has_Componentes as cc on c.idConfiguracao = cc.Configuracao_idConfiguracao "
             +"inner join Componente as comp on cc.Componentes_Nome = comp.Nome "
             +"WHERE c.nContribuinte = "+nContribuinte+";");
             ResultSet rs2 = pst2.executeQuery();
@@ -147,7 +147,7 @@ public class ConfiguracaoDAO {
             boolean res = false;
             Connection con = AConnection.createConnection();
             if(con!=null){
-                PreparedStatement pst = con.prepareStatement("SELECT* FROM configuracao WHERE idConfiguracao = "+id);
+                PreparedStatement pst = con.prepareStatement("SELECT* FROM Configuracao WHERE idConfiguracao = "+id);
                 ResultSet rs = pst.executeQuery();
                 res = rs.next();
                 AConnection.closeConection(con);
@@ -160,7 +160,7 @@ public class ConfiguracaoDAO {
         Connection con = AConnection.createConnection();
         if(con!=null){
         PreparedStatement pst = con.prepareStatement("SELECT comp.Nome,comp.Stock,comp.Tipo,comp.Preco,comp.Descricao,comp.Imagem From " 
-                    + "configuracao_has_componentes as cc "
+                    + "Configuracao_has_Componentes as cc "
                     + "inner join Componente as comp on cc.Componentes_Nome = comp.Nome " 
                     + "where cc.Configuracao_idConfiguracao = '"+id+"';");
             ResultSet rs = pst.executeQuery();
@@ -176,8 +176,8 @@ public class ConfiguracaoDAO {
     public void decrementaStockConfig(Integer configID) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con!=null){
-        PreparedStatement pst = con.prepareStatement("UPDATE componente as comp " +
-            "inner join configuracao_has_componentes as cc on cc.Componentes_Nome = comp.Nome " +
+        PreparedStatement pst = con.prepareStatement("UPDATE Componente as comp " +
+            "inner join Configuracao_has_Componentes as cc on cc.Componentes_Nome = comp.Nome " +
             "SET comp.Stock =  comp.Stock -1 " +
             "WHERE cc.Configuracao_idConfiguracao = "+configID+";");
             pst.execute();

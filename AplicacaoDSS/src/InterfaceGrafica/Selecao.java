@@ -225,7 +225,7 @@ public class Selecao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new Pagamento(this).setVisible(true);
+
         if(fabrica)
         {
             new SavePacote(facade,this).setVisible(true);
@@ -241,7 +241,10 @@ public class Selecao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    new SaveFrame(facade,this,fabrica).setVisible(true);
+        if(!facade.getSelectedConfig().isEmpty())
+        new SaveFrame(facade,this,fabrica).setVisible(true);
+        else
+        JOptionPane.showMessageDialog(null, "A Configuração selecionada está vazia!", "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

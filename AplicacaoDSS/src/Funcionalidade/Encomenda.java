@@ -71,4 +71,9 @@ public class Encomenda {
         LocalDateTime dateTime = LocalDateTime.parse(data, formatter);
         return dateTime;
     }
+    
+    public void finalizaEncomenda(Encomenda encomenda){
+        encomenda.setEstado("a fazer");
+        // falta enviar para a base de dados ordenadamente
+    }
 }

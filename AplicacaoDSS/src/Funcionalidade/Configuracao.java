@@ -110,7 +110,7 @@ public class Configuracao {
         for(Componente comp : componentes){
             if(comp.getNome().equals(c.getNome())){return;}
         }
-        if(c.getTipo().equals("Motor")||c.getTipo().equals("Pneu")|| c.getTipo().equals("Jante"))
+        if(c.getTipo().equals("Motor")||c.getTipo().equals("Pneu")|| c.getTipo().equals("Jante")|| c.getTipo().equals("Tinta"))
         {
             replaceComponente(c);
         }
@@ -164,6 +164,11 @@ public class Configuracao {
             valor += c.getPreco();
         }
         return valor;
+    }
+    public boolean isEmpty(){
+        if(componentes.size()==0)
+            return true;
+        else return false;
     }
     
 }

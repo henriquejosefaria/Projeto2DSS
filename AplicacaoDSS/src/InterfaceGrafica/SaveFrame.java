@@ -9,6 +9,7 @@ import Funcionalidade.Facade;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -133,6 +134,14 @@ public class SaveFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        String numero = jTextField1.getText();
+        if(numero==null) {
+              JOptionPane.showMessageDialog(null, "Tem de escrever um número!", "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(numero.matches(".*[a-z].*")){
+              JOptionPane.showMessageDialog(null, "O nif não pode conter letras!", "InfoBox: " + "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
         facade.getSelectedConfig().setNContribuinte(Integer.parseInt(jTextField1.getText()));
         facade.getSelectedConfig().setNome(jTextField2.getText());
          try {
@@ -149,6 +158,7 @@ public class SaveFrame extends javax.swing.JFrame {
             Logger.getLogger(Selecao.class.getName()).log(Level.SEVERE, null, ex);
         }
          this.dispose();
+        }
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
