@@ -28,7 +28,7 @@ public class ComponenteDAO {
     public void addComponente(String nome,Integer stock,Double preco, String descricao) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "INSERT INTO componente (Nome, Stock, Tipo, Preco, Descricao)";
+            String query = "INSERT INTO Componente (Nome, Stock, Tipo, Preco, Descricao)";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, nome);
             pst.setInt(2, stock);
@@ -46,7 +46,7 @@ public class ComponenteDAO {
         
         Connection con = AConnection.createConnection();
         if(con!=null){
-            PreparedStatement pst = con.prepareStatement("DELETE FROM componente WHERE Nome = "+nome);
+            PreparedStatement pst = con.prepareStatement("DELETE FROM Componente WHERE Nome = "+nome);
             pst.execute();
             AConnection.closeConection(con);
         }
@@ -58,7 +58,7 @@ public class ComponenteDAO {
     public void updateStockComponente(Componente c) throws SQLException{
         Connection con = AConnection.createConnection();
         if(con != null){   
-            String query = "UPDATE componente SET Stock = ? where Nome = '"+c.getNome()+"';";
+            String query = "UPDATE Componente SET Stock = ? where Nome = '"+c.getNome()+"';";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setInt(1, c.getStock());
             pst.execute();
@@ -72,7 +72,7 @@ public class ComponenteDAO {
     public Componente getComponente(String comp) throws SQLException{
         Connection con = AConnection.createConnection();
         Componente componente = null;
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Nome = "+comp);
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM Componente WHERE Nome = "+comp);
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
             componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
@@ -85,7 +85,7 @@ public class ComponenteDAO {
             boolean res = false;
             Connection con = AConnection.createConnection();
             if(con!=null){
-                PreparedStatement pst = con.prepareStatement("SELECT* FROM componente WHERE Nome = "+nome);
+                PreparedStatement pst = con.prepareStatement("SELECT* FROM Componente WHERE Nome = "+nome);
                 ResultSet rs = pst.executeQuery();
                 res = rs.next();
                 AConnection.closeConection(con);
@@ -99,7 +99,7 @@ public class ComponenteDAO {
        HashMap<String,ArrayList<Componente>> res = new HashMap<String,ArrayList<Componente>>();
        Configuracao conf;
        Connection con = AConnection.createConnection();
-       PreparedStatement pst = con.prepareStatement("SELECT * FROM componente");
+       PreparedStatement pst = con.prepareStatement("SELECT * FROM Componente");
        ResultSet rs = pst.executeQuery();
        while(rs.next()){ // cria Map de componentes
            if(!rs.getString(3).equals("motor") && !rs.getString(3).equals("pintura")){
@@ -120,7 +120,7 @@ public class ComponenteDAO {
         List <Componente> list = new ArrayList<>();
         Connection con = AConnection.createConnection();
         if(con!=null){
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM componente");
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM Componente");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
             Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
@@ -135,7 +135,7 @@ public class ComponenteDAO {
         List <Encomenda> list = new ArrayList<>();
         Connection con = AConnection.createConnection();
         if(con!=null){
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM encomenda");
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM Encomenda");
         ResultSet rs = pst.executeQuery();
         while(rs.next()){
             Encomenda encomenda = new Encomenda(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getDouble(5),rs.getString(6));
@@ -151,7 +151,7 @@ public class ComponenteDAO {
         List <Componente> list = new ArrayList<>();
         Connection con = AConnection.createConnection();
         if(con!=null){
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = '"+tipo+"'");
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM Componente WHERE Tipo = '"+tipo+"'");
         ResultSet rs = pst.executeQuery();
         System.out.println("A começar iteração");
         while(rs.next()){
@@ -175,7 +175,7 @@ public class ComponenteDAO {
         String tipo = "motor";
         Connection con = AConnection.createConnection();
         if(con!=null){
-            PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = "+tipo);
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM Componente WHERE Tipo = "+tipo);
             ResultSet rs = pst.executeQuery();
             while(rs.next()){
                 Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
@@ -191,7 +191,7 @@ public class ComponenteDAO {
         String tipo = "pintura";
         Connection con = AConnection.createConnection();
         if(con!=null){
-            PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Tipo = "+tipo);
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM Componente WHERE Tipo = "+tipo);
             ResultSet rs = pst.executeQuery();
             while(rs.next()){
                 Componente componente = new Componente(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getDouble(4),rs.getString(5),rs.getString(6));
@@ -206,7 +206,7 @@ public class ComponenteDAO {
         Connection con = AConnection.createConnection();
         Componente componente = null;
         int stock = -1;
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM componente WHERE Nome = '"+nome+"';");
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM Componente WHERE Nome = '"+nome+"';");
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
             stock = rs.getInt(2);
