@@ -1,0 +1,48 @@
+\documentclass[a4paper, twoside]{report}
+
+%% Language and font encodings
+\usepackage[portuges]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{verbatim}
+\usepackage{float}
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm, paperwidth=210mm,textwidth=160mm]{geometry}
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{multirow}
+
+\title{ConfiguraFácil}
+\author{André Gonçalo Castro Peixoto, A82260\\
+        Henrique José Carvalho Faria, A82200\\
+        Luís Filipe da Costa Cunha, A83099\\
+        Miguel Ângelo Moreira Ramos Brandão, A82349}
+% Update supervisor and other title stuff in title/title.tex
+
+
+\begin{document}
+
+\input{title/title.tex}
+
+\tableofcontents
+
+
+\chapter{Introdução}
+    \input{introducao/introducao.tex}
+    
+\chapter{Modelação}
+    \input{analise_de_requisitos/modelo_de_dominio.tex}
+    \input{analise_de_requisitos/modelo_de_use_case.tex}
+    \input{analise_de_requisitos/interface_grafica.tex}
+    \input{analise_de_requisitos/diagrama_de_estado.tex}
+    \input{diagramas_de_sequencia/diagramas_de_sequencia.tex}
+    \input{diagrama_de_classes/diagrama_de_classes.tex}
+
+\chapter{Conclusão}
+    \input{conclusao/conclusao.tex}
+
+
+\end{document}
